@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #f08c00;
+  --color-accent: #f08c00;
+  --color-background: #ffffff;
+  --color-surface: #1a1a1a;
+  --color-heading: #1f2937;
+  --color-text: #4b5563;
+  --color-text-light: #6b7280;
+  
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  --color-primary-shadow: rgba(240, 140, 0, 0.3);
+  
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-handwritten: Caveat, cursive;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+@layer base {
+  * {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply bg-background text-text font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text font-semibold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-surface text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:shadow-large hover:scale-105 active:scale-100;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-surface text-surface bg-transparent px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:bg-surface hover:text-white hover:shadow-medium active:scale-100;
+  }
+  
+  .btn-accent {
+    @apply bg-primary text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:shadow-large hover:scale-105 active:scale-100;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-soft p-6 transition-all duration-300 hover:shadow-large hover:-translate-y-1;
+  }
+  
+  .card-surface {
+    @apply bg-surface text-white rounded-2xl shadow-medium p-6 transition-all duration-300 hover:shadow-large hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .pastel-bg {
+    @apply bg-opacity-20;
+  }
+  
+  .devicon {
+    font-size: inherit;
+    line-height: inherit;
+  }
+  
+  i[class*="devicon"] {
+    font-style: normal;
+    display: inline-block;
+  }
+}
