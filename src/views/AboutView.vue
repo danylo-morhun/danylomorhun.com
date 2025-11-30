@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import SideNavigation from '../components/SideNavigation.vue';
 import { useTextUnderline } from '../composables/useTextUnderline';
 import { useImageCarousel } from '../composables/useImageCarousel';

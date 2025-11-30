@@ -6,7 +6,7 @@ interface Props {
   strokeWidth?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   height: '10',
   viewBox: '0 0 200 10',
   path: 'M 2,7 Q 20,2 40,5 Q 60,3 80,6 Q 100,2 120,5 Q 140,3 160,6 Q 180,2 198,7',
