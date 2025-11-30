@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { projects } from '../data/projects';
+import { useSEO } from '../composables/useSEO';
 
 const route = useRoute();
 const router = useRouter();
@@ -12,6 +13,15 @@ const project = computed(() => {
 
 if (!project.value) {
   router.push('/projects');
+} else {
+  useSEO({
+    title: project.value.title,
+    description: project.value.description,
+    url: `https://www.danylomorhun.com/projects/${project.value.id}`,
+    image: project.value.imageUrl ? `https://www.danylomorhun.com${project.value.imageUrl}` : undefined,
+    type: 'article',
+    keywords: [...project.value.technologies, 'project', 'case study', 'web development']
+  });
 }
 </script>
 
