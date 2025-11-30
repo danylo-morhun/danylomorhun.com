@@ -3,7 +3,15 @@ import { onMounted, onUnmounted } from 'vue';
 import SideNavigation from '../components/SideNavigation.vue';
 import { useTextUnderline } from '../composables/useTextUnderline';
 import { useImageCarousel } from '../composables/useImageCarousel';
+import { useSEO } from '../composables/useSEO';
 import UnderlineSvg from '../components/UnderlineSvg.vue';
+
+useSEO({
+  title: 'About Me',
+  description: 'Learn about Danylo Morhun, a Middle Full-Stack Engineer & Data Engineering Specialist based in San Francisco. Expertise in Vue.js, TypeScript, Python, and building scalable web applications.',
+  url: 'https://www.danylomorhun.com/about',
+  keywords: ['about', 'full-stack engineer', 'data engineering', 'Vue.js', 'TypeScript', 'Python', 'San Francisco developer']
+});
 
 const underlinePhrases = [
   'Middle Frontend Engineer',
