@@ -2,6 +2,14 @@
 import { ref } from 'vue';
 import SectionTitle from '../components/SectionTitle.vue';
 import { personalInfo } from '../data/personal';
+import { useSEO } from '../composables/useSEO';
+
+useSEO({
+  title: 'Contact',
+  description: 'Get in touch with Danylo Morhun - Middle Full-Stack Engineer & Data Engineering Specialist. Available for freelance projects and opportunities.',
+  url: 'https://www.danylomorhun.com/contact',
+  keywords: ['contact', 'hire', 'freelance', 'full-stack engineer', 'web developer', 'San Francisco']
+});
 
 const formData = ref({
   name: '',
