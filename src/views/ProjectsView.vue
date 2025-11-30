@@ -3,6 +3,14 @@ import { ref, computed } from 'vue';
 import SectionTitle from '../components/SectionTitle.vue';
 import ProjectCard from '../components/ProjectCard.vue';
 import { projects } from '../data/projects';
+import { useSEO } from '../composables/useSEO';
+
+useSEO({
+  title: 'Projects',
+  description: 'Explore my portfolio of full-stack web applications and data engineering projects. Built with Vue.js, TypeScript, Python, and modern technologies.',
+  url: 'https://www.danylomorhun.com/projects',
+  keywords: ['projects', 'portfolio', 'web development', 'full-stack', 'Vue.js', 'TypeScript', 'data engineering']
+});
 
 const selectedCategory = ref<string>('all');
 const categories = ['all', 'fullstack', 'backend', 'frontend', 'data-engineering'] as const;
