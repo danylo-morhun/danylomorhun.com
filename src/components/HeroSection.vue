@@ -10,7 +10,29 @@ const handleLetsMeet = () => {
 };
 
 const handleCaseStudies = () => {
-  router.push('/projects');
+  // If not on home page, navigate to home first, then scroll
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        scrollToCaseStudies();
+      }, 100);
+    });
+  } else {
+    scrollToCaseStudies();
+  }
+};
+
+const scrollToCaseStudies = () => {
+  const element = document.getElementById('case-studies');
+  if (element) {
+    const offset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  }
 };
 
 const techStack = computed(() => {
