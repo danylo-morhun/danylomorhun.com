@@ -17,8 +17,10 @@ export const experiences: Experience[] = [
     technologies: [
       'TypeScript',
       'JavaScript',
-      'Vue 3 + Composition API',
-      'Pinia',
+      'React',
+      'Redux',
+      'Next.js',
+      'Vue',
       'Component Libraries',
       'Python',
       'Django',

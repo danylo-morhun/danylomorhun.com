@@ -18,7 +18,7 @@ onUnmounted(() => {
 });
 
 const handleResumeClick = () => {
-  window.open('/resume.pdf', '_blank');
+  window.open('/Frontend_Developer_Morhun_Danylo.pdf', '_blank');
 };
 </script>
 

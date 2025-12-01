@@ -6,7 +6,7 @@ import { skills } from '../data/skills';
 const router = useRouter();
 
 const handleLetsMeet = () => {
-  window.open('https://calendly.com', '_blank');
+  window.open('https://linkedin.com/in/danylo-morhun', '_blank');
 };
 
 const handleCaseStudies = () => {

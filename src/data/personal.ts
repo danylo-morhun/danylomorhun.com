@@ -14,7 +14,7 @@ export const personalInfo: PersonalInfo = {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com',
+      url: 'https://linkedin.com/in/danylo-morhun',
       icon: 'ri-linkedin-fill',
     },
     {
