@@ -6,7 +6,7 @@ import { useSEO } from '../composables/useSEO';
 
 useSEO({
   title: 'Contact',
-  description: 'Get in touch with Danylo Morhun - Middle Full-Stack Engineer & Data Engineering Specialist. Available for freelance projects and opportunities.',
+  description: 'Get in touch with Danylo Morhun - Frontend Engineer & Data Engineering Specialist. Available for freelance projects and opportunities.',
   url: 'https://www.danylomorhun.com/contact',
   keywords: ['contact', 'hire', 'freelance', 'full-stack engineer', 'web developer', 'San Francisco']
 });

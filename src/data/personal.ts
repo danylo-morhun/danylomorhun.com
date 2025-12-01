@@ -2,7 +2,7 @@ import type { PersonalInfo } from './types';
 
 export const personalInfo: PersonalInfo = {
   name: 'Danylo Morhun',
-  title: 'Middle Full-Stack Engineer & Data Engineering Specialist',
+  title: 'Frontend Engineer & Data Engineering Specialist',
   bio: 'I build scalable web applications and data pipelines that process millions of events daily. With expertise in Vue.js, Node.js, Python, and modern data engineering tools, I transform complex technical challenges into elegant, production-ready solutions.',
   email: 'danymorhun@gmail.com',
   location: 'San Francisco, CA',

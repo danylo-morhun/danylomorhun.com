@@ -10,8 +10,8 @@ interface SEOOptions {
 }
 
 export function useSEO(options: SEOOptions) {
-  const defaultTitle = 'Danylo Morhun - Middle Full-Stack Engineer & Data Engineering Specialist';
-  const defaultDescription = 'Middle Full-Stack Engineer & Data Engineering Specialist - Building scalable web applications and data pipelines that process millions of events daily.';
+  const defaultTitle = 'Danylo Morhun - Frontend Engineer & Data Engineering Specialist';
+  const defaultDescription = 'Frontend Engineer & Data Engineering Specialist - Building scalable web applications and data pipelines that process millions of events daily.';
   const defaultImage = 'https://www.danylomorhun.com/img/logo.png';
   const siteUrl = 'https://www.danylomorhun.com';
 
