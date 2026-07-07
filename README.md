@@ -1,35 +1,20 @@
 # Portfolio Website
 
-A professional portfolio website for a Middle Full-Stack Engineer built with Vue 3, TypeScript, and Tailwind CSS.
+A personal portfolio website built with Nuxt 4, TypeScript, and Tailwind CSS. Server-rendered for real SEO (previous SPA version is archived on the `legacy-v1` branch).
 
 ## Tech Stack
 
-- **Framework**: Vue 3 (Composition API, Script Setup)
+- **Framework**: Nuxt 4 (SSR)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Icons**: Remix Icons (via CDN)
-- **Fonts**: Google Fonts (Inter, Caveat)
-- **Router**: Vue Router
-- **Build Tool**: Vite
-
-## Design System
-
-- **Primary Color**: #f08c00 (Amber)
-- **Background**: #f9fafb (Gray-50)
-- **Headings**: #1f1f1f (Dark Grey)
-- **Text**: #4b5563 (Slate-600)
-- **Border Radius**: rounded-lg
+- **Modules**: `@nuxtjs/tailwindcss`, `@nuxtjs/sitemap`, `@nuxtjs/robots`
 
 ## Project Structure
 
 ```
-src/
-├── components/     # Reusable Vue components
-├── views/          # Page components
-├── data/           # TypeScript data files (projects, skills, experience)
-├── router/         # Vue Router configuration
-├── composables/    # Vue composables
-└── assets/         # Static assets
+app/
+├── app.vue         # Root component
+└── assets/css/     # Global CSS (Tailwind entrypoint)
 ```
 
 ## Getting Started
@@ -58,23 +43,6 @@ npm run build
 npm run preview
 ```
 
-## Customization
+## Status
 
-All content is driven by TypeScript data files in `src/data/`:
-
-- `personal.ts` - Personal information and social links
-- `projects.ts` - Project portfolio items
-- `skills.ts` - Technical skills
-- `experience.ts` - Work experience
-- `types.ts` - TypeScript type definitions
-
-Simply update these files to customize the portfolio content.
-
-## Features
-
-- ✅ Fully responsive (mobile-first)
-- ✅ Clean, modular component architecture
-- ✅ TypeScript for type safety
-- ✅ Smooth animations and transitions
-- ✅ SEO-friendly routing
-- ✅ Professional SaaS aesthetic
+Bare Nuxt scaffold — no pages, layouts, or content yet. Infra only (Tailwind, sitemap, robots modules wired up). See `CLAUDE.md` for the rebuild workflow.
