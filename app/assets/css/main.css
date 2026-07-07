@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Placeholder base styles — Phase B replaces this with the real design system. */
+body {
+  @apply antialiased bg-white text-gray-900;
+}
