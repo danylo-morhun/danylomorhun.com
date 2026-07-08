@@ -33,7 +33,7 @@ export const projects: Project[] = [
     role: 'Frontend Engineer',
     metrics: [
       { value: '24+', label: 'currencies, real-time balances via WebSocket' },
-      { value: 'AML', label: 'risk data surfaced per transaction' },
+      { value: '100%', label: 'transactions surfaced with AML / risk data' },
     ],
   },
   {
