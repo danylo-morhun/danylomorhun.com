@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RiDownloadLine } from '@remixicon/vue'
 import { site } from '~/data/site'
 
 const links = [
@@ -26,10 +27,19 @@ const links = [
         >{{ link.label }}</a>
       </div>
 
-      <a
-        href="#contact"
-        class="rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-opacity duration-200 hover:opacity-85"
-      >Contact</a>
+      <div class="flex items-center gap-3">
+        <a
+          v-if="site.resumeUrl"
+          :href="site.resumeUrl"
+          download
+          class="hidden items-center gap-1.5 text-sm text-white/60 transition-colors duration-200 hover:text-white sm:flex"
+        ><RiDownloadLine size="16px" /> Resume</a>
+
+        <a
+          href="#contact"
+          class="rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-opacity duration-200 hover:opacity-85"
+        >Contact</a>
+      </div>
     </nav>
   </header>
 </template>
