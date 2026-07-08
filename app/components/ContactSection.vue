@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import { RiGithubFill, RiLinkedinBoxFill } from '@remixicon/vue'
+import { ref } from 'vue'
 import { site } from '~/data/site'
+
+const copied = ref(false)
+
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText(site.email)
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 1500)
+  }
+  catch {
+    // clipboard unavailable — mailto link still works
+  }
+}
 </script>
 
 <template>
@@ -10,7 +26,13 @@ import { site } from '~/data/site'
         Open to frontend roles — let's talk.
       </h2>
       <p class="mx-auto mt-4 max-w-[50ch] text-muted">
-        {{ site.email }} — or reach out on GitHub / LinkedIn.
+        <a
+          :href="`mailto:${site.email}`"
+          class="underline decoration-dotted underline-offset-4 transition-colors duration-200 hover:text-accent"
+          @click="copyEmail"
+        >{{ site.email }}</a>
+        <span v-if="copied" class="ml-2 text-xs text-accent">Copied</span>
+        — or reach out on GitHub / LinkedIn.
       </p>
 
       <div class="mt-10 flex justify-center">
