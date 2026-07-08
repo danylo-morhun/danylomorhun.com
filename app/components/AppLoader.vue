@@ -13,6 +13,12 @@ let fakeTween: gsap.core.Tween | null = null
 onMounted(() => {
   reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+  // Pages without HeroSection never flip heroReady themselves — this keeps the
+  // loader from hanging forever on those routes.
+  setTimeout(() => {
+    if (!heroReady.value) heroReady.value = true
+  }, 2800)
+
   fakeTween = gsap.to(progress, {
     value: 90,
     duration: reduceMotion ? 0.3 : 3.2,
