@@ -5,7 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+.dark {
   /* Radiant Beams — true monochrome shell: near-black, white, gray. No hue. */
   --color-bg: oklch(12% 0 0);
   --color-surface: oklch(16% 0 0);
@@ -14,6 +15,17 @@
   --color-line: oklch(30% 0 0);
   --color-accent: oklch(98% 0 0);
   --color-accent-ink: oklch(10% 0 0);
+}
+
+.light {
+  /* Same shell, inverted: near-white, black, gray. Still no hue. */
+  --color-bg: oklch(97% 0 0);
+  --color-surface: oklch(93% 0 0);
+  --color-ink: oklch(12% 0 0);
+  --color-muted: oklch(40% 0 0);
+  --color-line: oklch(80% 0 0);
+  --color-accent: oklch(10% 0 0);
+  --color-accent-ink: oklch(97% 0 0);
 }
 
 @layer base {
