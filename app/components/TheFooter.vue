@@ -1,8 +1,23 @@
 <script setup lang="ts">
-import { RiGithubFill, RiLinkedinBoxFill, RiMailFill } from '@remixicon/vue'
+import { RiGithubFill, RiLinkedinBoxFill, RiMailCheckFill, RiMailFill } from '@remixicon/vue'
+import { ref } from 'vue'
 import { site } from '~/data/site'
 
 const year = new Date().getFullYear()
+const copied = ref(false)
+
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText(site.email)
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 1500)
+  }
+  catch {
+    // clipboard unavailable — no-op
+  }
+}
 </script>
 
 <template>
@@ -14,11 +29,12 @@ const year = new Date().getFullYear()
       </div>
 
       <div class="flex items-center gap-5">
-        <a
-          :href="`mailto:${site.email}`"
-          aria-label="Email"
+        <button
+          type="button"
+          aria-label="Copy email"
           class="text-muted transition-colors duration-200 hover:text-accent"
-        ><RiMailFill size="20px" /></a>
+          @click="copyEmail"
+        ><RiMailCheckFill v-if="copied" size="20px" /><RiMailFill v-else size="20px" /></button>
         <a
           :href="site.github"
           target="_blank"
@@ -35,7 +51,7 @@ const year = new Date().getFullYear()
         ><RiLinkedinBoxFill size="20px" /></a>
         <a
           :href="`mailto:${site.email}`"
-          class="rounded-full border border-accent px-4 py-1.5 text-sm text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
+          class="rounded-lg border border-accent px-4 py-1.5 text-sm text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
         >Contact</a>
       </div>
     </div>
@@ -43,5 +59,7 @@ const year = new Date().getFullYear()
     <p class="border-t border-line px-6 py-4 text-center font-mono text-xs text-muted">
       &copy; {{ year }} {{ site.name }}
     </p>
+
+    <CopyToast :show="copied" message="Email copied" />
   </footer>
 </template>
