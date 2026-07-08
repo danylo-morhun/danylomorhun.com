@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RiGithubFill, RiLinkedinBoxFill } from '@remixicon/vue'
+import { RiDownloadLine, RiGithubFill, RiLinkedinBoxFill } from '@remixicon/vue'
 import { ref } from 'vue'
 import { site } from '~/data/site'
 
@@ -35,11 +35,17 @@ async function copyEmail() {
         — or reach out on GitHub / LinkedIn.
       </p>
 
-      <div class="mt-10 flex justify-center">
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a
           :href="`mailto:${site.email}`"
           class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
         >Contact</a>
+        <a
+          v-if="site.resumeUrl"
+          :href="site.resumeUrl"
+          download
+          class="flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+        ><RiDownloadLine size="16px" /> Resume</a>
       </div>
 
       <div class="mt-8 flex justify-center gap-6">
