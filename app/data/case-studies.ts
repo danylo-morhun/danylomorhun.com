@@ -146,6 +146,21 @@ export const caseStudies: CaseStudy[] = [
         alt: 'GRX Pay team members table with roles and confirmation status',
         caption: 'Team management — role-based access across merchant admins',
       },
+      {
+        src: '/case-studies/grx-pay-deposit-dialog.png',
+        alt: 'GRX Pay deposit dialog showing per-currency deposit methods and fees',
+        caption: 'Deposit — per-currency methods and fees, surfaced before the merchant commits',
+      },
+      {
+        src: '/case-studies/grx-pay-addmember-dialog.png',
+        alt: 'GRX Pay add member dialog with role picker and role descriptions',
+        caption: 'Add member — the same role system from @grx/rabac, explained inline',
+      },
+      {
+        src: '/case-studies/grx-pay-create-invoice.png',
+        alt: 'GRX Pay create invoice form with currency, amount, and auto-convert settings',
+        caption: 'Create invoice — fixed-sum invoices and auto-convert, gated behind FeatureScript',
+      },
     ],
   },
 ]
