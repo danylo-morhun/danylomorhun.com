@@ -4,10 +4,7 @@ import { gsap } from 'gsap'
 import { onMounted, ref, watch } from 'vue'
 import { site } from '~/data/site'
 
-const headlineLines = [
-  ['Built', 'fast.'],
-  ['Shipped', 'at', 'scale.'],
-]
+const headlineWords = ['Frontend Engineer.', 'Fintech, business', 'intelligence.']
 
 const heroRef = ref<HTMLElement | null>(null)
 const subtext = ref<HTMLElement | null>(null)
@@ -83,16 +80,14 @@ function onBeamsReady() {
     <div class="absolute inset-0 -z-10 bg-gradient-to-b from-bg/50 via-transparent to-bg/70" aria-hidden="true" />
 
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
-      <h1 class="font-sans text-5xl font-bold leading-[1.05] tracking-tightest text-ink md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
-        <template v-for="(line, li) in headlineLines" :key="li">
-          <span class="flex flex-wrap justify-center gap-x-4">
-            <template v-for="(word, wi) in line" :key="word">
-              <span class="overflow-hidden pb-1">
-                <span class="word-reveal inline-block">{{ word }}</span>
-              </span>{{ wi < line.length - 1 ? ' ' : '' }}
-            </template>
-          </span>{{ li < headlineLines.length - 1 ? ' ' : '' }}
-        </template>
+      <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
+        <span class="flex flex-wrap justify-center gap-x-4 gap-y-1">
+          <template v-for="(word, wi) in headlineWords" :key="word">
+            <span class="overflow-hidden pb-1">
+              <span class="word-reveal inline-block">{{ word }}</span>
+            </span>{{ wi < headlineWords.length - 1 ? ' ' : '' }}
+          </template>
+        </span>
       </h1>
 
       <p ref="subtext" class="mx-auto mt-6 max-w-[46ch] text-lg leading-relaxed text-muted">
