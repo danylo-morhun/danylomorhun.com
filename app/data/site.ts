@@ -11,5 +11,5 @@ export const site = {
   email: 'danymorhun@gmail.com',
   github: 'https://github.com/danylo-morhun',
   linkedin: 'https://www.linkedin.com/in/danylo-morhun/',
-  resumeUrl: null as string | null,
+  resumeUrl: '/resume.pdf' as string | null,
 }
