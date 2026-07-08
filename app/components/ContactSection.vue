@@ -23,7 +23,7 @@ async function copyEmail() {
   <section id="contact" class="border-t border-line">
     <div class="mx-auto max-w-content px-6 py-28 text-center md:py-36">
       <h2 class="mx-auto max-w-2xl text-3xl font-medium tracking-tightest text-ink md:text-5xl">
-        Open to frontend roles — let's talk.
+        Open to React, Next.js, Vue, or Nuxt roles — let's talk.
       </h2>
       <p class="mx-auto mt-4 max-w-[50ch] text-muted">
         <a
