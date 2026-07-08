@@ -84,15 +84,15 @@ function onBeamsReady() {
 
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
       <h1 class="font-sans text-5xl font-bold leading-[1.05] tracking-tightest text-ink md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
-        <span
-          v-for="(line, li) in headlineLines"
-          :key="li"
-          class="flex flex-wrap justify-center gap-x-4"
-        >
-          <span v-for="word in line" :key="word" class="overflow-hidden pb-1">
-            <span class="word-reveal inline-block">{{ word }}</span>
-          </span>
-        </span>
+        <template v-for="(line, li) in headlineLines" :key="li">
+          <span class="flex flex-wrap justify-center gap-x-4">
+            <template v-for="(word, wi) in line" :key="word">
+              <span class="overflow-hidden pb-1">
+                <span class="word-reveal inline-block">{{ word }}</span>
+              </span>{{ wi < line.length - 1 ? ' ' : '' }}
+            </template>
+          </span>{{ li < headlineLines.length - 1 ? ' ' : '' }}
+        </template>
       </h1>
 
       <p ref="subtext" class="mx-auto mt-6 max-w-[46ch] text-lg leading-relaxed text-muted">
