@@ -1,8 +1,64 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Placeholder base styles — Phase B replaces this with the real design system. */
-body {
-  @apply antialiased bg-white text-gray-900;
+:root {
+  /* Radiant Beams — true monochrome shell: near-black, white, gray. No hue. */
+  --color-bg: oklch(12% 0 0);
+  --color-surface: oklch(16% 0 0);
+  --color-ink: oklch(97% 0 0);
+  --color-muted: oklch(65% 0 0);
+  --color-line: oklch(30% 0 0);
+  --color-accent: oklch(98% 0 0);
+  --color-accent-ink: oklch(10% 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    @apply scroll-smooth;
+    /* Nav floats over content (no layout offset), so anchor jumps need this to clear it. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-bg text-ink antialiased font-sans;
+    font-feature-settings: 'ss01' 1;
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
