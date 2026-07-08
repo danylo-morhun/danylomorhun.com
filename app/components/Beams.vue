@@ -3,7 +3,11 @@
   Copyright (c) 2025 David Haz. Used as part of this site per license terms (no resale/redistribution).
 -->
 <template>
-  <div ref="containerRef" class="beams-container relative h-full w-full" />
+  <div
+    ref="containerRef"
+    class="beams-container relative h-full w-full"
+    :class="{ 'beams-inverted': colorMode.value === 'light' }"
+  />
 </template>
 
 <script setup lang="ts">
@@ -37,6 +41,7 @@ const props = withDefaults(defineProps<BeamsProps>(), {
 const emit = defineEmits<{ ready: [] }>()
 
 const containerRef = useTemplateRef<HTMLDivElement>('containerRef')
+const colorMode = useColorMode()
 
 let renderer: THREE.WebGLRenderer | null = null
 let hasEmittedReady = false
@@ -463,3 +468,11 @@ onUnmounted(() => {
   cleanup()
 })
 </script>
+
+<style scoped>
+/* Scene is rendered strictly grayscale (black diffuse, white lights, no hue),
+   so a straight invert flips it to the light-theme equivalent for free. */
+.beams-inverted {
+  filter: invert(1);
+}
+</style>
