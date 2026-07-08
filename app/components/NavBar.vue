@@ -13,7 +13,7 @@ const links = [
     <nav
       class="mx-auto flex max-w-2xl items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 backdrop-blur-md"
     >
-      <a href="#top" class="font-sans text-base font-semibold tracking-tight text-ink" aria-label="Home">
+      <a href="#top" class="font-sans text-lg font-bold tracking-tight text-ink" aria-label="Home">
         {{ site.name }}
       </a>
 
