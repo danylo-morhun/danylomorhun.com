@@ -42,8 +42,9 @@ onMounted(async () => {
         >
           <p class="font-mono text-xs text-muted">{{ entry.start }} — {{ entry.end }}</p>
 
-          <div class="relative border-l border-line pl-8">
-            <span class="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-accent" aria-hidden="true" />
+          <div class="relative pl-8">
+            <span class="absolute left-0 top-0 h-full w-px -translate-x-1/2 bg-line" aria-hidden="true" />
+            <span class="absolute left-0 top-1 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent" aria-hidden="true" />
             <h3 class="text-lg font-medium text-ink md:text-xl">
               {{ entry.role }} <span class="text-muted">· {{ entry.company }}</span>
             </h3>
