@@ -83,8 +83,8 @@ function onBeamsReady() {
       <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
         <span class="flex flex-wrap justify-center gap-x-4 gap-y-1">
           <template v-for="(word, wi) in headlineWords" :key="word">
-            <span class="overflow-hidden pb-1">
-              <span class="word-reveal inline-block">{{ word }}</span>
+            <span class="shrink-0 overflow-hidden pb-1">
+              <span class="word-reveal inline-block whitespace-nowrap">{{ word }}</span>
             </span>{{ wi < headlineWords.length - 1 ? ' ' : '' }}
           </template>
         </span>
