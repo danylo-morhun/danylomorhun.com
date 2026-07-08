@@ -23,6 +23,7 @@ export const projects: Project[] = [
       { value: '95+', label: 'Lighthouse score, sub-1.5s mobile LCP' },
       { value: '50+', label: 'component shared library, ~70% fewer visual inconsistencies' },
     ],
+    link: 'https://goldenratio.exchange',
   },
   {
     name: 'GRX Pay — Crypto Payment Solution',
