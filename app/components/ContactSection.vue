@@ -38,7 +38,7 @@ async function copyEmail() {
       <div class="mt-10 flex justify-center">
         <a
           :href="`mailto:${site.email}`"
-          class="rounded-full bg-accent px-8 py-3.5 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
         >Contact</a>
       </div>
 
