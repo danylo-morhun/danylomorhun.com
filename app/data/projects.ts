@@ -10,6 +10,7 @@ export interface Project {
   role: string
   metrics: ProjectMetric[]
   link?: string
+  slug?: string
 }
 
 export const projects: Project[] = [
@@ -17,13 +18,14 @@ export const projects: Project[] = [
     name: 'GRX — Public Platform',
     tag: 'Public site · Fintech',
     description:
-      'Public-facing website for a Swiss crypto-fintech platform, built end to end from design handoff to production.',
+      'Public-facing website for a Swiss crypto-fintech platform, built end to end from design handoff to production — including the shared component library behind it.',
     role: 'Frontend Engineer — owned architecture end to end',
     metrics: [
       { value: '95+', label: 'Lighthouse score, sub-1.5s mobile LCP' },
       { value: '50+', label: 'component shared library, ~70% fewer visual inconsistencies' },
     ],
     link: 'https://goldenratio.exchange',
+    slug: 'grx-public-platform',
   },
   {
     name: 'GRX Pay — Crypto Payment Solution',
@@ -35,6 +37,7 @@ export const projects: Project[] = [
       { value: '24+', label: 'currencies, real-time balances via WebSocket' },
       { value: '100%', label: 'transactions surfaced with AML / risk data' },
     ],
+    slug: 'grx-pay',
   },
   {
     name: 'Enterprise BI Dashboard',
