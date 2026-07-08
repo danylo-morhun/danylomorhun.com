@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RiExternalLinkLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
 import { projects } from '~/data/projects'
@@ -45,7 +46,17 @@ onMounted(async () => {
         >
           <div class="lg:col-span-5">
             <p class="font-mono text-xs text-accent">{{ project.tag }}</p>
-            <h3 class="mt-2 text-xl font-medium text-ink md:text-2xl">{{ project.name }}</h3>
+            <h3 class="mt-2 flex items-center gap-2 text-xl font-medium text-ink md:text-2xl">
+              {{ project.name }}
+              <a
+                v-if="project.link"
+                :href="project.link"
+                target="_blank"
+                rel="noreferrer noopener"
+                :aria-label="`Visit ${project.name} (opens in new tab)`"
+                class="text-muted transition-colors duration-200 hover:text-accent"
+              ><RiExternalLinkLine size="18px" /></a>
+            </h3>
             <p class="mt-2 text-sm text-muted">{{ project.role }}</p>
           </div>
 
