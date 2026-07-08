@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { RiExternalLinkLine } from '@remixicon/vue'
+import { RiArrowRightUpLine, RiExternalLinkLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
+import { NuxtLink } from '#components'
 import { projects } from '~/data/projects'
 
 const list = ref<HTMLElement | null>(null)
@@ -39,17 +40,24 @@ onMounted(async () => {
       </p>
 
       <div ref="list" class="mt-16 divide-y divide-line">
-        <article
+        <component
+          :is="project.slug ? NuxtLink : 'article'"
           v-for="project in projects"
           :key="project.name"
-          class="reveal-item grid gap-6 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
+          :to="project.slug ? `/work/${project.slug}` : undefined"
+          class="reveal-item group grid gap-6 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
         >
           <div class="lg:col-span-5">
             <p class="font-mono text-xs text-accent">{{ project.tag }}</p>
             <h3 class="mt-2 flex items-center gap-2 text-xl font-medium text-ink md:text-2xl">
-              {{ project.name }}
+              <span :class="project.slug && 'underline decoration-line underline-offset-4 transition-colors duration-200 group-hover:decoration-ink'">{{ project.name }}</span>
+              <RiArrowRightUpLine
+                v-if="project.slug"
+                size="18px"
+                class="mt-1 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+              />
               <a
-                v-if="project.link"
+                v-else-if="project.link"
                 :href="project.link"
                 target="_blank"
                 rel="noreferrer noopener"
@@ -70,7 +78,7 @@ onMounted(async () => {
               <p class="mt-1 max-w-[24ch] text-xs text-muted">{{ metric.label }}</p>
             </div>
           </div>
-        </article>
+        </component>
       </div>
     </div>
   </section>
