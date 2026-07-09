@@ -139,7 +139,7 @@ onMounted(async () => {
       </div>
     </section>
 
-    <section class="reveal-item mt-16 border-t border-line pt-10">
+    <section v-if="study.gallery.length" class="reveal-item mt-16 border-t border-line pt-10">
       <figure v-if="study.gallery[0]">
         <button
           type="button"
