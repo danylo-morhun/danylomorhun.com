@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RiMoonLine, RiSunLine } from '@remixicon/vue'
 
+const { t } = useI18n()
 const colorMode = useColorMode()
 const isDark = computed(() => colorMode.value === 'dark')
 
@@ -13,7 +14,7 @@ function toggle() {
   <button
     type="button"
     class="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink active:scale-90"
-    :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    :aria-label="isDark ? t('themeToggle.toLight') : t('themeToggle.toDark')"
     @click="toggle"
   >
     <Transition name="theme-icon" mode="out-in">
