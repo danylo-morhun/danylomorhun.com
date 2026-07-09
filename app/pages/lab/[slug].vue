@@ -2,24 +2,27 @@
 import { RiArrowLeftLine, RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiExternalLinkLine, RiZoomInLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { personalProjects } from '~/data/personal-projects'
+import { usePersonalProject } from '~/composables/usePersonalProjects'
 
+const { t } = useI18n()
 const route = useRoute()
 
-const project = personalProjects.find(p => p.slug === route.params.slug)
+const projectRef = usePersonalProject(route.params.slug as string)
 
-if (!project) {
+if (!projectRef.value) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
 
+const project = computed(() => projectRef.value!)
+
 useSeoMeta({
-  title: `${project.name} — Danylo Morhun`,
-  description: project.overview,
+  title: () => `${project.value.name} — Danylo Morhun`,
+  description: () => project.value.overview,
 })
 
 const section = ref<HTMLElement | null>(null)
 
-const allImages = computed(() => project.gallery)
+const allImages = computed(() => project.value.gallery)
 const lightboxIndex = ref<number | null>(null)
 const lightbox = computed(() => (lightboxIndex.value === null ? null : allImages.value[lightboxIndex.value]))
 
@@ -88,7 +91,7 @@ onMounted(async () => {
       class="reveal-item inline-flex items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-ink"
     >
       <RiArrowLeftLine size="16px" />
-      Back to personal projects
+      {{ t('project.backToLab') }}
     </NuxtLink>
 
     <header class="reveal-item mt-8">
@@ -104,12 +107,12 @@ onMounted(async () => {
     </p>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ project.challengeTitle }}</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theChallenge') }}</h2>
       <p class="mt-4 max-w-[70ch] text-base leading-relaxed text-muted">{{ project.challenge }}</p>
     </section>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">The Approach</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theApproach') }}</h2>
       <ul class="mt-6 space-y-4">
         <li
           v-for="point in project.approach"
@@ -123,7 +126,7 @@ onMounted(async () => {
     </section>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">The Outcome</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theOutcome') }}</h2>
       <div class="mt-8 flex flex-wrap gap-x-12 gap-y-8">
         <div v-for="metric in project.outcome" :key="metric.label">
           <p class="text-4xl font-semibold tracking-tightest text-ink md:text-5xl">{{ metric.value }}</p>
@@ -136,7 +139,7 @@ onMounted(async () => {
       <figure v-if="project.gallery[0]">
         <button
           type="button"
-          :aria-label="`Enlarge: ${project.gallery[0].caption}`"
+          :aria-label="t('project.enlargeAria', { caption: project.gallery[0].caption })"
           class="group relative block w-full"
           @click="openLightbox(project.gallery[0].src)"
         >
@@ -159,7 +162,7 @@ onMounted(async () => {
         <figure v-for="image in project.gallery.slice(1)" :key="image.src">
           <button
             type="button"
-            :aria-label="`Enlarge: ${image.caption}`"
+            :aria-label="t('project.enlargeAria', { caption: image.caption })"
             class="group relative block w-full"
             @click="openLightbox(image.src)"
           >
@@ -188,7 +191,7 @@ onMounted(async () => {
         rel="noreferrer noopener"
         class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
       >
-        Visit live site
+        {{ t('project.visitLive') }}
         <RiExternalLinkLine size="16px" />
       </a>
       <NuxtLink
@@ -196,7 +199,7 @@ onMounted(async () => {
         class="inline-flex items-center gap-1.5 rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
       >
         <RiArrowLeftLine size="16px" />
-        Back to personal projects
+        {{ t('project.backToLab') }}
       </NuxtLink>
     </footer>
   </article>
@@ -219,7 +222,7 @@ onMounted(async () => {
       >
         <button
           type="button"
-          aria-label="Close"
+          :aria-label="t('project.closeAria')"
           class="absolute right-6 top-6 text-muted transition-colors duration-200 hover:text-ink"
           @click="closeLightbox"
         >
@@ -229,7 +232,7 @@ onMounted(async () => {
         <button
           v-if="allImages.length > 1"
           type="button"
-          aria-label="Previous image"
+          :aria-label="t('project.prevAria')"
           class="absolute left-4 top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-muted transition-colors duration-200 hover:text-ink sm:block md:left-6"
           @click.stop="prevImage"
         >
@@ -238,7 +241,7 @@ onMounted(async () => {
         <button
           v-if="allImages.length > 1"
           type="button"
-          aria-label="Next image"
+          :aria-label="t('project.nextAria')"
           class="absolute right-4 top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-muted transition-colors duration-200 hover:text-ink sm:block md:right-6"
           @click.stop="nextImage"
         >
