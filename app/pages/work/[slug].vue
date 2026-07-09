@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RiArrowLeftLine, RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiExternalLinkLine, RiZoomInLine } from '@remixicon/vue'
+import { RiArrowLeftLine, RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiExternalLinkLine, RiLockLine, RiZoomInLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { caseStudies } from '~/data/case-studies'
@@ -94,7 +94,16 @@ onMounted(async () => {
     <header class="reveal-item mt-8">
       <p class="font-mono text-xs text-accent">{{ study.tag }}</p>
       <h1 class="mt-2 text-3xl font-medium tracking-tightest text-ink md:text-5xl">{{ study.name }}</h1>
-      <p class="mt-4 text-sm text-muted">{{ study.role }} · {{ study.dates }}</p>
+      <p class="mt-4 text-sm text-muted">
+        {{ study.role }}<template v-if="study.dates"> · {{ study.dates }}</template>
+      </p>
+      <span
+        v-if="study.nda"
+        class="mt-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted"
+      >
+        <RiLockLine size="13px" />
+        Under NDA — client and product details withheld
+      </span>
     </header>
 
     <p class="reveal-item mt-10 max-w-[70ch] text-lg leading-relaxed text-muted">
