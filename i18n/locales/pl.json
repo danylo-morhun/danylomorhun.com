@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "work": "Projekty",
+    "lab": "Laboratorium",
+    "experience": "Doświadczenie",
+    "about": "O mnie",
+    "contact": "Kontakt",
+    "home": "Strona główna",
+    "language": "Język"
+  },
+  "themeToggle": {
+    "toLight": "Przełącz na jasny motyw",
+    "toDark": "Przełącz na ciemny motyw"
+  },
+  "site": {
+    "title": "Inżynier Frontend",
+    "oneLiner": "Architektura frontendu dla produktów, które nie mogą zwalniać — wolumeny zamówień liczone w milionach, dane finansowe na żywo, tabele powyżej 100 tys. wierszy.",
+    "bio": [
+      "Zajmuję się częściami produktu, które muszą wytrzymać realne warunki: dashboardy fintech przetwarzające sześciocyfrowe wolumeny zamówień, ekrany bankowości kryptowalutowej aktualizowane przez żywe połączenia socket, narzędzia BI renderujące setki tysięcy wierszy bez zawieszania karty.",
+      "Zestaw narzędzi zmienia się od projektu do projektu; prawdziwa praca to ocena sytuacji — wiedza, kiedy tabela wirtualizowana bije paginację, kiedy połączenie na żywo bije odpytywanie serwera, kiedy współdzielona biblioteka komponentów oszczędza kolejne pół roku pracy."
+    ]
+  },
+  "hero": {
+    "headline": ["Inżynier Frontend.", "Fintech, business", "intelligence."],
+    "contact": "Kontakt",
+    "viewWork": "Zobacz projekty",
+    "scrollToWork": "Przewiń do projektów"
+  },
+  "about": {
+    "heading": "O mnie"
+  },
+  "experience": {
+    "heading": "Doświadczenie",
+    "entries": {
+      "grx": {
+        "role": "Inżynier Frontend",
+        "country": "Szwajcaria",
+        "summary": "Odpowiadałem za architekturę frontendu szwajcarskiej platformy crypto-fintech — od strony publicznej po kluczowe moduły bankowe."
+      },
+      "ezcloud": {
+        "role": "Inżynier Frontend",
+        "country": "Stany Zjednoczone",
+        "summary": "Budowałem dashboardy i narzędzia z dużą ilością danych dla dużych sprzedawców na Amazon — od raportowania BI po zarządzanie kampaniami reklamowymi."
+      }
+    }
+  },
+  "work": {
+    "heading": "Wybrane projekty",
+    "subheading": "Cztery produkcyjne wdrożenia w fintechu i B2B SaaS — decyzje architektoniczne i wyniki, które przyniosły."
+  },
+  "lab": {
+    "heading": "Projekty osobiste",
+    "subheading": "Rzeczy, które zbudowałem dla siebie, od początku do końca — bez klienta, bez przekazania, każda decyzja moja własna."
+  },
+  "contact": {
+    "heading": "Otwarty na role w React, Next.js, Vue lub Nuxt — napisz do mnie.",
+    "copied": "Skopiowano",
+    "reachOut": "— albo napisz przez GitHub / LinkedIn.",
+    "contact": "Kontakt",
+    "resume": "CV"
+  },
+  "footer": {
+    "copyEmailAria": "Skopiuj email",
+    "githubAria": "GitHub",
+    "linkedinAria": "LinkedIn",
+    "contact": "Kontakt",
+    "emailCopiedToast": "Email skopiowany"
+  },
+  "project": {
+    "theChallenge": "Wyzwanie",
+    "theApproach": "Podejście",
+    "theOutcome": "Rezultat",
+    "backToWork": "Powrót do projektów",
+    "backToLab": "Powrót do projektów osobistych",
+    "visitLive": "Odwiedź stronę",
+    "ndaBadge": "Objęte NDA — klient i szczegóły produktu nieujawnione",
+    "enlargeAria": "Powiększ: {caption}",
+    "closeAria": "Zamknij",
+    "prevAria": "Poprzednie zdjęcie",
+    "nextAria": "Następne zdjęcie"
+  },
+  "caseStudies": {
+    "grx-public-platform": {
+      "name": "GRX — Platforma publiczna",
+      "tag": "Strona publiczna · Fintech",
+      "role": "Inżynier Frontend — pełna odpowiedzialność za architekturę",
+      "overview": "GRX to szwajcarski ekosystem crypto-fintech obejmujący płatności, giełdę i tokenizowane aktywa rzeczywiste. Zbudowałem publiczną platformę od zera — stronę marketingową, strony cenowe i produktowe oraz sekcję kariery — wraz ze współdzieloną biblioteką komponentów, na której teraz działa strona i reszta produktów firmy.",
+      "challenge": "GRX miał trzy produkty w budowie jednocześnie — Pay, Exchange, RWA — i nie miał ani publicznej strony, by je zaprezentować, ani współdzielonej biblioteki komponentów dla zespołów, które je budowały, więc każdy ekran produktu był osobną, jednorazową implementacją tych samych przycisków, pól i kart. Dwa problemy, jedna przyczyna: zbudować stronę od zera i zbudować pod nią system projektowy, aby strona i produkty w końcu mówiły tym samym językiem wizualnym.",
+      "approach": [
+        "Wydzieliłem współdzieloną bibliotekę komponentów — ponad 50 komponentów — od zera, używaną zarówno przez stronę marketingową, jak i aplikacje produktowe, zamykając rozbieżność między tym, co pokazuje marketing, a tym, jak faktycznie wygląda produkt",
+        "Renderowanie po stronie serwera z routingiem uwzględniającym język wbudowanym w strukturę URL, więc każda strona produktu jest wysyłana przetłumaczona i statycznie wygenerowana dla każdego języka",
+        "Dostępne prymitywy interakcji (dialogi, zakładki, akordeony) zbudowane raz we wspólnej bibliotece zamiast ręcznego zarządzania fokusem w każdym komponencie",
+        "Treści kariery i redakcyjne tworzone jako tekst strukturalny i renderowane w czasie builda, co utrzymuje pipeline treści poza krytyczną ścieżką wdrożenia",
+        "Budżet wydajności egzekwowany jako automatyczna bramka, a nie jednorazowy audyt, dzięki czemu regresje są wychwytywane przed mergem"
+      ],
+      "outcome": [
+        "wynik Lighthouse, mobilny LCP poniżej 1,5s",
+        "współdzielona biblioteka 50+ komponentów, ~70% mniej niespójności wizualnych"
+      ],
+      "gallery": [
+        { "alt": "Sekcja hero strony głównej GRX", "caption": "Strona główna — pozycjonowanie GRX w płatnościach, giełdzie i tokenizowanych aktywach" },
+        { "alt": "Hero strony marketingowej GRX Pay", "caption": "GRX Pay — strona produktowa dla obszaru płatności" },
+        { "alt": "Strona cennika GRX Pay z warstwową strukturą prowizji", "caption": "Cennik GRX Pay — warstwowa struktura prowizji dla merchantów, od samoobsługi po indywidualne umowy wolumenowe" },
+        { "alt": "Strona listy oczekujących GRX Exchange przed premierą", "caption": "GRX Exchange — strona listy oczekujących dla handlu detalicznego, uruchomiona przed premierą" },
+        { "alt": "Strona o firmie GRX", "caption": "O GRX — strona pozycjonująca firmę" },
+        { "alt": "Strona kariery GRX", "caption": "Kariera — hub rekrutacyjny, treści tworzone w Markdown i renderowane w czasie builda" }
+      ],
+      "librarySectionTitle": "{'@'}grx/ui — biblioteka komponentów",
+      "library": [
+        { "alt": "Siatka ponad 200 ikon kryptowalut z zestawu ikon {'@'}grx/ui", "caption": "200+ ikon monet — jeden z zestawów ikon dostarczanych z biblioteką" },
+        { "alt": "Strona dokumentacji tokenów projektowych pokazująca paletę kolorów", "caption": "Tokeny projektowe — skale kolorów, promieni i cieni udokumentowane w bibliotece komponentów" },
+        { "alt": "Dokumentacja skali typografii pokazująca rozmiary tekstu wyświetlacza", "caption": "Skala typografii — każdy rozmiar tekstu wyświetlacza i podstawowego, udokumentowany z dokładnymi metrykami" },
+        { "alt": "Modal ustawień integracji łączący komponenty Modal, Switch, ikonę i Typography w realistycznym złożonym ekranie", "caption": "Prawdziwy ekran ustawień, zbudowany z biblioteki — Modal, Switch, ikony i Typography działające razem" }
+      ]
+    },
+    "enterprise-bi-dashboard": {
+      "name": "Korporacyjny dashboard BI",
+      "tag": "Produkt · BI / Analityka",
+      "role": "Inżynier Frontend — zbudowane od zera",
+      "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: dashboard business intelligence zbudowany dla dużego sprzedawcy na Amazon o obrotach przekraczających 10 mln USD — przychody, marża na poziomie zamówienia i zapasy zagregowane dla sześciocyfrowej liczby zamówień miesięcznie, dla zespołu operacyjnego, który musiał wychwytywać erozję marży, zanim pojawi się w rachunku zysków i strat.",
+      "challenge": "Historia zamówień sprzedawcy przekraczała 100 000 wierszy i wciąż rosła, a zespół musiał filtrować, sortować i eksportować dowolny wycinek tych danych — po dacie, SKU lub statusie — bez zawieszania karty przeglądarki czy timeoutu eksportu. Dashboard obsługujący tylko pierwszą stronę danych nie przetrwałby zderzenia z rzeczywistym zbiorem danych.",
+      "approach": [
+        "Wirtualizowane renderowanie tabeli, tak że tylko widoczne wiersze są montowane w DOM, co utrzymuje płynność przewijania i filtrowania przy ponad 100 000 zamówień",
+        "Paginacja oparta na kursorze zamiast offsetowej po stronie API, unikając problemu wolnego liczenia na tabeli tej wielkości",
+        "Filtrowanie po stronie serwera z debounce (zakres dat, SKU, status), więc klient nigdy nie trzyma w pamięci więcej niż jedną stronę wyników",
+        "Eksport CSV/PDF po stronie klienta zbudowany jako zadanie w tle ze wskaźnikiem postępu, zamiast blokować interfejs podczas strumieniowania pliku",
+        "Agregaty marży i przychodów obliczane po stronie serwera i cachowane per okres, dzięki czemu dashboard renderuje się natychmiast zamiast sumować wiersze w przeglądarce"
+      ],
+      "outcome": [
+        "skrócenia czasu początkowego renderowania dzięki wirtualizowanym tabelom i paginacji kursorowej",
+        "zamówień możliwych do filtrowania i eksportu bez zawieszania po stronie klienta"
+      ],
+      "gallery": []
+    },
+    "marketplace-investment-platform": {
+      "name": "Platforma inwestycyjna dla marketplace",
+      "tag": "Produkt · Platforma inwestycyjna",
+      "role": "Inżynier Frontend",
+      "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: platforma zestawiająca na żywo metryki marketplace sprzedawcy na Amazon — ceny, pozycjonowanie konkurencji, poziomy zapasów — z plikami CSV dostawców w czasie rzeczywistym, oznaczając rozbieżności, zanim staną się błędami cenowymi lub brakami towaru.",
+      "challenge": "Dane od dostawców napływały jako pliki CSV o skrajnie niespójnej jakości — brakujące kolumny, źle sformatowane ceny, zduplikowane SKU — i musiały być pobierane, walidowane i uzgadniane z danymi marketplace na żywo tak, by jeden wadliwy plik nie zawalił pipeline'u ani nie skorumpował porównania po cichu.",
+      "approach": [
+        "Odporny pipeline importu CSV z walidacją na poziomie każdego wiersza, więc jeden błędny wiersz degraduje się łagodnie zamiast unieważniać cały upload",
+        "Wykrywanie odchyleń względem konfigurowalnego pasma tolerancji, oznaczające wiersze do ręcznej weryfikacji zamiast automatycznego akceptowania danych dostawcy w ciemno",
+        "Historia uploadów z jawnymi stanami Przetworzono / Błąd / Oczekuje, więc nieudany feed jest widoczny natychmiast, a nie odkrywany później",
+        "Metryki marketplace na żywo odpytywane w krótkim interwale z jawnym znacznikiem czasu \"ostatnia aktualizacja\", utrzymującym widoczną różnicę między danymi na żywo a nieaktualnymi",
+        "Optymistyczny interfejs dla akcji weryfikacji (ignoruj / oznacz), uzgadniany z odpowiedzią serwera zamiast blokowania na czas requestu"
+      ],
+      "outcome": [
+        "skrócenia czasu do interaktywności dzięki odpornemu pipeline'owi importu i walidacji CSV"
+      ],
+      "gallery": []
+    },
+    "grx-pay": {
+      "name": "GRX Pay — Rozwiązanie płatności kryptowalutowych",
+      "tag": "Produkt · Bankowość kryptowalutowa",
+      "role": "Inżynier Frontend",
+      "overview": "GRX Pay to wielowalutowy produkt bankowości kryptowalutowej — merchanci przyjmują płatności w ponad 24 kryptowalutach, śledzą salda i wypłacają środki przez SEPA, a każda transakcja niesie dane AML i ryzyka. Pracowałem nad dashboardem merchanta: salda, faktury, transakcje i zarządzanie zespołem.",
+      "challenge": "Salda i stan transakcji zmieniają się w trakcie sesji — depozyty się rozliczają, autokonwersje kończą się, masowe wypłaty są przetwarzane — a ten stan musi pozostać spójny w kilku dużych, paginowanych tabelach (faktury, transakcje, członkowie zespołu), bez wrażenia nieaktualności dashboardu czy szarpania tabel przy każdej aktualizacji.",
+      "approach": [
+        "Znormalizowana warstwa danych po stronie klienta, więc aktualizacja salda w jednym widoku odbija się wszędzie indziej, gdzie jest renderowana, bez ręcznego ponownego pobierania",
+        "Dedykowana warstwa zapytań asynchronicznych dla stanu wokół aktualizacji sald i transakcji w czasie rzeczywistym, utrzymująca stany ładowania/nieaktualności/błędu jawnymi zamiast domyślnymi",
+        "Paginowane, oparte na kursorze tabele dla faktur, transakcji i członków zamiast ładowania pełnych zbiorów wyników po stronie klienta",
+        "Współdzielona warstwa dostępu oparta na rolach — widoki admina, merchanta i członka renderują różne akcje z tych samych komponentów zamiast osobnych ekranów per rola",
+        "Wdrażanie nowych funkcji płatności (autokonwersja, faktury o stałej kwocie) za flagami funkcji, dzięki czemu produkt mógł wypuszczać je za flagą i włączać per merchant"
+      ],
+      "outcome": [
+        "kryptowalut, salda w czasie rzeczywistym przez WebSocket",
+        "transakcji z danymi AML / ryzyka"
+      ],
+      "gallery": [
+        { "alt": "Dashboard GRX Pay pokazujący całkowite saldo, wykres udanych płatności i ostatnie transakcje", "caption": "Dashboard — salda, wolumen płatności i strumień transakcji na żywo w jednym widoku" },
+        { "alt": "Ekran aktywów GRX Pay pokazujący salda wielowalutowe", "caption": "Aktywa — salda wielowalutowe w czasie rzeczywistym, zablokowane i dostępne" },
+        { "alt": "Tabela transakcji GRX Pay z filtrami po typie, statusie, walucie i okresie", "caption": "Transakcje — filtrowany, paginowany rejestr dla każdej waluty" },
+        { "alt": "Tabela członków zespołu GRX Pay z rolami i statusem potwierdzenia", "caption": "Zarządzanie zespołem — dostęp oparty na rolach wśród adminów merchanta" },
+        { "alt": "Dialog depozytu GRX Pay pokazujący metody i opłaty depozytu dla każdej waluty", "caption": "Depozyt — metody i opłaty per waluta, pokazane zanim merchant zatwierdzi" },
+        { "alt": "Dialog dodawania członka GRX Pay z wyborem roli i opisami ról", "caption": "Dodaj członka — ten sam system ról z {'@'}grx/rabac, wyjaśniony w interfejsie" },
+        { "alt": "Formularz tworzenia faktury GRX Pay z walutą, kwotą i ustawieniami autokonwersji", "caption": "Utwórz fakturę — faktury o stałej kwocie i autokonwersja, kontrolowane przez FeatureScript" }
+      ]
+    }
+  },
+  "personalProjects": {
+    "seikatsu": {
+      "name": "seikatsu — osobisty super-app",
+      "tag": "Projekt osobisty · Platforma wieloaplikacyjna",
+      "role": "Solo — architektura, backend i UI, od początku do końca",
+      "overview": "Gotowe aplikacje są zbyt sztywne dla sposobu, w jaki faktycznie śledzę swoje życie, więc seikatsu to samodzielnie zbudowana alternatywa: jedna uwierzytelniona powłoka z niezależnymi mini-aplikacjami w środku — tracker finansowy, tablica kanban, dziennik książek, a w kolejce tracker nawyków i menedżer listy życzeń. Publiczne logowanie jest otwarte pod seikatsu.danylomorhun.com.",
+      "challenge": "Każda mini-aplikacja to prawdziwy, pełnoprawny produkt sam w sobie — sam tracker finansowy prowadzi księgowość podwójnego zapisu z obsługą wielu walut. Zbudowanie kilku takich aplikacji, z planami na więcej, bez zawalenia się kodu w nieutrzymywalny stos oznaczało, że współdzielona infrastruktura (autoryzacja, workspace, system projektowy) musiała być naprawdę wielokrotnego użytku, a nie tylko kopiowana między aplikacjami.",
+      "approach": [
+        "Współdzielona wewnętrzna warstwa biblioteczna oddzielona od samych aplikacji, więc każda mini-aplikacja czerpie z jednej warstwy danych i jednej biblioteki komponentów zamiast duplikować którąkolwiek z nich",
+        "Każda mini-aplikacja żyje jako własny samodzielny wycinek — akcje, komponenty i logika trzymane razem — więc tracker finansowy, tablica kanban i dziennik książek rozwijają się niezależnie, nie wchodząc sobie w drogę",
+        "Tracker finansowy to prawdziwa księga podwójnego zapisu: każda transakcja księguje zbilansowane wpisy na kontach, a nie płaski wiersz kwota-plus-kategoria, z wpisami wielowalutowymi uzgadnianymi względem cachowanych historycznych kursów wymiany",
+        "Przeciąganie i zmiana kolejności w tablicy kanban wykorzystuje schemat pozycjonowania, który nigdy nie wymaga przepisywania sąsiednich wierszy, więc zmiana kolejności jednej karty pozostaje pojedynczym zapisem",
+        "Jeden model workspace i jeden system logowania współdzielony przez wszystkie aplikacje — dodanie nowej mini-aplikacji to trasa i wycinek, a nie nowy system autoryzacji"
+      ],
+      "outcome": [
+        "wysłane aplikacje — finanse, kanban i książki — z nawykami i listą życzeń w kolejce",
+        "jedna powłoka ze współdzieloną autoryzacją, workspace i systemem projektowym dla wszystkich aplikacji"
+      ],
+      "gallery": [
+        { "alt": "Tablica kanban Seiryu z kolumnami Backlog, W trakcie, Recenzja, Gotowe", "caption": "Seiryu — tablica kanban z płynną zmianą kolejności przez przeciąganie" },
+        { "alt": "Ekran główny seikatsu pokazujący siatkę aplikacji — Kuroji, Seiryu, Tsundoku i kolejne wkrótce", "caption": "Strona główna — jedna powłoka, każda mini-aplikacja o jedno kliknięcie" },
+        { "alt": "Dashboard finansowy Kuroji pokazujący wartość netto, przychody vs wydatki i podział na kategorie", "caption": "Kuroji — tracker finansowy z podwójnym zapisem i kontami wielowalutowymi" },
+        { "alt": "Siatka biblioteki Tsundoku pokazująca książki z prawdziwymi okładkami, statusem czytania i ocenami", "caption": "Tsundoku — tracker czytania z półkami, sesjami i ocenami" }
+      ]
+    },
+    "twoje-zdrowie": {
+      "name": "Twoje Zdrowie — sklep ze zdrowiem i suplementami",
+      "tag": "Projekt osobisty · E-commerce · Rynek polski",
+      "role": "Solo — pełny stack, od schematu po witrynę",
+      "overview": "Sklep e-commerce dla rynku polskiego oferujący suplementy, witaminy i produkty bio — zbudowany samodzielnie od początku do końca, od schematu bazy danych po witrynę sklepu. Obecnie w rozwoju, podłączony do realnych polskich szyn handlowych: płatności online, dostawa do paczkomatów i przez kuriera oraz hub synchronizujący stany magazynowe i zamówienia z dużym marketplace'em.",
+      "challenge": "E-commerce produktów zdrowotnych w Polsce niesie ograniczenia, których nie ma większość sklepów: ceny wymagają dokładnej arytmetyki (brak zaokrągleń float przy kasie), treści produktowe muszą spełniać lokalne przepisy dotyczące oświadczeń zdrowotnych i etykietowania w trzech językach, a marka musiała wypadać jako \"zaufany farmaceuta\" — nie generyczne gradienty SaaS, nie kliniczna szpitalna biel, nie oklepany greenwashing wellness. Wszystkie trzy problemy trzeba było rozwiązać przed uruchomieniem pierwszej strony produktu.",
+      "approach": [
+        "Każda cena i kwota podatku przechowywana jako liczba całkowita groszy (najmniejsza polska jednostka walutowa) zamiast ułamka dziesiętnego, więc matematyka przy kasie jest dokładna z założenia, a nie zaokrąglana po fakcie",
+        "Spójna struktura feature-sliced w całym kodzie, gdzie każda mutacja przechodzi przez zwalidowaną akcję po stronie serwera zamiast formularza zaufanego klientowi",
+        "Jeden hub integracyjny stoi między witryną a siecią marketplace/kuriera, więc witryna nigdy nie rozmawia z tymi zewnętrznymi systemami bezpośrednio i pozostaje odsprzężona od ich synchronizacji i generowania etykiet",
+        "Dane produktu zawierają ustrukturyzowane fakty żywieniowe, informacje o alergenach i ostrzeżenia zdrowotne jako pola maszynowo czytelne, więc treści regulacyjne renderują się spójnie po polsku, angielsku i ukraińsku",
+        "System projektowy zbudowany na jawnych anty-referencjach spisanych przed wdrożeniem jakiegokolwiek interfejsu — żadnych gradientów startupów SaaS, żadnej klinicznej biało-niebieskiej gamy, żadnych listków greenwashingu — lądując zamiast tego na ciepłej leśno-zielonej gamie w rejestrze \"ekspert, ale przystępny\""
+      ],
+      "outcome": [
+        "ryzyka zaokrągleń float — każda cena przechowywana jako dokładna liczba całkowita",
+        "szyny — płatność, kurier i synchronizacja z marketplace zintegrowane przez jeden hub"
+      ],
+      "gallery": [
+        { "alt": "Strona główna Twoje Zdrowie z banerem hero, paskiem zaufania i siatką kategorii", "caption": "Strona główna — sygnały zaufania na pierwszym planie, siatka kategorii zasilana z katalogu produktów" },
+        { "alt": "Katalog produktów Twoje Zdrowie z filtrami po kategorii, marce i tagu dietetycznym", "caption": "Katalog — filtrowanie po kategorii, marce i oświadczeniu dietetycznym" },
+        { "alt": "Strona produktu Twoje Zdrowie dla Witaminy D3 z ceną, dawkowaniem i powiązanymi produktami", "caption": "Strona produktu — dawkowanie, zastrzeżenie regulacyjne i powiązane produkty" },
+        { "alt": "Strona koszyka Twoje Zdrowie z podsumowaniem zamówienia i paskiem postępu darmowej dostawy", "caption": "Koszyk — podsumowanie zamówienia z zachętą postępu do darmowej dostawy" }
+      ]
+    },
+    "danylomorhun-com": {
+      "name": "danylomorhun.com — ta strona",
+      "tag": "Projekt osobisty · Portfolio",
+      "role": "Solo — projekt i budowa",
+      "overview": "Ta strona — przebudowana od zera, by dobrze robić jedną rzecz: pozwolić osobie zatrudniającej inżyniera frontend znaleźć mnie, zobaczyć, co zbudowałem, i się odezwać — w mniej niż minutę.",
+      "challenge": "Rekruter lub hiring manager przeglądający aplikacje daje stronie kilka sekund, często z telefonu, zanim zdecyduje, czy otworzyć CV, czy przejść dalej. Zadaniem była bezwzględna priorytetyzacja — natychmiast pokazać prawdziwe projekty i prawdziwe rezultaty, utrzymać każdą sekcję wskazującą ten sam kolejny krok i nie przeszkadzać w tej decyzji zamiast próbować zaimponować samą stroną.",
+      "approach": [
+        "Jedna jasna ścieżka przez treść — hero, projekty, projekty osobiste, doświadczenie, o mnie — każda sekcja zasługuje na przewinięcie do kolejnej zamiast rywalizować o uwagę",
+        "Każda sekcja powtarza to samo wezwanie do działania, więc nigdy nie ma momentu, w którym czytelnik jest zaangażowany, ale nie wie, jak się odezwać",
+        "Prawdziwe rezultaty projektów i prawdziwe zrzuty ekranu wszędzie, w tym praca objęta NDA opisana uczciwie przez decyzje techniczne bez nazywania klienta",
+        "Szybka domyślnie — treść renderuje się po stronie serwera, więc jest coś do przeczytania natychmiast po dotarciu strony, a nie po rundzie ładowania po stronie klienta",
+        "Zbudowana do rozwoju — każdy projekt, case study i rola żyją w typowanym pliku danych, więc dodanie jednego to zmiana treści, a nie redesign"
+      ],
+      "outcome": [
+        "przewinięcie od hero do kontaktu, bez ślepych zaułków",
+        "dodanie nowego projektu to zmiana treści, a nie redesign"
+      ],
+      "gallery": [
+        { "alt": "Sekcja hero strony głównej danylomorhun.com", "caption": "Strona główna — sekcja hero, którą właśnie przewinąłeś" },
+        { "alt": "Sekcja projektów danylomorhun.com z listą case studies i rezultatami", "caption": "Projekty — prawdziwe projekty i rezultaty, jedno przewinięcie od hero" }
+      ]
+    }
+  },
+  "projects": {
+    "grx-public-platform": {
+      "description": "Publiczna strona szwajcarskiej platformy crypto-fintech, zbudowana kompleksowo od przekazania projektu po produkcję — wraz ze współdzieloną biblioteką komponentów stojącą za nią."
+    },
+    "grx-pay": {
+      "description": "Wielowalutowy produkt bankowości kryptowalutowej obsługujący ponad 24 kryptowaluty, ze śledzeniem sald w czasie rzeczywistym i rejestrami transakcji."
+    },
+    "enterprise-bi-dashboard": {
+      "description": "Dashboard business intelligence dla dużych sprzedawców na Amazon o obrotach powyżej 10 mln USD, obsługujący ponad 100 000 zamówień."
+    },
+    "marketplace-investment-platform": {
+      "description": "Zestawia na żywo metryki marketplace Amazon z feedami danych dostawców w czasie rzeczywistym."
+    }
+  }
+}
