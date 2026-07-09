@@ -48,6 +48,7 @@ export const projects: Project[] = [
     metrics: [
       { value: '−45%', label: 'initial render time via virtualized tables + cursor pagination' },
     ],
+    slug: 'enterprise-bi-dashboard',
   },
   {
     name: 'Marketplace Investment Platform',
@@ -58,5 +59,6 @@ export const projects: Project[] = [
     metrics: [
       { value: '−30%', label: 'time-to-interactive via resilient CSV ingestion + validation pipeline' },
     ],
+    slug: 'marketplace-investment-platform',
   },
 ]
