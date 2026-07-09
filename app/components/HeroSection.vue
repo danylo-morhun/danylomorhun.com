@@ -2,9 +2,11 @@
 import { RiArrowDownSLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { onMounted, ref, watch } from 'vue'
-import { site } from '~/data/site'
+import { useSite } from '~/composables/useSite'
 
-const headlineWords = ['Frontend Engineer.', 'Fintech, business', 'intelligence.']
+const { t, tm, rt } = useI18n()
+const site = useSite()
+const headlineWords = computed(() => (tm('hero.headline') as any[]).map(entry => rt(entry)))
 
 const heroRef = ref<HTMLElement | null>(null)
 const subtext = ref<HTMLElement | null>(null)
@@ -98,17 +100,17 @@ function onBeamsReady() {
         <a
           href="#contact"
           class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
-        >Contact</a>
+        >{{ t('hero.contact') }}</a>
         <a
           href="#work"
           class="rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
-        >View work</a>
+        >{{ t('hero.viewWork') }}</a>
       </div>
     </div>
 
     <a
       href="#work"
-      aria-label="Scroll to work"
+      :aria-label="t('hero.scrollToWork')"
       class="scroll-cue absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-muted transition-colors duration-200 hover:text-ink lg:block"
     >
       <RiArrowDownSLine size="20px" />
