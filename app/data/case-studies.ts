@@ -105,6 +105,31 @@ export const caseStudies: CaseStudy[] = [
     liveUrl: 'https://goldenratio.exchange',
   },
   {
+    slug: 'enterprise-bi-dashboard',
+    name: 'Enterprise BI Dashboard',
+    tag: 'Product · BI / Analytics',
+    role: 'Frontend Engineer — built from scratch',
+    dates: '',
+    nda: true,
+    overview:
+      'This project is under NDA — the client, product name, and any screenshots can\'t be shared. What follows is limited to my role and the technical approach: a business intelligence dashboard built for an enterprise Amazon seller doing $10M+ in GMV — revenue, order-level margin, and inventory rolled up across six figures of monthly orders, for an ops team that needed to catch margin erosion before it showed up in the P&L.',
+    challengeTitle: 'The Challenge',
+    challenge:
+      'The seller\'s order history ran past 100,000 rows and kept growing, and the team needed to filter, sort, and export any slice of it — by date, SKU, or status — without the browser tab stalling or the export timing out. A dashboard that only handled the first page of data wasn\'t going to survive contact with the actual dataset.',
+    approach: [
+      'Virtualized table rendering so only visible rows mount to the DOM, keeping scroll and filter interactions smooth over 100,000+ orders',
+      'Cursor-based pagination against the API instead of offset pagination, avoiding the slow-count problem on a table that size',
+      'Debounced, server-side filtering (date range, SKU, status) so the client never holds more than one page of results in memory',
+      'Client-side CSV/PDF export built as a background job with a progress state, rather than blocking the UI while the file streams down',
+      'Margin and revenue aggregates computed server-side and cached per period, so the dashboard renders instantly instead of summing rows in the browser',
+    ],
+    outcome: [
+      { value: '−45%', label: 'initial render time via virtualized tables + cursor pagination' },
+      { value: '100k+', label: 'orders filterable and exportable without a client-side stall' },
+    ],
+    gallery: [],
+  },
+  {
     slug: 'grx-pay',
     name: 'GRX Pay — Crypto Payment Solution',
     tag: 'Product · Crypto banking',
