@@ -2,8 +2,10 @@
 import { RiArrowRightUpLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
-import { personalProjects } from '~/data/personal-projects'
+import { usePersonalProjects } from '~/composables/usePersonalProjects'
 
+const { t } = useI18n()
+const personalProjects = usePersonalProjects()
 const list = ref<HTMLElement | null>(null)
 
 onMounted(async () => {
@@ -33,9 +35,9 @@ onMounted(async () => {
 <template>
   <section id="lab" class="border-t border-line">
     <div class="mx-auto max-w-content px-6 py-24 md:py-32">
-      <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">Personal projects</h2>
+      <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">{{ t('lab.heading') }}</h2>
       <p class="mt-3 max-w-[60ch] text-muted">
-        Things I've built for myself, end to end — no client, no handoff, every decision mine to own.
+        {{ t('lab.subheading') }}
       </p>
 
       <div ref="list" class="mt-16 grid gap-8 md:grid-cols-3">
