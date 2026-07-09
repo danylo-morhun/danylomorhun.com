@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { site } from '~/data/site'
+import { useSite } from '~/composables/useSite'
+
+const site = useSite()
 
 useSeoMeta({
-  title: `${site.name} — ${site.title}`,
-  description: site.oneLiner,
+  title: () => `${site.value.name} — ${site.value.title}`,
+  description: () => site.value.oneLiner,
 })
 </script>
 
