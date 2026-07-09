@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { RiGithubFill, RiLinkedinBoxFill, RiMailCheckFill, RiMailFill } from '@remixicon/vue'
 import { ref } from 'vue'
-import { site } from '~/data/site'
+import { useSite } from '~/composables/useSite'
 
+const { t } = useI18n()
+const site = useSite()
 const year = new Date().getFullYear()
 const copied = ref(false)
 
 async function copyEmail() {
   try {
-    await navigator.clipboard.writeText(site.email)
+    await navigator.clipboard.writeText(site.value.email)
     copied.value = true
     setTimeout(() => {
       copied.value = false
@@ -31,7 +33,7 @@ async function copyEmail() {
       <div class="flex items-center gap-5">
         <button
           type="button"
-          aria-label="Copy email"
+          :aria-label="t('footer.copyEmailAria')"
           class="text-muted transition-colors duration-200 hover:text-accent"
           @click="copyEmail"
         ><RiMailCheckFill v-if="copied" size="20px" /><RiMailFill v-else size="20px" /></button>
@@ -39,20 +41,20 @@ async function copyEmail() {
           :href="site.github"
           target="_blank"
           rel="noreferrer noopener"
-          aria-label="GitHub"
+          :aria-label="t('footer.githubAria')"
           class="text-muted transition-colors duration-200 hover:text-accent"
         ><RiGithubFill size="20px" /></a>
         <a
           :href="site.linkedin"
           target="_blank"
           rel="noreferrer noopener"
-          aria-label="LinkedIn"
+          :aria-label="t('footer.linkedinAria')"
           class="text-muted transition-colors duration-200 hover:text-accent"
         ><RiLinkedinBoxFill size="20px" /></a>
         <a
           :href="`mailto:${site.email}`"
           class="rounded-lg border border-accent px-4 py-1.5 text-sm text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
-        >Contact</a>
+        >{{ t('footer.contact') }}</a>
       </div>
     </div>
 
@@ -60,6 +62,6 @@ async function copyEmail() {
       &copy; {{ year }} {{ site.name }}
     </p>
 
-    <CopyToast :show="copied" message="Email copied" />
+    <CopyToast :show="copied" :message="t('footer.emailCopiedToast')" />
   </footer>
 </template>
