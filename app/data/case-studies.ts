@@ -37,11 +37,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       'GRX had three products in flight — Pay, Exchange, RWA — and neither a public website to showcase any of them nor a shared component library for the teams building them, so every product screen was its own one-off implementation of the same buttons, inputs, and cards. Two problems, one root cause: build the site from scratch, and build the design system underneath it so both the site and the products could finally speak the same visual language.',
     approach: [
-      'Extracted a shared @grx/ui component library — 50+ components — from scratch, consumed by both the marketing site and the product apps, closing the drift between what marketing ships and what the product actually looks like',
-      'Server-rendered with Next.js App Router; the [locale] segment handles i18n via next-intl so every product page ships translated and statically generated per locale',
-      'Radix UI primitives under the shared library for accessible interaction patterns (dialogs, tabs, accordions) instead of hand-rolling focus management per component',
-      'Careers and editorial content authored in Markdown and rendered at build time, keeping the content pipeline outside the deploy critical path',
-      'Lighthouse budget enforced as a CI gate rather than a one-time audit, so regressions get caught before merge',
+      'Extracted a shared component library — 50+ components — from scratch, consumed by both the marketing site and the product apps, closing the drift between what marketing ships and what the product actually looks like',
+      'Server-rendered with locale-aware routing baked into the URL structure, so every product page ships translated and statically generated per locale',
+      'Accessible interaction primitives (dialogs, tabs, accordions) built once into the shared library instead of hand-rolling focus management per component',
+      'Careers and editorial content authored as structured text and rendered at build time, keeping the content pipeline outside the deploy critical path',
+      'A performance budget enforced as an automated gate rather than a one-time audit, so regressions get caught before merge',
     ],
     outcome: [
       { value: '95+', label: 'Lighthouse score, sub-1.5s mobile LCP' },
@@ -89,7 +89,7 @@ export const caseStudies: CaseStudy[] = [
       {
         src: '/case-studies/grx-ui-kit-tokens.png',
         alt: 'Design tokens documentation page showing the color palette',
-        caption: 'Design tokens — color, radius, and shadow scales documented in Storybook',
+        caption: 'Design tokens — color, radius, and shadow scales documented in the component library',
       },
       {
         src: '/case-studies/grx-ui-kit-typography.png',
@@ -165,11 +165,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       'Balances and transaction state change mid-session — deposits settling, auto-conversions completing, mass payouts processing — and that state has to stay correct across several large, paginated tables (invoices, transactions, team members) without the dashboard feeling stale or the tables janking on every update.',
     approach: [
-      'GraphQL data layer (@grx/graphql-client) with a normalized cache, so a balance update in one view is reflected everywhere else it\'s rendered without a manual refetch',
-      'Farfetched-driven query layer for the async state around real-time balance and transaction updates, keeping loading/stale/error states explicit instead of implicit',
+      'A normalized client-side data layer, so a balance update in one view is reflected everywhere else it\'s rendered without a manual refetch',
+      'A dedicated async query layer for the state around real-time balance and transaction updates, keeping loading/stale/error states explicit instead of implicit',
       'Paginated, cursor-based tables for invoices, transactions, and members rather than loading full result sets client-side',
-      'Role-based UI via @grx/rabac — admin, merchant, and member views render different actions from the same components instead of forking screens per role',
-      'FeatureScript-gated rollout for new payment features (auto-convert, fixed-sum invoices), so product could ship behind a flag and turn it on per merchant',
+      'A shared role-based access layer — admin, merchant, and member views render different actions from the same components instead of forking screens per role',
+      'Flag-gated rollout for new payment features (auto-convert, fixed-sum invoices), so product could ship behind a flag and turn it on per merchant',
     ],
     outcome: [
       { value: '24+', label: 'currencies, real-time balances via WebSocket' },
