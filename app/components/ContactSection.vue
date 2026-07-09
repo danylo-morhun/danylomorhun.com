@@ -3,6 +3,7 @@ import { RiDownloadLine, RiGithubFill, RiLinkedinBoxFill } from '@remixicon/vue'
 import { ref } from 'vue'
 import { site } from '~/data/site'
 
+const { t } = useI18n()
 const copied = ref(false)
 
 async function copyEmail() {
@@ -23,7 +24,7 @@ async function copyEmail() {
   <section id="contact" class="border-t border-line">
     <div class="mx-auto max-w-content px-6 py-28 text-center md:py-36">
       <h2 class="mx-auto max-w-2xl text-3xl font-medium tracking-tightest text-ink md:text-5xl">
-        Open to React, Next.js, Vue, or Nuxt roles — let's talk.
+        {{ t('contact.heading') }}
       </h2>
       <p class="mx-auto mt-4 max-w-[50ch] text-muted">
         <a
@@ -31,21 +32,21 @@ async function copyEmail() {
           class="underline decoration-dotted underline-offset-4 transition-colors duration-200 hover:text-accent"
           @click="copyEmail"
         >{{ site.email }}</a>
-        <span v-if="copied" class="ml-2 text-xs text-accent">Copied</span>
-        — or reach out on GitHub / LinkedIn.
+        <span v-if="copied" class="ml-2 text-xs text-accent">{{ t('contact.copied') }}</span>
+        {{ t('contact.reachOut') }}
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a
           :href="`mailto:${site.email}`"
           class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
-        >Contact</a>
+        >{{ t('contact.contact') }}</a>
         <a
           v-if="site.resumeUrl"
           :href="site.resumeUrl"
           download
           class="flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
-        ><RiDownloadLine size="16px" /> Resume</a>
+        ><RiDownloadLine size="16px" /> {{ t('contact.resume') }}</a>
       </div>
 
       <div class="mt-8 flex justify-center gap-6">
