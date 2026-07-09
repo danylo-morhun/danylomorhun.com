@@ -130,6 +130,30 @@ export const caseStudies: CaseStudy[] = [
     gallery: [],
   },
   {
+    slug: 'marketplace-investment-platform',
+    name: 'Marketplace Investment Platform',
+    tag: 'Product · Investment platform',
+    role: 'Frontend Engineer',
+    dates: '',
+    nda: true,
+    overview:
+      'This project is under NDA — the client, product name, and any screenshots can\'t be shared. What follows is limited to my role and the technical approach: a platform that cross-references a seller\'s live Amazon marketplace metrics — pricing, competitor positioning, stock levels — against supplier CSV feeds in real time, flagging discrepancies before they turn into pricing errors or stockouts.',
+    challengeTitle: 'The Challenge',
+    challenge:
+      'Supplier data arrived as CSVs of wildly inconsistent quality — missing columns, malformed prices, duplicate SKUs — and had to be ingested, validated, and reconciled against live marketplace data without a bad file taking down the pipeline or silently corrupting the comparison.',
+    approach: [
+      'A resilient CSV ingestion pipeline with per-row validation, so one malformed row degrades gracefully instead of failing the whole upload',
+      'Variance detection against a configurable tolerance band, flagging rows for manual review instead of auto-accepting supplier data at face value',
+      'Upload history with explicit Processed / Failed / Pending states, so a failed feed is visible immediately rather than discovered downstream',
+      'Live marketplace metrics polled on a short interval with an explicit "last updated" timestamp, keeping the live/stale distinction visible in the UI',
+      'Optimistic UI for review actions (ignore / flag), reconciled against the server response rather than blocking on a round trip',
+    ],
+    outcome: [
+      { value: '−30%', label: 'time-to-interactive via resilient CSV ingestion + validation pipeline' },
+    ],
+    gallery: [],
+  },
+  {
     slug: 'grx-pay',
     name: 'GRX Pay — Crypto Payment Solution',
     tag: 'Product · Crypto banking',
