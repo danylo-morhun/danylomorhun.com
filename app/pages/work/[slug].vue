@@ -2,24 +2,27 @@
 import { RiArrowLeftLine, RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine, RiExternalLinkLine, RiLockLine, RiZoomInLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { caseStudies } from '~/data/case-studies'
+import { useCaseStudy } from '~/composables/useCaseStudies'
 
+const { t } = useI18n()
 const route = useRoute()
 
-const study = caseStudies.find(cs => cs.slug === route.params.slug)
+const studyRef = useCaseStudy(route.params.slug as string)
 
-if (!study) {
+if (!studyRef.value) {
   throw createError({ statusCode: 404, statusMessage: 'Case study not found' })
 }
 
+const study = computed(() => studyRef.value!)
+
 useSeoMeta({
-  title: `${study.name} — Danylo Morhun`,
-  description: study.overview,
+  title: () => `${study.value.name} — Danylo Morhun`,
+  description: () => study.value.overview,
 })
 
 const section = ref<HTMLElement | null>(null)
 
-const allImages = computed(() => [...study.gallery, ...(study.library ?? [])])
+const allImages = computed(() => [...study.value.gallery, ...(study.value.library ?? [])])
 const lightboxIndex = ref<number | null>(null)
 const lightbox = computed(() => (lightboxIndex.value === null ? null : allImages.value[lightboxIndex.value]))
 
@@ -88,7 +91,7 @@ onMounted(async () => {
       class="reveal-item inline-flex items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-ink"
     >
       <RiArrowLeftLine size="16px" />
-      Back to work
+      {{ t('project.backToWork') }}
     </NuxtLink>
 
     <header class="reveal-item mt-8">
@@ -102,7 +105,7 @@ onMounted(async () => {
         class="mt-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted"
       >
         <RiLockLine size="13px" />
-        Under NDA — client and product details withheld
+        {{ t('project.ndaBadge') }}
       </span>
     </header>
 
@@ -111,12 +114,12 @@ onMounted(async () => {
     </p>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ study.challengeTitle }}</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theChallenge') }}</h2>
       <p class="mt-4 max-w-[70ch] text-base leading-relaxed text-muted">{{ study.challenge }}</p>
     </section>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">The Approach</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theApproach') }}</h2>
       <ul class="mt-6 space-y-4">
         <li
           v-for="point in study.approach"
@@ -130,7 +133,7 @@ onMounted(async () => {
     </section>
 
     <section class="reveal-item mt-16 border-t border-line pt-10">
-      <h2 class="text-xl font-medium text-ink md:text-2xl">The Outcome</h2>
+      <h2 class="text-xl font-medium text-ink md:text-2xl">{{ t('project.theOutcome') }}</h2>
       <div class="mt-8 flex flex-wrap gap-x-12 gap-y-8">
         <div v-for="metric in study.outcome" :key="metric.label">
           <p class="text-4xl font-semibold tracking-tightest text-ink md:text-5xl">{{ metric.value }}</p>
@@ -143,7 +146,7 @@ onMounted(async () => {
       <figure v-if="study.gallery[0]">
         <button
           type="button"
-          :aria-label="`Enlarge: ${study.gallery[0].caption}`"
+          :aria-label="t('project.enlargeAria', { caption: study.gallery[0].caption })"
           class="group relative block w-full"
           @click="openLightbox(study.gallery[0].src)"
         >
@@ -166,7 +169,7 @@ onMounted(async () => {
         <figure v-for="image in study.gallery.slice(1)" :key="image.src">
           <button
             type="button"
-            :aria-label="`Enlarge: ${image.caption}`"
+            :aria-label="t('project.enlargeAria', { caption: image.caption })"
             class="group relative block w-full"
             @click="openLightbox(image.src)"
           >
@@ -193,7 +196,7 @@ onMounted(async () => {
         <figure v-for="image in study.library" :key="image.src">
           <button
             type="button"
-            :aria-label="`Enlarge: ${image.caption}`"
+            :aria-label="t('project.enlargeAria', { caption: image.caption })"
             class="group relative flex h-64 w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-surface p-6 shadow-lg"
             @click="openLightbox(image.src)"
           >
@@ -220,7 +223,7 @@ onMounted(async () => {
         rel="noreferrer noopener"
         class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
       >
-        Visit live site
+        {{ t('project.visitLive') }}
         <RiExternalLinkLine size="16px" />
       </a>
       <NuxtLink
@@ -228,7 +231,7 @@ onMounted(async () => {
         class="inline-flex items-center gap-1.5 rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
       >
         <RiArrowLeftLine size="16px" />
-        Back to work
+        {{ t('project.backToWork') }}
       </NuxtLink>
     </footer>
   </article>
@@ -251,7 +254,7 @@ onMounted(async () => {
       >
         <button
           type="button"
-          aria-label="Close"
+          :aria-label="t('project.closeAria')"
           class="absolute right-6 top-6 text-muted transition-colors duration-200 hover:text-ink"
           @click="closeLightbox"
         >
@@ -261,7 +264,7 @@ onMounted(async () => {
         <button
           v-if="allImages.length > 1"
           type="button"
-          aria-label="Previous image"
+          :aria-label="t('project.prevAria')"
           class="absolute left-4 top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-muted transition-colors duration-200 hover:text-ink sm:block md:left-6"
           @click.stop="prevImage"
         >
@@ -270,7 +273,7 @@ onMounted(async () => {
         <button
           v-if="allImages.length > 1"
           type="button"
-          aria-label="Next image"
+          :aria-label="t('project.nextAria')"
           class="absolute right-4 top-1/2 hidden -translate-y-1/2 rounded-full p-2 text-muted transition-colors duration-200 hover:text-ink sm:block md:right-6"
           @click.stop="nextImage"
         >
