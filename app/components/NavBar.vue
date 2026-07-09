@@ -3,6 +3,7 @@ import { site } from '~/data/site'
 
 const links = [
   { href: '#work', label: 'Work' },
+  { href: '#lab', label: 'Lab' },
   { href: '#experience', label: 'Experience' },
   { href: '#about', label: 'About' },
 ]
