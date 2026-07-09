@@ -12,6 +12,7 @@ export interface CaseStudy {
   tag: string
   role: string
   dates: string
+  nda?: boolean
   overview: string
   challengeTitle: string
   challenge: string
