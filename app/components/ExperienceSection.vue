@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
-import { experience } from '~/data/experience'
+import { useExperience } from '~/composables/useExperience'
 
+const { t } = useI18n()
+const experience = useExperience()
 const list = ref<HTMLElement | null>(null)
 
 onMounted(async () => {
@@ -32,7 +34,7 @@ onMounted(async () => {
 <template>
   <section id="experience" class="border-t border-line bg-surface/40">
     <div class="mx-auto max-w-content px-6 py-24 md:py-32">
-      <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">Experience</h2>
+      <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">{{ t('experience.heading') }}</h2>
 
       <div ref="list" class="mt-16 space-y-12">
         <div
