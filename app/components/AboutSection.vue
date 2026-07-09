@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
-import { site } from '~/data/site'
+import { useSite } from '~/composables/useSite'
 
+const { t } = useI18n()
+const site = useSite()
 const section = ref<HTMLElement | null>(null)
 
 onMounted(async () => {
@@ -31,7 +33,7 @@ onMounted(async () => {
   <section id="about" ref="section" class="border-t border-line">
     <div class="mx-auto grid max-w-content gap-10 px-6 py-24 md:py-32 lg:grid-cols-12 lg:gap-16">
       <div class="reveal-item lg:col-span-4">
-        <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">About</h2>
+        <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">{{ t('about.heading') }}</h2>
         <ul class="mt-6 flex flex-wrap gap-2">
           <li
             v-for="tech in site.stack"
