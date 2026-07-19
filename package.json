@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxi typecheck",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",
@@ -28,6 +29,7 @@
     "@nuxtjs/robots": "^5.2.0",
     "@nuxtjs/sitemap": "^7.0.0",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@playwright/test": "^1.61.1",
     "@resvg/resvg-js": "^2.6.2",
     "@types/three": "^0.185.0",
     "@vitejs/plugin-vue": "^6.0.8",
