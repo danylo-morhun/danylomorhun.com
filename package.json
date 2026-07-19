@@ -33,6 +33,7 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "nuxt-og-image": "^6.7.2",
     "satori": "^0.26.0",
+    "satori-html": "^0.3.2",
     "typescript": "^5.7.2",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.6",
