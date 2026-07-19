@@ -1,3 +1,6 @@
+import { caseStudies } from './app/data/case-studies'
+import { personalProjects } from './app/data/personal-projects'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -20,6 +23,17 @@ export default defineNuxtConfig({
 
   sitemap: {
     zeroRuntime: true,
+    urls: () => {
+      const nonDefaultLocales = ['uk', 'pl']
+      const paths = [
+        ...caseStudies.map(cs => ({ path: `/work/${cs.slug}`, priority: 0.8 as const })),
+        ...personalProjects.map(p => ({ path: `/lab/${p.slug}`, priority: 0.7 as const })),
+      ]
+      return paths.flatMap(({ path, priority }) => [
+        { loc: path, priority },
+        ...nonDefaultLocales.map(locale => ({ loc: `/${locale}${path}`, priority })),
+      ])
+    },
   },
 
   ogImage: {
