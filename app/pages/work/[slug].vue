@@ -112,7 +112,7 @@ onMounted(async () => {
 <template>
   <article v-if="study" ref="section" class="mx-auto max-w-content px-6 py-24 md:py-32">
     <NuxtLink
-      to="/#work"
+      :to="localePath('/#work')"
       class="reveal-item inline-flex items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-ink"
     >
       <RiArrowLeftLine size="16px" />
@@ -252,7 +252,7 @@ onMounted(async () => {
         <RiExternalLinkLine size="16px" />
       </a>
       <NuxtLink
-        to="/#work"
+        :to="localePath('/#work')"
         class="inline-flex items-center gap-1.5 rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
       >
         <RiArrowLeftLine size="16px" />
