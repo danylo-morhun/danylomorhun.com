@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "typecheck": "nuxi typecheck"
+    "typecheck": "nuxi typecheck",
+    "test": "vitest run"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",
@@ -29,9 +30,11 @@
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@resvg/resvg-js": "^2.6.2",
     "@types/three": "^0.185.0",
+    "@vitejs/plugin-vue": "^6.0.8",
     "nuxt-og-image": "^6.7.2",
     "satori": "^0.26.0",
     "typescript": "^5.7.2",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.6",
     "yoga-wasm-web": "^0.3.3"
   }
