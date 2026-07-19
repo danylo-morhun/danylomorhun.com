@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue'
 import { usePersonalProjects } from '~/composables/usePersonalProjects'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const personalProjects = usePersonalProjects()
 const list = ref<HTMLElement | null>(null)
 
@@ -44,7 +45,7 @@ onMounted(async () => {
         <NuxtLink
           v-for="project in personalProjects"
           :key="project.slug"
-          :to="`/lab/${project.slug}`"
+          :to="localePath(`/lab/${project.slug}`)"
           class="reveal-item group flex flex-col"
         >
           <div class="relative overflow-hidden rounded-xl border border-line shadow-lg">
