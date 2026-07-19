@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue'
 import { useProjects } from '~/composables/useProjects'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const projects = useProjects()
 const list = ref<HTMLElement | null>(null)
 
@@ -44,7 +45,7 @@ onMounted(async () => {
         <NuxtLink
           v-for="project in projects"
           :key="project.slug"
-          :to="`/work/${project.slug}`"
+          :to="localePath(`/work/${project.slug}`)"
           class="reveal-item group grid gap-6 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
         >
           <div class="lg:col-span-5">
