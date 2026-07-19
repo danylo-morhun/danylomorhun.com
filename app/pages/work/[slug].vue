@@ -6,6 +6,7 @@ import { useCaseStudy } from '~/composables/useCaseStudies'
 
 const { t } = useI18n()
 const route = useRoute()
+const localePath = useLocalePath()
 
 const studyRef = useCaseStudy(route.params.slug as string)
 
@@ -18,6 +19,30 @@ const study = computed(() => studyRef.value!)
 useSeoMeta({
   title: () => `${study.value.name} — Danylo Morhun`,
   description: () => study.value.overview,
+  ogType: 'article',
+})
+
+defineOgImage('Default', {
+  title: () => study.value.name,
+  subtitle: () => study.value.role,
+  tag: () => study.value.tag,
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: study.value.name,
+        description: study.value.overview,
+        creator: { '@type': 'Person', name: 'Danylo Morhun' },
+        url: `https://www.danylomorhun.com${localePath(`/work/${study.value.slug}`)}`,
+        image: study.value.gallery[0] ? `https://www.danylomorhun.com${study.value.gallery[0].src}` : undefined,
+      }),
+    },
+  ],
 })
 
 const section = ref<HTMLElement | null>(null)

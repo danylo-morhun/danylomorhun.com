@@ -27,8 +27,12 @@
     "@nuxtjs/robots": "^5.2.0",
     "@nuxtjs/sitemap": "^7.0.0",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/three": "^0.185.0",
+    "nuxt-og-image": "^6.7.2",
+    "satori": "^0.26.0",
     "typescript": "^5.7.2",
-    "vue-tsc": "^3.3.6"
+    "vue-tsc": "^3.3.6",
+    "yoga-wasm-web": "^0.3.3"
   }
 }

@@ -7,6 +7,11 @@ useSeoMeta({
   title: () => `${site.value.name} — ${site.value.title}`,
   description: () => site.value.oneLiner,
 })
+
+defineOgImage('Default', {
+  title: () => site.value.name,
+  subtitle: () => site.value.title,
+})
 </script>
 
 <template>
