@@ -53,8 +53,10 @@ onMounted(async () => {
                 <img
                   :src="`https://flagsapi.com/${entry.countryCode}/flat/64.png`"
                   :alt="entry.country"
+                  width="24"
+                  height="24"
                   tabindex="0"
-                  class="h-[1.5em] w-auto shrink-0 rounded-[2px]"
+                  class="h-[1.5em] w-[1.5em] object-contain shrink-0 rounded-[2px]"
                 >
                 <span
                   class="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-line bg-surface px-2 py-1 font-sans text-xs font-normal text-ink opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
