@@ -13,15 +13,15 @@
     "toDark": "Przełącz na ciemny motyw"
   },
   "site": {
-    "title": "Inżynier Frontend",
-    "oneLiner": "Architektura frontendu dla produktów, które nie mogą zwalniać — wolumeny zamówień liczone w milionach, dane finansowe na żywo, tabele powyżej 100 tys. wierszy.",
+    "title": "Inżynier Fullstack",
+    "oneLiner": "Architektura fullstack dla produktów, które nie mogą zwalniać — wolumeny zamówień liczone w milionach, dane finansowe na żywo, tabele powyżej 100 tys. wierszy.",
     "bio": [
       "Zajmuję się częściami produktu, które muszą wytrzymać realne warunki: dashboardy fintech przetwarzające sześciocyfrowe wolumeny zamówień, ekrany bankowości kryptowalutowej aktualizowane przez żywe połączenia socket, narzędzia BI renderujące setki tysięcy wierszy bez zawieszania karty.",
       "Zestaw narzędzi zmienia się od projektu do projektu; prawdziwa praca to ocena sytuacji — wiedza, kiedy tabela wirtualizowana bije paginację, kiedy połączenie na żywo bije odpytywanie serwera, kiedy współdzielona biblioteka komponentów oszczędza kolejne pół roku pracy."
     ]
   },
   "hero": {
-    "headline": ["Inżynier Frontend.", "Fintech, business", "intelligence."],
+    "headline": ["Inżynier Fullstack.", "Fintech, business", "intelligence."],
     "contact": "Kontakt",
     "viewWork": "Zobacz projekty",
     "scrollToWork": "Przewiń do projektów"
@@ -33,12 +33,12 @@
     "heading": "Doświadczenie",
     "entries": {
       "grx": {
-        "role": "Inżynier Frontend",
+        "role": "Inżynier Fullstack",
         "country": "Szwajcaria",
         "summary": "Odpowiadałem za architekturę frontendu szwajcarskiej platformy crypto-fintech — od strony publicznej po kluczowe moduły bankowe."
       },
       "ezcloud": {
-        "role": "Inżynier Frontend",
+        "role": "Inżynier Fullstack",
         "country": "Stany Zjednoczone",
         "summary": "Budowałem dashboardy i narzędzia z dużą ilością danych dla dużych sprzedawców na Amazon — od raportowania BI po zarządzanie kampaniami reklamowymi."
       }
@@ -83,7 +83,7 @@
     "grx-public-platform": {
       "name": "GRX — Platforma publiczna",
       "tag": "Strona publiczna · Fintech",
-      "role": "Inżynier Frontend — pełna odpowiedzialność za architekturę",
+      "role": "Inżynier Fullstack — pełna odpowiedzialność za architekturę",
       "overview": "GRX to szwajcarski ekosystem crypto-fintech obejmujący płatności, giełdę i tokenizowane aktywa rzeczywiste. Zbudowałem publiczną platformę od zera — stronę marketingową, strony cenowe i produktowe oraz sekcję kariery — wraz ze współdzieloną biblioteką komponentów, na której teraz działa strona i reszta produktów firmy.",
       "challenge": "GRX miał trzy produkty w budowie jednocześnie — Pay, Exchange, RWA — i nie miał ani publicznej strony, by je zaprezentować, ani współdzielonej biblioteki komponentów dla zespołów, które je budowały, więc każdy ekran produktu był osobną, jednorazową implementacją tych samych przycisków, pól i kart. Dwa problemy, jedna przyczyna: zbudować stronę od zera i zbudować pod nią system projektowy, aby strona i produkty w końcu mówiły tym samym językiem wizualnym.",
       "approach": [
@@ -116,7 +116,7 @@
     "enterprise-bi-dashboard": {
       "name": "Korporacyjny dashboard BI",
       "tag": "Produkt · BI / Analityka",
-      "role": "Inżynier Frontend — zbudowane od zera",
+      "role": "Inżynier Fullstack — zbudowane od zera",
       "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: dashboard business intelligence zbudowany dla dużego sprzedawcy na Amazon o obrotach przekraczających 10 mln USD — przychody, marża na poziomie zamówienia i zapasy zagregowane dla sześciocyfrowej liczby zamówień miesięcznie, dla zespołu operacyjnego, który musiał wychwytywać erozję marży, zanim pojawi się w rachunku zysków i strat.",
       "challenge": "Historia zamówień sprzedawcy przekraczała 100 000 wierszy i wciąż rosła, a zespół musiał filtrować, sortować i eksportować dowolny wycinek tych danych — po dacie, SKU lub statusie — bez zawieszania karty przeglądarki czy timeoutu eksportu. Dashboard obsługujący tylko pierwszą stronę danych nie przetrwałby zderzenia z rzeczywistym zbiorem danych.",
       "approach": [
@@ -135,7 +135,7 @@
     "marketplace-investment-platform": {
       "name": "Platforma inwestycyjna dla marketplace",
       "tag": "Produkt · Platforma inwestycyjna",
-      "role": "Inżynier Frontend",
+      "role": "Inżynier Fullstack",
       "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: platforma zestawiająca na żywo metryki marketplace sprzedawcy na Amazon — ceny, pozycjonowanie konkurencji, poziomy zapasów — z plikami CSV dostawców w czasie rzeczywistym, oznaczając rozbieżności, zanim staną się błędami cenowymi lub brakami towaru.",
       "challenge": "Dane od dostawców napływały jako pliki CSV o skrajnie niespójnej jakości — brakujące kolumny, źle sformatowane ceny, zduplikowane SKU — i musiały być pobierane, walidowane i uzgadniane z danymi marketplace na żywo tak, by jeden wadliwy plik nie zawalił pipeline'u ani nie skorumpował porównania po cichu.",
       "approach": [
@@ -153,7 +153,7 @@
     "grx-pay": {
       "name": "GRX Pay — Rozwiązanie płatności kryptowalutowych",
       "tag": "Produkt · Bankowość kryptowalutowa",
-      "role": "Inżynier Frontend",
+      "role": "Inżynier Fullstack",
       "overview": "GRX Pay to wielowalutowy produkt bankowości kryptowalutowej — merchanci przyjmują płatności w ponad 24 kryptowalutach, śledzą salda i wypłacają środki przez SEPA, a każda transakcja niesie dane AML i ryzyka. Pracowałem nad dashboardem merchanta: salda, faktury, transakcje i zarządzanie zespołem.",
       "challenge": "Salda i stan transakcji zmieniają się w trakcie sesji — depozyty się rozliczają, autokonwersje kończą się, masowe wypłaty są przetwarzane — a ten stan musi pozostać spójny w kilku dużych, paginowanych tabelach (faktury, transakcje, członkowie zespołu), bez wrażenia nieaktualności dashboardu czy szarpania tabel przy każdej aktualizacji.",
       "approach": [
@@ -231,7 +231,7 @@
       "name": "danylomorhun.com — ta strona",
       "tag": "Projekt osobisty · Portfolio",
       "role": "Solo — projekt i budowa",
-      "overview": "Ta strona — przebudowana od zera, by dobrze robić jedną rzecz: pozwolić osobie zatrudniającej inżyniera frontend znaleźć mnie, zobaczyć, co zbudowałem, i się odezwać — w mniej niż minutę.",
+      "overview": "Ta strona — przebudowana od zera, by dobrze robić jedną rzecz: pozwolić osobie zatrudniającej inżyniera fullstack znaleźć mnie, zobaczyć, co zbudowałem, i się odezwać — w mniej niż minutę.",
       "challenge": "Rekruter lub hiring manager przeglądający aplikacje daje stronie kilka sekund, często z telefonu, zanim zdecyduje, czy otworzyć CV, czy przejść dalej. Zadaniem była bezwzględna priorytetyzacja — natychmiast pokazać prawdziwe projekty i prawdziwe rezultaty, utrzymać każdą sekcję wskazującą ten sam kolejny krok i nie przeszkadzać w tej decyzji zamiast próbować zaimponować samą stroną.",
       "approach": [
         "Jedna jasna ścieżka przez treść — hero, projekty, projekty osobiste, doświadczenie, o mnie — każda sekcja zasługuje na przewinięcie do kolejnej zamiast rywalizować o uwagę",

@@ -13,15 +13,15 @@
     "toDark": "Switch to dark mode"
   },
   "site": {
-    "title": "Frontend Engineer",
-    "oneLiner": "Frontend architecture for products that can't afford to slow down — order volumes in the millions, live financial data, row counts north of 100k.",
+    "title": "Fullstack Engineer",
+    "oneLiner": "Fullstack architecture for products that can't afford to slow down — order volumes in the millions, live financial data, row counts north of 100k.",
     "bio": [
       "I work on the parts of a product that have to hold up under real conditions: fintech dashboards processing six-figure order volumes, crypto banking screens updating over live sockets, BI tools rendering hundreds of thousands of rows without stalling the tab.",
       "The toolkit shifts from project to project; the actual job is judgment — knowing when a virtualized table beats pagination, when a live connection beats polling, when a shared component library saves the next six months of work."
     ]
   },
   "hero": {
-    "headline": ["Frontend Engineer.", "Fintech, business", "intelligence."],
+    "headline": ["Fullstack Engineer.", "Fintech, business", "intelligence."],
     "contact": "Contact",
     "viewWork": "View work",
     "scrollToWork": "Scroll to work"
@@ -33,12 +33,12 @@
     "heading": "Experience",
     "entries": {
       "grx": {
-        "role": "Frontend Engineer",
+        "role": "Fullstack Engineer",
         "country": "Switzerland",
         "summary": "Owned frontend architecture for a Swiss crypto-fintech platform, from the public site to core banking modules."
       },
       "ezcloud": {
-        "role": "Frontend Engineer",
+        "role": "Fullstack Engineer",
         "country": "United States",
         "summary": "Built data-heavy dashboards and tools for enterprise Amazon sellers, from BI reporting to ad campaign management."
       }
@@ -83,7 +83,7 @@
     "grx-public-platform": {
       "name": "GRX — Public Platform",
       "tag": "Public site · Fintech",
-      "role": "Frontend Engineer — owned architecture end to end",
+      "role": "Fullstack Engineer — owned architecture end to end",
       "overview": "GRX is a Swiss crypto-fintech ecosystem spanning payments, exchange, and tokenized real-world assets. I built the public-facing platform from scratch — the marketing site, pricing and product pages, and the careers hub — along with the shared component library it and the rest of the company's products now run on.",
       "challenge": "GRX had three products in flight — Pay, Exchange, RWA — and neither a public website to showcase any of them nor a shared component library for the teams building them, so every product screen was its own one-off implementation of the same buttons, inputs, and cards. Two problems, one root cause: build the site from scratch, and build the design system underneath it so both the site and the products could finally speak the same visual language.",
       "approach": [
@@ -116,7 +116,7 @@
     "enterprise-bi-dashboard": {
       "name": "Enterprise BI Dashboard",
       "tag": "Product · BI / Analytics",
-      "role": "Frontend Engineer — built from scratch",
+      "role": "Fullstack Engineer — built from scratch",
       "overview": "This project is under NDA — the client, product name, and any screenshots can't be shared. What follows is limited to my role and the technical approach: a business intelligence dashboard built for an enterprise Amazon seller doing $10M+ in GMV — revenue, order-level margin, and inventory rolled up across six figures of monthly orders, for an ops team that needed to catch margin erosion before it showed up in the P&L.",
       "challenge": "The seller's order history ran past 100,000 rows and kept growing, and the team needed to filter, sort, and export any slice of it — by date, SKU, or status — without the browser tab stalling or the export timing out. A dashboard that only handled the first page of data wasn't going to survive contact with the actual dataset.",
       "approach": [
@@ -135,7 +135,7 @@
     "marketplace-investment-platform": {
       "name": "Marketplace Investment Platform",
       "tag": "Product · Investment platform",
-      "role": "Frontend Engineer",
+      "role": "Fullstack Engineer",
       "overview": "This project is under NDA — the client, product name, and any screenshots can't be shared. What follows is limited to my role and the technical approach: a platform that cross-references a seller's live Amazon marketplace metrics — pricing, competitor positioning, stock levels — against supplier CSV feeds in real time, flagging discrepancies before they turn into pricing errors or stockouts.",
       "challenge": "Supplier data arrived as CSVs of wildly inconsistent quality — missing columns, malformed prices, duplicate SKUs — and had to be ingested, validated, and reconciled against live marketplace data without a bad file taking down the pipeline or silently corrupting the comparison.",
       "approach": [
@@ -153,7 +153,7 @@
     "grx-pay": {
       "name": "GRX Pay — Crypto Payment Solution",
       "tag": "Product · Crypto banking",
-      "role": "Frontend Engineer",
+      "role": "Fullstack Engineer",
       "overview": "GRX Pay is a multi-currency crypto banking product — merchants accept payments across 24+ cryptocurrencies, track balances, and move funds out via SEPA, with every transaction carrying AML and risk data. I worked on the merchant dashboard: balances, invoices, transactions, and team management.",
       "challenge": "Balances and transaction state change mid-session — deposits settling, auto-conversions completing, mass payouts processing — and that state has to stay correct across several large, paginated tables (invoices, transactions, team members) without the dashboard feeling stale or the tables janking on every update.",
       "approach": [
@@ -231,7 +231,7 @@
       "name": "danylomorhun.com — This Site",
       "tag": "Personal project · Portfolio",
       "role": "Solo — design and build",
-      "overview": "This site — rebuilt from scratch to do one job well: let someone hiring a frontend engineer find me, see what I've built, and reach out, in under a minute.",
+      "overview": "This site — rebuilt from scratch to do one job well: let someone hiring a fullstack engineer find me, see what I've built, and reach out, in under a minute.",
       "challenge": "A recruiter or hiring manager scanning applications gives a site seconds, often on a phone, before deciding whether to open the resume or move on. The job was ruthless prioritization — surface real projects and real outcomes immediately, keep every section pointing at the same next step, and stay out of the way of that decision rather than trying to impress with the site itself.",
       "approach": [
         "One clear path through the content — hero, work, personal projects, experience, about — each section earning the scroll to the next instead of competing for attention",
