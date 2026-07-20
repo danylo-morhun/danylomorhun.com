@@ -16,7 +16,7 @@ const links = computed(() => [
     <nav
       class="mx-auto flex max-w-3xl items-center justify-between gap-4 rounded-xl border border-ink/10 bg-ink/[0.04] px-4 py-3 backdrop-blur-md"
     >
-      <a href="#top" class="shrink-0 whitespace-nowrap font-sans text-lg font-bold tracking-tight text-ink" :aria-label="t('nav.home')">
+      <a href="#top" class="shrink-0 whitespace-nowrap font-sans text-lg font-bold tracking-tight text-ink" :aria-label="`${site.name} - ${t('nav.home')}`">
         {{ site.name }}
       </a>
 
