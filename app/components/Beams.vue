@@ -390,24 +390,33 @@ const initThreeJS = () => {
 
   resize()
 
-  const animate = () => {
-    animationId = requestAnimationFrame(animate)
+let isVisible = true
+let observer: IntersectionObserver | null = null
 
-    if (beamMesh && beamMesh.material) {
-      beamMesh.material.uniforms.time!.value += 0.1 * 0.016
-    }
+const animate = () => {
+  animationId = requestAnimationFrame(animate)
+  if (!isVisible) return
 
-    if (renderer && scene && camera) {
-      renderer.render(scene, camera)
-      emitReadyOnce()
-    }
+  if (beamMesh && beamMesh.material) {
+    beamMesh.material.uniforms.time!.value += 0.1 * 0.016
   }
 
-  animationId = requestAnimationFrame(animate)
-  ;(container as HTMLDivElement & { _resizeObserver?: ResizeObserver })._resizeObserver = resizeObserver
+  if (renderer && scene && camera) {
+    renderer.render(scene, camera)
+    emitReadyOnce()
+  }
+}
+
+animationId = requestAnimationFrame(animate)
+;(container as HTMLDivElement & { _resizeObserver?: ResizeObserver })._resizeObserver = resizeObserver
 }
 
 const cleanup = () => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+
   if (animationId) {
     cancelAnimationFrame(animationId)
     animationId = null
@@ -461,7 +470,19 @@ watch(
 )
 
 onMounted(() => {
-  initThreeJS()
+  if (typeof window !== 'undefined' && 'IntersectionObserver' in window && containerRef.value) {
+    observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+    })
+    observer.observe(containerRef.value)
+  }
+
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    requestIdleCallback(() => initThreeJS())
+  }
+  else {
+    setTimeout(() => initThreeJS(), 50)
+  }
 })
 
 onUnmounted(() => {
