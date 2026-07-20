@@ -57,6 +57,8 @@ let beamMesh: THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial> | null = nu
 let directionalLight: THREE.DirectionalLight | null = null
 let ambientLight: THREE.AmbientLight | null = null
 let animationId: number | null = null
+let isVisible = true
+let observer: IntersectionObserver | null = null
 
 type UniformValue = THREE.IUniform<unknown> | unknown
 
@@ -390,25 +392,22 @@ const initThreeJS = () => {
 
   resize()
 
-let isVisible = true
-let observer: IntersectionObserver | null = null
+  const animate = () => {
+    animationId = requestAnimationFrame(animate)
+    if (!isVisible) return
 
-const animate = () => {
+    if (beamMesh && beamMesh.material) {
+      beamMesh.material.uniforms.time!.value += 0.1 * 0.016
+    }
+
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera)
+      emitReadyOnce()
+    }
+  }
+
   animationId = requestAnimationFrame(animate)
-  if (!isVisible) return
-
-  if (beamMesh && beamMesh.material) {
-    beamMesh.material.uniforms.time!.value += 0.1 * 0.016
-  }
-
-  if (renderer && scene && camera) {
-    renderer.render(scene, camera)
-    emitReadyOnce()
-  }
-}
-
-animationId = requestAnimationFrame(animate)
-;(container as HTMLDivElement & { _resizeObserver?: ResizeObserver })._resizeObserver = resizeObserver
+  ;(container as HTMLDivElement & { _resizeObserver?: ResizeObserver })._resizeObserver = resizeObserver
 }
 
 const cleanup = () => {
@@ -472,7 +471,7 @@ watch(
 onMounted(() => {
   if (typeof window !== 'undefined' && 'IntersectionObserver' in window && containerRef.value) {
     observer = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting
+      if (entry) isVisible = entry.isIntersecting
     })
     observer.observe(containerRef.value)
   }
