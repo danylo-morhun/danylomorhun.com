@@ -350,7 +350,7 @@ const initThreeJS = () => {
   camera = new THREE.PerspectiveCamera(30, 1, 0.1, 1000)
   camera.position.set(0, 0, 20)
 
-  const geometry = createStackedPlanesBufferGeometry(props.beamNumber, props.beamWidth, props.beamHeight, 0, 100)
+  const geometry = createStackedPlanesBufferGeometry(props.beamNumber, props.beamWidth, props.beamHeight, 0, 24)
 
   const material = beamMaterial.value
   beamMesh = new THREE.Mesh(geometry, material)
@@ -392,12 +392,16 @@ const initThreeJS = () => {
 
   resize()
 
-  const animate = () => {
+  let lastFrameTime = 0
+  const animate = (timestamp: number) => {
     animationId = requestAnimationFrame(animate)
     if (!isVisible) return
 
+    if (timestamp - lastFrameTime < 33) return
+    lastFrameTime = timestamp
+
     if (beamMesh && beamMesh.material) {
-      beamMesh.material.uniforms.time!.value += 0.1 * 0.016
+      beamMesh.material.uniforms.time!.value += 0.1 * 0.033
     }
 
     if (renderer && scene && camera) {
@@ -476,12 +480,14 @@ onMounted(() => {
     observer.observe(containerRef.value)
   }
 
-  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-    requestIdleCallback(() => initThreeJS())
-  }
-  else {
-    setTimeout(() => initThreeJS(), 50)
-  }
+  setTimeout(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      requestIdleCallback(() => initThreeJS())
+    }
+    else {
+      initThreeJS()
+    }
+  }, 200)
 })
 
 onUnmounted(() => {

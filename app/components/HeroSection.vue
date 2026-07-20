@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { RiArrowDownSLine } from '@remixicon/vue'
 import { gsap } from 'gsap'
-import { onMounted, ref, watch } from 'vue'
+import { defineAsyncComponent, onMounted, ref, watch } from 'vue'
 import { useSite } from '~/composables/useSite'
+
+const Beams = defineAsyncComponent(() => import('~/components/Beams.vue'))
 
 const { t, tm, rt } = useI18n()
 const site = useSite()
