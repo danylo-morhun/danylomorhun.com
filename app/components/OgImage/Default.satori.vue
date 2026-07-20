@@ -42,7 +42,7 @@ withDefaults(defineProps<{
 
     <div style="display: flex; align-items: center; border-top: 1px solid #333333; padding-top: 32px;">
       <span style="font-family: Geist Mono; font-size: 20px; color: #8a8a8a;">
-        Frontend Engineer — Fintech, Business Intelligence
+        Fullstack Engineer — Fintech, Business Intelligence
       </span>
     </div>
   </div>
