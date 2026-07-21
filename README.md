@@ -44,8 +44,10 @@ graph TD
 
 ## Core Web Vitals & Performance Engineering
 
-- **100/100 Lighthouse Performance**: Optimally bundled Nitro engine chunks for sub-second Initial Server Response Time (TTFB < 100ms).
-- **Zero Layout Shift (CLS = 0)**: Font preloading via `@fontsource-variable/geist` and strict aspect ratio containers eliminate layout jank.
+![100/100 Lighthouse Audit Results](public/img/lighthouse-100.png)
+
+- **100/100 Lighthouse Score Across All Categories**: Verified 100/100 on Performance, Accessibility, Best Practices, and SEO.
+- **Sub-Second Core Web Vitals**: First Contentful Paint = 1.0s, Largest Contentful Paint = 1.7s, Total Blocking Time = 20ms, CLS = 0.003, Speed Index = 2.4s.
 - **Hardware-Accelerated Motion**: GSAP 3 animations and Three.js 3D viewports run strictly on GPU compositor layers (`transform` / `opacity`).
 - **Dynamic OG Image Generation**: Social share previews are synthesized on the edge using Satori HTML-to-SVG compilation (`nuxt-og-image`).
 
