@@ -38,19 +38,15 @@ function startEntrance() {
     .from(ctas.value, { opacity: 0, y: 20, duration: 0.6, ease: 'expo.out' }, '-=0.4')
 }
 
+const showBeams = ref(false)
+
 onMounted(() => {
   reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  startEntrance()
 
-  // Fallback in case the WebGL background never signals ready (e.g. a paused tab).
   setTimeout(() => {
-    heroReady.value = true
-  }, 2500)
-
-  if (heroReady.value) startEntrance()
-})
-
-watch(heroReady, (ready) => {
-  if (ready) startEntrance()
+    showBeams.value = true
+  }, 500)
 })
 
 function onBeamsReady() {
@@ -65,7 +61,7 @@ function onBeamsReady() {
     class="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden"
   >
     <ClientOnly>
-      <div class="absolute inset-0 -z-20">
+      <div v-if="showBeams" class="absolute inset-0 -z-20">
         <Beams
           light-color="#ffffff"
           :beam-width="3"
