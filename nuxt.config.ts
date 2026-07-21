@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   sourcemap: { client: true, server: false },
+  features: { inlineStyles: true },
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/color-mode', '@nuxtjs/i18n', 'nuxt-og-image'],
 

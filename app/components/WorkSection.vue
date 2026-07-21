@@ -9,27 +9,30 @@ const localePath = useLocalePath()
 const projects = useProjects()
 const list = ref<HTMLElement | null>(null)
 
-onMounted(async () => {
+onMounted(() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   if (reduceMotion || !list.value) return
 
-  const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-  gsap.registerPlugin(ScrollTrigger)
+  setTimeout(async () => {
+    if (!list.value) return
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+    gsap.registerPlugin(ScrollTrigger)
 
-  const items = list.value.querySelectorAll('.reveal-item')
-  items.forEach((el) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 24,
-      duration: 0.7,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-      },
+    const items = list.value.querySelectorAll('.reveal-item')
+    items.forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 24,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+        },
+      })
     })
-  })
+  }, 100)
 })
 </script>
 
