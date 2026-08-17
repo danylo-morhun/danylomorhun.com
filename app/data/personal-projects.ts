@@ -21,8 +21,8 @@ export const personalProjects: CaseStudy[] = [
       { src: '/personal-projects/twojezdrowie-home.webp' },
       { src: '/personal-projects/twojezdrowie-katalog.webp' },
       { src: '/personal-projects/twojezdrowie-produkt.webp' },
-      { src: '/personal-projects/twojezdrowie-koszyk.webp' },
     ],
+    liveUrl: 'https://wellbotany.pl',
   },
   {
     slug: 'danylomorhun-com',
