@@ -31,6 +31,7 @@ export const personalProjects: CaseStudy[] = [
     gallery: [
       { src: '/personal-projects/danylomorhun-hero.webp' },
       { src: '/personal-projects/danylomorhun-work.webp' },
+      { src: '/personal-projects/danylomorhun-lighthouse.webp' },
     ],
     liveUrl: 'https://danylomorhun.com',
   },
