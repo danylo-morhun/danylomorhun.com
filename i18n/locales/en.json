@@ -204,10 +204,10 @@
       ]
     },
     "twoje-zdrowie": {
-      "name": "Twoje Zdrowie — Health & Supplements Store",
+      "name": "WellBotany — Health & Supplements Store",
       "tag": "Personal project · E-commerce · Polish market",
-      "role": "Solo — full-stack, from schema to storefront",
-      "overview": "A Polish-market e-commerce store for supplements, vitamins, and bio products — built solo end to end, from the database schema through to the storefront. Currently in development, wired to real Polish commerce rails: online payment, parcel-locker and courier shipping, and a hub syncing stock and orders with a major marketplace.",
+      "role": "Solo — designed and built end to end, backend and frontend",
+      "overview": "A production Polish-market e-commerce store for supplements, vitamins, and bio products, live at wellbotany.pl — designed and built solo end to end, from the database schema through to the storefront UI. Wired to real Polish commerce rails: online payment, parcel-locker and courier shipping, and a hub syncing stock and orders with a major marketplace.",
       "challenge": "Health-product e-commerce in Poland carries constraints most storefronts don't: prices need exact arithmetic (no float rounding at checkout), product copy has to satisfy local health-claim and labeling rules across three languages, and the brand had to land as \"trusted pharmacist\" — not generic SaaS gradients, not clinical hospital-white, not greenwashed wellness cliché. All three had to be solved before the first product page shipped.",
       "approach": [
         "Every price and tax figure stored as a whole number of grosz (the smallest Polish currency unit) rather than a decimal, so checkout math is exact by construction instead of rounded after the fact",
@@ -221,10 +221,9 @@
         "payment, courier, and marketplace sync integrated through one hub"
       ],
       "gallery": [
-        { "alt": "Twoje Zdrowie homepage with hero banner, trust strip, and category grid", "caption": "Homepage — trust signals up front, category grid seeded from the product catalog" },
-        { "alt": "Twoje Zdrowie product catalog with filters by category, brand, and dietary tag", "caption": "Catalog — filterable by category, brand, and dietary claim" },
-        { "alt": "Twoje Zdrowie product detail page for Witamina D3 with price, dosage, and related products", "caption": "Product page — dosage, regulatory disclaimer, and related products" },
-        { "alt": "Twoje Zdrowie cart page with order summary and free-shipping progress bar", "caption": "Cart — order summary with a free-shipping progress nudge" }
+        { "alt": "WellBotany homepage with hero banner, trust strip, and category grid", "caption": "Homepage — trust signals up front, category grid seeded from the product catalog" },
+        { "alt": "WellBotany product catalog with filters by category, brand, and dietary tag", "caption": "Catalog — filterable by category, brand, and dietary claim" },
+        { "alt": "WellBotany product detail page for TestoGainer with price, benefits, and shipping info", "caption": "Product page — benefits, pricing, and shipping details" }
       ]
     },
     "danylomorhun-com": {
@@ -246,7 +245,8 @@
       ],
       "gallery": [
         { "alt": "danylomorhun.com homepage hero section", "caption": "Homepage — the hero section you just scrolled past" },
-        { "alt": "danylomorhun.com work section listing case studies with outcomes", "caption": "Work — real projects and outcomes, one scroll down from the hero" }
+        { "alt": "danylomorhun.com work section listing case studies with outcomes", "caption": "Work — real projects and outcomes, one scroll down from the hero" },
+        { "alt": "Lighthouse audit showing 100/100 on Performance, Accessibility, Best Practices, and SEO", "caption": "100/100 across every Lighthouse category — Performance included, not just the easy ones" }
       ]
     }
   },

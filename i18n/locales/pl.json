@@ -204,10 +204,10 @@
       ]
     },
     "twoje-zdrowie": {
-      "name": "Twoje Zdrowie — sklep ze zdrowiem i suplementami",
+      "name": "WellBotany — sklep ze zdrowiem i suplementami",
       "tag": "Projekt osobisty · E-commerce · Rynek polski",
-      "role": "Solo — pełny stack, od schematu po witrynę",
-      "overview": "Sklep e-commerce dla rynku polskiego oferujący suplementy, witaminy i produkty bio — zbudowany samodzielnie od początku do końca, od schematu bazy danych po witrynę sklepu. Obecnie w rozwoju, podłączony do realnych polskich szyn handlowych: płatności online, dostawa do paczkomatów i przez kuriera oraz hub synchronizujący stany magazynowe i zamówienia z dużym marketplace'em.",
+      "role": "Solo — zaprojektowane i zbudowane od podstaw, backend i frontend",
+      "overview": "Produkcyjny sklep e-commerce dla rynku polskiego oferujący suplementy, witaminy i produkty bio, dostępny pod wellbotany.pl — zaprojektowany i zbudowany samodzielnie od początku do końca, od schematu bazy danych po interfejs witryny. Podłączony do realnych polskich szyn handlowych: płatności online, dostawa do paczkomatów i przez kuriera oraz hub synchronizujący stany magazynowe i zamówienia z dużym marketplace'em.",
       "challenge": "E-commerce produktów zdrowotnych w Polsce niesie ograniczenia, których nie ma większość sklepów: ceny wymagają dokładnej arytmetyki (brak zaokrągleń float przy kasie), treści produktowe muszą spełniać lokalne przepisy dotyczące oświadczeń zdrowotnych i etykietowania w trzech językach, a marka musiała wypadać jako \"zaufany farmaceuta\" — nie generyczne gradienty SaaS, nie kliniczna szpitalna biel, nie oklepany greenwashing wellness. Wszystkie trzy problemy trzeba było rozwiązać przed uruchomieniem pierwszej strony produktu.",
       "approach": [
         "Każda cena i kwota podatku przechowywana jako liczba całkowita groszy (najmniejsza polska jednostka walutowa) zamiast ułamka dziesiętnego, więc matematyka przy kasie jest dokładna z założenia, a nie zaokrąglana po fakcie",
@@ -221,10 +221,9 @@
         "szyny — płatność, kurier i synchronizacja z marketplace zintegrowane przez jeden hub"
       ],
       "gallery": [
-        { "alt": "Strona główna Twoje Zdrowie z banerem hero, paskiem zaufania i siatką kategorii", "caption": "Strona główna — sygnały zaufania na pierwszym planie, siatka kategorii zasilana z katalogu produktów" },
-        { "alt": "Katalog produktów Twoje Zdrowie z filtrami po kategorii, marce i tagu dietetycznym", "caption": "Katalog — filtrowanie po kategorii, marce i oświadczeniu dietetycznym" },
-        { "alt": "Strona produktu Twoje Zdrowie dla Witaminy D3 z ceną, dawkowaniem i powiązanymi produktami", "caption": "Strona produktu — dawkowanie, zastrzeżenie regulacyjne i powiązane produkty" },
-        { "alt": "Strona koszyka Twoje Zdrowie z podsumowaniem zamówienia i paskiem postępu darmowej dostawy", "caption": "Koszyk — podsumowanie zamówienia z zachętą postępu do darmowej dostawy" }
+        { "alt": "Strona główna WellBotany z banerem hero, paskiem zaufania i siatką kategorii", "caption": "Strona główna — sygnały zaufania na pierwszym planie, siatka kategorii zasilana z katalogu produktów" },
+        { "alt": "Katalog produktów WellBotany z filtrami po kategorii, marce i tagu dietetycznym", "caption": "Katalog — filtrowanie po kategorii, marce i oświadczeniu dietetycznym" },
+        { "alt": "Strona produktu WellBotany dla TestoGainer z ceną, korzyściami i informacją o dostawie", "caption": "Strona produktu — korzyści, cena i informacje o dostawie" }
       ]
     },
     "danylomorhun-com": {
@@ -246,7 +245,8 @@
       ],
       "gallery": [
         { "alt": "Sekcja hero strony głównej danylomorhun.com", "caption": "Strona główna — sekcja hero, którą właśnie przewinąłeś" },
-        { "alt": "Sekcja projektów danylomorhun.com z listą case studies i rezultatami", "caption": "Projekty — prawdziwe projekty i rezultaty, jedno przewinięcie od hero" }
+        { "alt": "Sekcja projektów danylomorhun.com z listą case studies i rezultatami", "caption": "Projekty — prawdziwe projekty i rezultaty, jedno przewinięcie od hero" },
+        { "alt": "Audyt Lighthouse pokazujący 100/100 w Performance, Accessibility, Best Practices i SEO", "caption": "100/100 w każdej kategorii Lighthouse — łącznie z Performance, nie tylko tymi łatwymi" }
       ]
     }
   },
