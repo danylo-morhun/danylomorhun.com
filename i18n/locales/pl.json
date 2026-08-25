@@ -17,7 +17,8 @@
     "oneLiner": "Architektura fullstack dla produktów, które nie mogą zwalniać — wolumeny zamówień liczone w milionach, dane finansowe na żywo, tabele powyżej 100 tys. wierszy.",
     "bio": [
       "Zajmuję się częściami produktu, które muszą wytrzymać realne warunki: dashboardy fintech przetwarzające sześciocyfrowe wolumeny zamówień, ekrany bankowości kryptowalutowej aktualizowane przez żywe połączenia socket, narzędzia BI renderujące setki tysięcy wierszy bez zawieszania karty.",
-      "Zestaw narzędzi zmienia się od projektu do projektu; prawdziwa praca to ocena sytuacji — wiedza, kiedy tabela wirtualizowana bije paginację, kiedy połączenie na żywo bije odpytywanie serwera, kiedy współdzielona biblioteka komponentów oszczędza kolejne pół roku pracy."
+      "Zestaw narzędzi zmienia się od projektu do projektu; prawdziwa praca to ocena sytuacji — wiedza, kiedy tabela wirtualizowana bije paginację, kiedy połączenie na żywo bije odpytywanie serwera, kiedy współdzielona biblioteka komponentów oszczędza kolejne pół roku pracy.",
+      "Czasem oznacza to rozbudowywanie systemu projektowego stworzonego przez kogoś innego; innym razem w zespole nie ma w ogóle designera, więc każdą decyzję dotyczącą interfejsu podejmuję sam, od początku do końca."
     ]
   },
   "hero": {
@@ -40,13 +41,13 @@
       "ezcloud": {
         "role": "Inżynier Fullstack",
         "country": "Stany Zjednoczone",
-        "summary": "Budowałem dashboardy i narzędzia z dużą ilością danych dla dużych sprzedawców na Amazon — od raportowania BI po zarządzanie kampaniami reklamowymi."
+        "summary": "Samodzielnie odpowiadałem za projekt interfejsu, bez dedykowanego designera w zespole, od dashboardów analitycznych dla sprzedawców na Amazon po platformę monitorowania jakości powietrza i produkt SaaS do zbiórek charytatywnych."
       }
     }
   },
   "work": {
     "heading": "Wybrane projekty",
-    "subheading": "Cztery produkcyjne wdrożenia w fintechu i B2B SaaS — decyzje architektoniczne i wyniki, które przyniosły."
+    "subheading": "Sześć produkcyjnych wdrożeń w fintechu, B2B SaaS, IoT i platformach non-profit — decyzje architektoniczne i wyniki, które przyniosły."
   },
   "lab": {
     "heading": "Projekty osobiste",
@@ -147,6 +148,44 @@
       ],
       "outcome": [
         "skrócenia czasu do interaktywności dzięki odpornemu pipeline'owi importu i walidacji CSV"
+      ],
+      "gallery": []
+    },
+    "air-quality-monitoring-dashboard": {
+      "name": "Dashboard monitorowania jakości powietrza",
+      "tag": "Produkt · IoT / Środowisko",
+      "role": "Inżynier Fullstack — zaprojektowane i zbudowane solo, bez dedykowanego designera",
+      "overview": "Ten projekt jest objęty NDA — klienta i nazwy produktu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: dashboard operatora dla żywej sieci 240 rozproszonych czujników jakości powietrza w Berlinie, narzędzie, którego zespół używał codziennie, by wychwytywać awarie czujników i odczytywać trendy zanieczyszczeń w czasie rzeczywistym.",
+      "challenge": "Klient prowadził sieć czujników, ale nie miał sposobu, by zobaczyć jej stan na pierwszy rzut oka — awarie czujników pozostawały niezauważone, dopóki odczyty zanieczyszczeń nie wyglądały nieprawidłowo, a nie istniał jeden widok łączący mapę czujników na żywo z historycznymi trendami, na podstawie których zespół musiał działać. Zaprojektowane i zbudowane solo, bez przekazania projektu do pracy.",
+      "approach": [
+        "Mapa czujników z kolorowym kodowaniem poziomu zanieczyszczenia i przełącznikiem zanieczyszczenia, więc operatorzy odczytują stan całej sieci na pierwszy rzut oka zamiast wchodzić w każdy czujnik osobno",
+        "Lista obserwowanych z ruchomymi wykresami trendu (sparklines), pokazująca czujniki zmierzające w stronę awarii, zanim faktycznie przestały działać",
+        "Widok historii, który powiększał zakres od jednego dnia do miesiąca na tym samym wykresie, zamiast wymuszać przeładowanie strony przy zmianie zakresu",
+        "Obliczenia scoringu i trendu odseparowane od warstwy interfejsu, więc ta logika mogła później przenieść się na serwer bez dotykania interfejsu",
+        "Prawdziwy automatyczny zestaw testów obejmujący zachowanie na różnych przeglądarkach i dostępność, z layoutem używalnym od szerokiego monitora desktopowego po telefon"
+      ],
+      "outcome": [
+        "rozproszonych czujników monitorowanych na żywo w Berlinie",
+        "pokrycia testami — łącznie z testami cross-browser i dostępności"
+      ],
+      "gallery": []
+    },
+    "donation-fundraising-platform": {
+      "name": "Platforma darowizn i zbiórek",
+      "tag": "Produkt · SaaS dla non-profit",
+      "role": "Inżynier Fullstack — zaprojektowane i zbudowane solo, bez dedykowanego designera",
+      "overview": "Ten projekt jest objęty NDA — klienta i nazwy produktu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: platforma darowizn i zbiórek dla organizacji non-profit, fundacji charytatywnych oraz instytucji religijnych i edukacyjnych, zbudowana solo, od początku do końca, od schematu bazy danych po interfejs witryny.",
+      "challenge": "Klient potrzebował pełnej platformy darowizn, nie tylko formularza płatności: stron kampanii, zarządzania darczyńcami, cyklicznych wpłat i widgetów dla partnerów — wszystko dostarczone przez jednego inżyniera bez przekazania projektu do pracy.",
+      "approach": [
+        "Formularze płatności i darowizn obsługujące wpłaty jednorazowe i cykliczne, z kontami darczyńców do zarządzania historią wpłat",
+        "Strony kampanii zbudowane jako samoobsługowa powierzchnia, którą zespół mógł uruchamiać i edytować bez dotykania kodu",
+        "Zarządzanie darczyńcami z segmentacją, więc komunikacja mogła celować w darczyńców według historii wpłat zamiast wysyłać do całej listy",
+        "Osadzalne widgety darowizn i white-labelowe strony docelowe kampanii, pozwalające organizacjom partnerskim prowadzić własne zbiórki na infrastrukturze platformy",
+        "Automatyczne generowanie potwierdzeń podatkowych z eksportem do narzędzi księgowych, eliminujące ręczny krok księgowy na koniec roku"
+      ],
+      "outcome": [
+        "wysłanych modułów dla darczyńców — płatności, kampanie, CRM darczyńców, cykliczne wpłaty, osadzalne widgety",
+        "zbudowane solo, od frontendu po backend, od koncepcji po produkcję"
       ],
       "gallery": []
     },
@@ -262,6 +301,12 @@
     },
     "marketplace-investment-platform": {
       "description": "Zestawia na żywo metryki marketplace Amazon z feedami danych dostawców w czasie rzeczywistym."
+    },
+    "air-quality-monitoring-dashboard": {
+      "description": "Dashboard operatora dla sieci 240 rozproszonych czujników jakości powietrza, monitorujący trendy zanieczyszczeń w czasie rzeczywistym."
+    },
+    "donation-fundraising-platform": {
+      "description": "Platforma darowizn i zbiórek dla organizacji non-profit — kampanie, cykliczne wpłaty i zarządzanie darczyńcami, zbudowana solo."
     }
   }
 }
