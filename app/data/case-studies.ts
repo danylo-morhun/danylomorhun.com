@@ -48,6 +48,20 @@ export const caseStudies: CaseStudy[] = [
     gallery: [],
   },
   {
+    slug: 'air-quality-monitoring-dashboard',
+    dates: '',
+    nda: true,
+    outcome: ['240+', '100%'],
+    gallery: [],
+  },
+  {
+    slug: 'donation-fundraising-platform',
+    dates: '',
+    nda: true,
+    outcome: ['7+', '100%'],
+    gallery: [],
+  },
+  {
     slug: 'grx-pay',
     dates: 'Feb 2026 – Jul 2026',
     outcome: ['24+', '100%'],
