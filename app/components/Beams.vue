@@ -482,7 +482,7 @@ onMounted(() => {
 
   setTimeout(() => {
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      requestIdleCallback(() => initThreeJS())
+      requestIdleCallback(() => initThreeJS(), { timeout: 500 })
     }
     else {
       initThreeJS()
