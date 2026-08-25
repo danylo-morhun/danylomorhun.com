@@ -44,7 +44,7 @@ onMounted(() => {
   reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   startEntrance()
 
-  if (!reduceMotion && typeof window !== 'undefined' && window.innerWidth >= 768) {
+  if (!reduceMotion) {
     setTimeout(() => {
       showBeams.value = true
     }, 800)
