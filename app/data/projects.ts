@@ -8,4 +8,6 @@ export const projects: ProjectRef[] = [
   { slug: 'grx-pay', metricsCount: 2 },
   { slug: 'enterprise-bi-dashboard', metricsCount: 1 },
   { slug: 'marketplace-investment-platform', metricsCount: 1 },
+  { slug: 'air-quality-monitoring-dashboard', metricsCount: 2 },
+  { slug: 'donation-fundraising-platform', metricsCount: 2 },
 ]
