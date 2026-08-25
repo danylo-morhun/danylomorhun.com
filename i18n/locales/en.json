@@ -17,7 +17,8 @@
     "oneLiner": "Fullstack architecture for products that can't afford to slow down — order volumes in the millions, live financial data, row counts north of 100k.",
     "bio": [
       "I work on the parts of a product that have to hold up under real conditions: fintech dashboards processing six-figure order volumes, crypto banking screens updating over live sockets, BI tools rendering hundreds of thousands of rows without stalling the tab.",
-      "The toolkit shifts from project to project; the actual job is judgment — knowing when a virtualized table beats pagination, when a live connection beats polling, when a shared component library saves the next six months of work."
+      "The toolkit shifts from project to project; the actual job is judgment — knowing when a virtualized table beats pagination, when a live connection beats polling, when a shared component library saves the next six months of work.",
+      "Sometimes that means building on top of a design system someone else shipped; other times there's no designer on the team at all, and every interface decision is mine to make, start to finish."
     ]
   },
   "hero": {
@@ -40,13 +41,13 @@
       "ezcloud": {
         "role": "Fullstack Engineer",
         "country": "United States",
-        "summary": "Built data-heavy dashboards and tools for enterprise Amazon sellers, from BI reporting to ad campaign management."
+        "summary": "Owned interface design solo, no dedicated designer on the team, across everything from Amazon seller analytics dashboards to an air-quality monitoring platform and a donation SaaS product."
       }
     }
   },
   "work": {
     "heading": "Selected work",
-    "subheading": "Four production builds across fintech and B2B SaaS — the architecture calls and the outcomes they produced."
+    "subheading": "Six production builds across fintech, B2B SaaS, IoT, and nonprofit platforms — the architecture calls and the outcomes they produced."
   },
   "lab": {
     "heading": "Personal projects",
@@ -147,6 +148,44 @@
       ],
       "outcome": [
         "time-to-interactive via resilient CSV ingestion + validation pipeline"
+      ],
+      "gallery": []
+    },
+    "air-quality-monitoring-dashboard": {
+      "name": "Air-Quality Monitoring Dashboard",
+      "tag": "Product · IoT / Environmental",
+      "role": "Fullstack Engineer — designed and built solo, no dedicated designer",
+      "overview": "This project is under NDA — the client and product name can't be shared. What follows is limited to my role and the technical approach: an operator dashboard for a live network of 240 distributed air-quality sensors across Berlin, the tool staff used daily to catch failing sensors and read pollution trends in real time.",
+      "challenge": "The client ran the sensor network but had no way to see its state at a glance — failing sensors went unnoticed until pollution readings looked wrong, and there was no single view connecting a live sensor map to the historical trends staff needed to act on. Designed and built solo, with no design handoff to work from.",
+      "approach": [
+        "A sensor map with pollution-level color coding and a pollutant toggle, so operators read the whole network's state at a glance instead of drilling into each sensor individually",
+        "A watchlist with rolling trend sparklines, surfacing sensors trending toward failure before they actually dropped offline",
+        "A history view that zoomed from a single day out to a month on the same chart, instead of forcing a page reload to change range",
+        "Scoring and trend calculations kept walled off from the UI layer, so that logic could move server-side later without touching the interface",
+        "A real automated test suite covering cross-browser and accessibility behavior, with a layout usable from a wide desktop monitor down to a phone"
+      ],
+      "outcome": [
+        "distributed sensors monitored live across Berlin",
+        "test-suite coverage — cross-browser and accessibility checks included"
+      ],
+      "gallery": []
+    },
+    "donation-fundraising-platform": {
+      "name": "Donation & Fundraising Platform",
+      "tag": "Product · Nonprofit SaaS",
+      "role": "Fullstack Engineer — designed and built solo, no dedicated designer",
+      "overview": "This project is under NDA — the client and product name can't be shared. What follows is limited to my role and the technical approach: a donation and fundraising platform for nonprofits, charities, and religious and educational institutions, built solo, start to finish, from the database schema to the storefront UI.",
+      "challenge": "The client needed a full donation platform, not just a checkout form: campaign pages, donor management, recurring giving, and partner-facing widgets, all shipped by a single engineer with no design handoff to work from.",
+      "approach": [
+        "Checkout and donation forms handling one-time and recurring gifts, with donor accounts to manage giving history",
+        "Campaign pages built as a self-serve surface staff could launch and edit without touching code",
+        "Donor management with segmentation, so outreach could target donors by giving history instead of blasting the full list",
+        "Embeddable donation widgets and white-label campaign landing pages, letting partner organizations run their own campaigns on the platform's rails",
+        "Automated tax-receipt generation with export to accounting tools, removing a manual bookkeeping step at year-end"
+      ],
+      "outcome": [
+        "donor-facing modules shipped — checkout, campaigns, donor CRM, recurring giving, embeddable widgets",
+        "built solo, frontend to backend, concept to production"
       ],
       "gallery": []
     },
@@ -262,6 +301,12 @@
     },
     "marketplace-investment-platform": {
       "description": "Cross-references live Amazon marketplace metrics against supplier data feeds in real time."
+    },
+    "air-quality-monitoring-dashboard": {
+      "description": "Operator dashboard for a live network of 240 distributed air-quality sensors, monitoring pollution trends in real time."
+    },
+    "donation-fundraising-platform": {
+      "description": "Donation and fundraising platform for nonprofits — campaigns, recurring giving, and donor management, built solo."
     }
   }
 }
