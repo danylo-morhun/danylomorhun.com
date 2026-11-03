@@ -6,15 +6,40 @@
   <div
     ref="containerRef"
     class="beams-container relative h-full w-full"
-    :class="{ 'beams-inverted': colorMode.value === 'light' }"
+    :class="{ 'beams-inverted': colorMode.value === 'light', 'beams-ready': hasRendered }"
   />
 </template>
 
 <script setup lang="ts">
-import * as THREE from 'three'
-import { computed, onMounted, onUnmounted, useTemplateRef, watch } from 'vue'
+import {
+  AmbientLight,
+  BufferAttribute,
+  BufferGeometry,
+  Color,
+  DirectionalLight,
+  Group,
+  MathUtils,
+  Mesh,
+  MeshStandardMaterial,
+  PerspectiveCamera,
+  Scene,
+  ShaderLib,
+  ShaderMaterial,
+  UniformsUtils,
+  WebGLRenderer,
+} from 'three'
+import type {
+  IUniform,
+  Material,
+  MaterialParameters,
+  MeshPhysicalMaterialParameters,
+  OrthographicCamera,
+  ShaderLibShader,
+  Texture,
+} from 'three'
+import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 
-const { degToRad } = THREE.MathUtils
+const { degToRad } = MathUtils
 
 interface BeamsProps {
   beamWidth?: number
@@ -38,41 +63,36 @@ const props = withDefaults(defineProps<BeamsProps>(), {
   rotation: 0,
 })
 
-const emit = defineEmits<{ ready: [] }>()
-
 const containerRef = useTemplateRef<HTMLDivElement>('containerRef')
 const colorMode = useColorMode()
 
-let renderer: THREE.WebGLRenderer | null = null
-let hasEmittedReady = false
-
-function emitReadyOnce() {
-  if (hasEmittedReady) return
-  hasEmittedReady = true
-  emit('ready')
-}
-let scene: THREE.Scene | null = null
-let camera: THREE.PerspectiveCamera | null = null
-let beamMesh: THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial> | null = null
-let directionalLight: THREE.DirectionalLight | null = null
-let ambientLight: THREE.AmbientLight | null = null
+let renderer: WebGLRenderer | null = null
+const hasRendered = ref(false)
+let scene: Scene | null = null
+let camera: PerspectiveCamera | null = null
+let beamMesh: Mesh<BufferGeometry, ShaderMaterial> | null = null
+let directionalLight: DirectionalLight | null = null
+let ambientLight: AmbientLight | null = null
 let animationId: number | null = null
 let isVisible = true
 let observer: IntersectionObserver | null = null
+let resizeObserver: ResizeObserver | null = null
+let startTimer: ReturnType<typeof setTimeout> | undefined
+let idleHandle: number | undefined
 
-type UniformValue = THREE.IUniform<unknown> | unknown
+type UniformValue = IUniform<unknown> | unknown
 
 interface ExtendMaterialConfig {
   header: string
   vertexHeader?: string
   fragmentHeader?: string
-  material?: THREE.MeshPhysicalMaterialParameters & { fog?: boolean }
+  material?: MeshPhysicalMaterialParameters & { fog?: boolean }
   uniforms?: Record<string, UniformValue>
   vertex?: Record<string, string>
   fragment?: Record<string, string>
 }
 
-type ShaderWithDefines = THREE.ShaderLibShader & {
+type ShaderWithDefines = ShaderLibShader & {
   defines?: Record<string, string | number | boolean>
 }
 
@@ -161,21 +181,21 @@ float cnoise(vec3 P){
 }
 `
 
-function extendMaterial<T extends THREE.Material = THREE.Material>(
-  BaseMaterial: new (params?: THREE.MaterialParameters) => T,
+function extendMaterial<T extends Material = Material>(
+  BaseMaterial: new (params?: MaterialParameters) => T,
   cfg: ExtendMaterialConfig,
-): THREE.ShaderMaterial {
-  const physical = THREE.ShaderLib.physical as ShaderWithDefines
+): ShaderMaterial {
+  const physical = ShaderLib.physical as ShaderWithDefines
   const { vertexShader: baseVert, fragmentShader: baseFrag, uniforms: baseUniforms } = physical
   const baseDefines = physical.defines ?? {}
 
-  const uniforms: Record<string, THREE.IUniform> = THREE.UniformsUtils.clone(baseUniforms)
+  const uniforms: Record<string, IUniform> = UniformsUtils.clone(baseUniforms)
 
   const defaults = new BaseMaterial(cfg.material || {}) as T & {
-    color?: THREE.Color
+    color?: Color
     roughness?: number
     metalness?: number
-    envMap?: THREE.Texture
+    envMap?: Texture
     envMapIntensity?: number
   }
 
@@ -188,8 +208,8 @@ function extendMaterial<T extends THREE.Material = THREE.Material>(
   Object.entries(cfg.uniforms ?? {}).forEach(([key, u]) => {
     uniforms[key]
       = u !== null && typeof u === 'object' && 'value' in u
-        ? (u as THREE.IUniform<unknown>)
-        : ({ value: u } as THREE.IUniform<unknown>)
+        ? (u as IUniform<unknown>)
+        : ({ value: u } as IUniform<unknown>)
   })
 
   let vert = `${cfg.header}\n${cfg.vertexHeader ?? ''}\n${baseVert}`
@@ -202,7 +222,7 @@ function extendMaterial<T extends THREE.Material = THREE.Material>(
     frag = frag.replace(inc, `${inc}\n${code}`)
   }
 
-  const mat = new THREE.ShaderMaterial({
+  const mat = new ShaderMaterial({
     defines: { ...baseDefines },
     uniforms,
     vertexShader: vert,
@@ -220,8 +240,8 @@ function createStackedPlanesBufferGeometry(
   height: number,
   spacing: number,
   heightSegments: number,
-): THREE.BufferGeometry {
-  const geometry = new THREE.BufferGeometry()
+): BufferGeometry {
+  const geometry = new BufferGeometry()
   const numVertices = n * (heightSegments + 1) * 2
   const numFaces = n * heightSegments * 2
   const positions = new Float32Array(numVertices * 3)
@@ -261,15 +281,15 @@ function createStackedPlanesBufferGeometry(
     }
   }
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-  geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
-  geometry.setIndex(new THREE.BufferAttribute(indices, 1))
+  geometry.setAttribute('position', new BufferAttribute(positions, 3))
+  geometry.setAttribute('uv', new BufferAttribute(uvs, 2))
+  geometry.setIndex(new BufferAttribute(indices, 1))
   geometry.computeVertexNormals()
   return geometry
 }
 
-const beamMaterial = computed(() =>
-  extendMaterial(THREE.MeshStandardMaterial, {
+const createBeamMaterial = () =>
+  extendMaterial(MeshStandardMaterial, {
     header: `
   varying vec3 vEye;
   varying float vNoise;
@@ -311,7 +331,7 @@ const beamMaterial = computed(() =>
     },
     material: { fog: true },
     uniforms: {
-      diffuse: new THREE.Color(...hexToNormalizedRGB('#000000')),
+      diffuse: new Color(...hexToNormalizedRGB('#000000')),
       time: { shared: true, mixed: true, linked: true, value: 0 },
       roughness: 0.3,
       metalness: 0.3,
@@ -320,49 +340,45 @@ const beamMaterial = computed(() =>
       uNoiseIntensity: props.noiseIntensity,
       uScale: props.scale,
     },
-  }),
-)
+  })
 
 const initThreeJS = () => {
   if (!containerRef.value) return
 
-  cleanup()
-
   const container = containerRef.value
 
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer = new WebGLRenderer({ antialias: true })
   }
   catch {
     // WebGL unavailable (disabled hardware acceleration, locked-down browser, some
     // crawlers). Leave the container empty and let the page's own bg color show through
     // rather than crashing the app.
     renderer = null
-    emitReadyOnce()
     return
   }
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.setClearColor(0x000000, 1)
 
-  scene = new THREE.Scene()
+  scene = new Scene()
 
-  camera = new THREE.PerspectiveCamera(30, 1, 0.1, 1000)
+  camera = new PerspectiveCamera(30, 1, 0.1, 1000)
   camera.position.set(0, 0, 20)
 
   const geometry = createStackedPlanesBufferGeometry(props.beamNumber, props.beamWidth, props.beamHeight, 0, 24)
 
-  const material = beamMaterial.value
-  beamMesh = new THREE.Mesh(geometry, material)
+  const material = createBeamMaterial()
+  beamMesh = new Mesh(geometry, material)
 
-  const group = new THREE.Group()
+  const group = new Group()
   group.rotation.z = degToRad(props.rotation)
   group.add(beamMesh)
   scene.add(group)
 
-  directionalLight = new THREE.DirectionalLight(new THREE.Color(props.lightColor), 1)
+  directionalLight = new DirectionalLight(new Color(props.lightColor), 1)
   directionalLight.position.set(0, 3, 10)
-  const shadowCamera = directionalLight.shadow.camera as THREE.OrthographicCamera
+  const shadowCamera = directionalLight.shadow.camera as OrthographicCamera
   shadowCamera.top = 24
   shadowCamera.bottom = -24
   shadowCamera.left = -24
@@ -371,7 +387,7 @@ const initThreeJS = () => {
   directionalLight.shadow.bias = -0.004
   scene.add(directionalLight)
 
-  ambientLight = new THREE.AmbientLight(0xffffff, 1)
+  ambientLight = new AmbientLight(0xffffff, 1)
   scene.add(ambientLight)
 
   container.appendChild(renderer.domElement)
@@ -387,7 +403,7 @@ const initThreeJS = () => {
     camera.updateProjectionMatrix()
   }
 
-  const resizeObserver = new ResizeObserver(resize)
+  resizeObserver = new ResizeObserver(resize)
   resizeObserver.observe(container)
 
   resize()
@@ -406,46 +422,39 @@ const initThreeJS = () => {
 
     if (renderer && scene && camera) {
       renderer.render(scene, camera)
-      emitReadyOnce()
+      hasRendered.value = true
     }
   }
 
   animationId = requestAnimationFrame(animate)
-  ;(container as HTMLDivElement & { _resizeObserver?: ResizeObserver })._resizeObserver = resizeObserver
 }
 
 const cleanup = () => {
-  if (observer) {
-    observer.disconnect()
-    observer = null
-  }
+  clearTimeout(startTimer)
+  if (idleHandle !== undefined) cancelIdleCallback(idleHandle)
+
+  observer?.disconnect()
+  observer = null
+
+  resizeObserver?.disconnect()
+  resizeObserver = null
 
   if (animationId) {
     cancelAnimationFrame(animationId)
     animationId = null
   }
 
-  if (containerRef.value) {
-    const container = containerRef.value as HTMLDivElement & { _resizeObserver?: ResizeObserver }
-
-    if (container._resizeObserver) {
-      container._resizeObserver.disconnect()
-      delete container._resizeObserver
-    }
-
-    if (renderer && renderer.domElement.parentNode === container) {
-      container.removeChild(renderer.domElement)
-    }
-  }
-
   if (beamMesh) {
-    if (beamMesh.geometry) beamMesh.geometry.dispose()
-    if (beamMesh.material) beamMesh.material.dispose()
+    beamMesh.geometry.dispose()
+    beamMesh.material.dispose()
     beamMesh = null
   }
 
   if (renderer) {
+    // dispose() alone leaves the GL context alive, and browsers cap live contexts.
+    renderer.forceContextLoss()
     renderer.dispose()
+    renderer.domElement.remove()
     renderer = null
   }
 
@@ -455,34 +464,17 @@ const cleanup = () => {
   ambientLight = null
 }
 
-watch(
-  () => [
-    props.beamWidth,
-    props.beamHeight,
-    props.beamNumber,
-    props.lightColor,
-    props.speed,
-    props.noiseIntensity,
-    props.scale,
-    props.rotation,
-  ],
-  () => {
-    initThreeJS()
-  },
-  { deep: true },
-)
-
 onMounted(() => {
-  if (typeof window !== 'undefined' && 'IntersectionObserver' in window && containerRef.value) {
+  if ('IntersectionObserver' in window && containerRef.value) {
     observer = new IntersectionObserver(([entry]) => {
       if (entry) isVisible = entry.isIntersecting
     })
     observer.observe(containerRef.value)
   }
 
-  setTimeout(() => {
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      requestIdleCallback(() => initThreeJS(), { timeout: 500 })
+  startTimer = setTimeout(() => {
+    if ('requestIdleCallback' in window) {
+      idleHandle = requestIdleCallback(() => initThreeJS(), { timeout: 500 })
     }
     else {
       initThreeJS()
@@ -490,12 +482,19 @@ onMounted(() => {
   }, 200)
 })
 
-onUnmounted(() => {
-  cleanup()
-})
+onUnmounted(cleanup)
 </script>
 
 <style scoped>
+.beams-container :deep(canvas) {
+  opacity: 0;
+  transition: opacity 800ms ease-out;
+}
+
+.beams-ready :deep(canvas) {
+  opacity: 1;
+}
+
 /* Scene is rendered strictly grayscale (black diffuse, white lights, no hue),
    so a straight invert flips it to the light-theme equivalent for free. */
 .beams-inverted {
