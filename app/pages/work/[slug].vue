@@ -7,6 +7,7 @@ import { useCaseStudy } from '~/composables/useCaseStudies'
 const { t } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
+const siteConfig = useSiteConfig()
 
 const studyRef = useCaseStudy(route.params.slug as string)
 
@@ -38,8 +39,8 @@ useHead({
         name: study.value.name,
         description: study.value.overview,
         creator: { '@type': 'Person', name: 'Danylo Morhun' },
-        url: `https://www.danylomorhun.com${localePath(`/work/${study.value.slug}`)}`,
-        image: study.value.gallery[0] ? `https://www.danylomorhun.com${study.value.gallery[0].src}` : undefined,
+        url: `${siteConfig.url}${localePath(`/work/${study.value.slug}`)}`,
+        image: study.value.gallery[0] ? `${siteConfig.url}${study.value.gallery[0].src}` : undefined,
       }),
     },
   ],

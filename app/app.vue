@@ -2,6 +2,7 @@
 const colorMode = useColorMode()
 const { localeProperties } = useI18n()
 const site = useSite()
+const siteConfig = useSiteConfig()
 
 useHead({
   meta: [
@@ -24,7 +25,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: site.value.name,
-        url: 'https://www.danylomorhun.com',
+        url: siteConfig.url,
         jobTitle: site.value.title,
         email: `mailto:${site.value.email}`,
         sameAs: [site.value.github, site.value.linkedin],

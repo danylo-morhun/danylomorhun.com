@@ -1,6 +1,8 @@
 import { caseStudies } from './app/data/case-studies'
 import { personalProjects } from './app/data/personal-projects'
 
+const siteUrl = process.env.NUXT_SITE_URL || 'https://www.danylomorhun.com'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -19,7 +21,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://www.danylomorhun.com',
+    url: siteUrl,
     name: 'Danylo Morhun',
   },
 
@@ -43,7 +45,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    baseUrl: 'https://www.danylomorhun.com',
+    baseUrl: siteUrl,
     locales: [
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
       { code: 'uk', language: 'uk-UA', name: 'Українська', file: 'uk.json' },

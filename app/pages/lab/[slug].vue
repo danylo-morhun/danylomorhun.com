@@ -7,6 +7,7 @@ import { usePersonalProject } from '~/composables/usePersonalProjects'
 const { t } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
+const siteConfig = useSiteConfig()
 
 const projectRef = usePersonalProject(route.params.slug as string)
 
@@ -38,8 +39,8 @@ useHead({
         name: project.value.name,
         description: project.value.overview,
         creator: { '@type': 'Person', name: 'Danylo Morhun' },
-        url: `https://www.danylomorhun.com${localePath(`/lab/${project.value.slug}`)}`,
-        image: project.value.gallery[0] ? `https://www.danylomorhun.com${project.value.gallery[0].src}` : undefined,
+        url: `${siteConfig.url}${localePath(`/lab/${project.value.slug}`)}`,
+        image: project.value.gallery[0] ? `${siteConfig.url}${project.value.gallery[0].src}` : undefined,
       }),
     },
   ],
