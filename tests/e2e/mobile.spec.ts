@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { gotoHydrated } from './helpers'
 
 for (const width of [320, 360, 390]) {
   for (const path of ['/', '/uk', '/pl', '/uk/work/enterprise-bi-dashboard']) {
@@ -16,7 +17,7 @@ for (const width of [320, 360, 390]) {
 }
 
 test('the mobile menu reaches every section', async ({ page }) => {
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   await page.getByRole('button', { name: 'Menu' }).click()
   await page.locator('#mobile-menu').getByRole('link', { name: 'Experience' }).click()
   await expect(page).toHaveURL(/\/#experience$/)
@@ -25,7 +26,7 @@ test('the mobile menu reaches every section', async ({ page }) => {
 })
 
 test('the lightbox can be paged on a phone', async ({ page }) => {
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   await page.getByRole('button', { name: /^Enlarge: Dashboard/ }).click()
   const dialog = page.getByRole('dialog')
   await expect(dialog.getByRole('button', { name: 'Next image' })).toBeVisible()
