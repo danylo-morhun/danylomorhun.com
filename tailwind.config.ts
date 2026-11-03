@@ -7,16 +7,16 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        bg: 'var(--color-bg)',
-        surface: 'var(--color-surface)',
-        ink: 'var(--color-ink)',
-        muted: 'var(--color-muted)',
-        line: 'var(--color-line)',
-        accent: 'var(--color-accent)',
+        'bg': 'var(--color-bg)',
+        'surface': 'var(--color-surface)',
+        'ink': 'var(--color-ink)',
+        'muted': 'var(--color-muted)',
+        'line': 'var(--color-line)',
+        'accent': 'var(--color-accent)',
         'accent-ink': 'var(--color-accent-ink)',
       },
       fontFamily: {
-        sans: ['"Geist Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Geist Variable"', '"Geist Fallback"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"Geist Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
