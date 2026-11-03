@@ -12,7 +12,7 @@ useReveal(list, { y: 20, duration: 0.6, start: 'top 88%' })
 <template>
   <section
     id="experience"
-    class="border-t border-line bg-surface/40"
+    class="border-t border-line"
   >
     <div class="mx-auto max-w-content px-6 py-24 md:py-32">
       <h2 class="text-3xl font-medium tracking-tightest text-ink md:text-4xl">

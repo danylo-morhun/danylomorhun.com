@@ -90,14 +90,6 @@ onMounted(() => {
       </div>
     </ClientOnly>
 
-    <div
-      class="absolute inset-0 -z-10 bg-bg/40"
-      aria-hidden="true"
-    />
-    <div
-      class="absolute inset-0 -z-10 bg-gradient-to-b from-bg/50 via-transparent to-bg/70"
-      aria-hidden="true"
-    />
 
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
       <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
@@ -130,7 +122,7 @@ onMounted(() => {
         >{{ t('hero.contact') }}</a>
         <a
           href="#work"
-          class="rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
+          class="rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
         >{{ t('hero.viewWork') }}</a>
       </div>
       <span id="hero-end" />
