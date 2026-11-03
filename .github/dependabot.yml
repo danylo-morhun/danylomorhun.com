@@ -10,11 +10,6 @@ updates:
       tooling:
         dependency-type: development
     ignore:
-      # Tailwind 4 is a CSS rewrite; nuxt-og-image 7 requires it. Upgrade both together, by hand.
-      - dependency-name: tailwindcss
-        update-types: ['version-update:semver-major']
-      - dependency-name: nuxt-og-image
-        update-types: ['version-update:semver-major']
       # vue-tsc can't load TypeScript 7 yet (ERR_PACKAGE_PATH_NOT_EXPORTED).
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
