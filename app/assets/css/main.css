@@ -1,5 +1,6 @@
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
+@import 'tailwindcss';
 
 /* Arial sized to Geist's metrics, so text barely moves when Geist swaps in. */
 @font-face {
@@ -11,12 +12,8 @@
   size-adjust: 104.76%;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root,
-.dark {
+/* `static` keeps every token in the output: `.light` and custom CSS read them too. */
+@theme static {
   /* Radiant Beams — true monochrome shell: near-black, white, gray. No hue. */
   --color-bg: oklch(12% 0 0);
   --color-surface: oklch(16% 0 0);
@@ -25,6 +22,12 @@
   --color-line: oklch(30% 0 0);
   --color-accent: oklch(98% 0 0);
   --color-accent-ink: oklch(10% 0 0);
+
+  --font-sans: 'Geist Variable', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+  --container-content: 1200px;
+  --tracking-tightest: -0.04em;
 }
 
 .light {
@@ -41,6 +44,12 @@
 @layer base {
   * {
     @apply border-line;
+  }
+
+  /* Tailwind 4 dropped this from preflight. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 
   html {

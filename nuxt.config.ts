@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { caseStudies } from './app/data/case-studies'
 import { personalProjects } from './app/data/personal-projects'
 
@@ -6,7 +7,7 @@ const siteUrl = process.env.NUXT_SITE_URL || 'https://www.danylomorhun.com'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
-  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/color-mode', '@nuxtjs/i18n', 'nuxt-og-image'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/color-mode', '@nuxtjs/i18n', 'nuxt-og-image'],
   devtools: { enabled: true },
 
   app: {
@@ -82,8 +83,9 @@ export default defineNuxtConfig({
     },
   },
 
-  // The site's CSS uses no nesting, and Nuxt can't load tailwindcss/nesting as an ES module.
-  postcss: { plugins: { 'tailwindcss/nesting': false } },
+  vite: {
+    plugins: [tailwindcss()],
+  },
 
   eslint: {
     config: { stylistic: true },

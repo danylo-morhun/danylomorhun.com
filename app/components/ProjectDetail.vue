@@ -168,7 +168,7 @@ useReveal(section)
               loading="lazy"
               class="max-h-full w-full object-contain transition-opacity duration-200 group-hover:opacity-90"
             >
-            <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-bg/90 text-ink opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+            <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-ink opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
               <AppIcon
                 name="zoom-in-line"
                 :size="18"
@@ -198,7 +198,7 @@ useReveal(section)
       </a>
       <NuxtLink
         :to="localePath(backPath)"
-        class="inline-flex items-center gap-1.5 rounded-xl border border-line bg-ink/10 px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] hover:bg-ink/15 active:scale-[0.97]"
+        class="inline-flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
       >
         <AppIcon
           name="arrow-left-line"

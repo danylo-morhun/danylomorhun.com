@@ -42,7 +42,7 @@ useReveal(list)
               width="1440"
               height="900"
               loading="lazy"
-              class="aspect-[8/5] w-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+              class="aspect-8/5 w-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.03]"
             >
           </div>
 
