@@ -11,7 +11,7 @@ function collectErrors(page: Page) {
 }
 
 async function waitForIntro(page: Page) {
-  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 3_000 })
+  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 1_500 })
 }
 
 for (const colorScheme of ['dark', 'light'] as const) {
