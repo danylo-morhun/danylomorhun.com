@@ -90,7 +90,6 @@ onMounted(() => {
       </div>
     </ClientOnly>
 
-
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
       <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest sm:leading-none text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
         <span class="flex flex-col items-center gap-y-1">
