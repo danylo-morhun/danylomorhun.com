@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { RiMoonLine, RiSunLine } from '@remixicon/vue'
-
 const { t } = useI18n()
 const colorMode = useColorMode()
-const isDark = computed(() => colorMode.value === 'dark')
 
+// The server can't know the theme, so which icon shows is left to the root
+// `.dark` / `.light` class that color-mode sets before first paint.
 function toggle() {
-  colorMode.preference = isDark.value ? 'light' : 'dark'
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 </script>
 
@@ -14,30 +13,29 @@ function toggle() {
   <button
     type="button"
     class="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink active:scale-90"
-    :aria-label="isDark ? t('themeToggle.toLight') : t('themeToggle.toDark')"
+    :aria-label="t('themeToggle.label')"
     @click="toggle"
   >
-    <Transition name="theme-icon" mode="out-in">
-      <RiSunLine v-if="isDark" key="sun" size="16px" />
-      <RiMoonLine v-else key="moon" size="16px" />
-    </Transition>
+    <AppIcon
+      name="sun-line"
+      :size="16"
+      class="theme-icon theme-icon-sun absolute"
+    />
+    <AppIcon
+      name="moon-line"
+      :size="16"
+      class="theme-icon theme-icon-moon absolute"
+    />
   </button>
 </template>
 
-<style scoped>
-.theme-icon-enter-active,
-.theme-icon-leave-active {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+<style>
+.theme-icon {
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
 }
 
-.theme-icon-enter-from {
-  opacity: 0;
-  transform: rotate(-45deg) scale(0.7);
-}
-
-.theme-icon-leave-to {
+.dark .theme-icon-moon,
+.light .theme-icon-sun {
   opacity: 0;
   transform: rotate(45deg) scale(0.7);
 }
