@@ -60,6 +60,8 @@ export default defineNuxtConfig({
   },
   sourcemap: { client: true, server: false },
   features: { inlineStyles: true },
+  // Inline each page's payload too, instead of fetching _payload.json before hydrating.
+  experimental: { payloadExtraction: false },
   compatibilityDate: '2025-07-15',
 
   // Every page is static content: prerender it so HTML is served from the CDN
