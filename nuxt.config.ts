@@ -72,7 +72,18 @@ export default defineNuxtConfig({
       routes: ['/', '/uk', '/pl'],
       failOnError: true,
     },
+    // Vercel serves prerendered files before the canonical-url middleware runs,
+    // so the trailing-slash redirect has to happen at the edge, ahead of the filesystem.
+    vercel: {
+      config: {
+        // @ts-expect-error nitropack types route headers as cache-control only; Vercel accepts any header.
+        routes: [{ src: '^/(.+)/$', status: 308, headers: { Location: '/$1' } }],
+      },
+    },
   },
+
+  // The site's CSS uses no nesting, and Nuxt can't load tailwindcss/nesting as an ES module.
+  postcss: { plugins: { 'tailwindcss/nesting': false } },
 
   eslint: {
     config: { stylistic: true },
