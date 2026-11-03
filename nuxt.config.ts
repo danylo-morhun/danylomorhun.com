@@ -5,14 +5,29 @@ const siteUrl = process.env.NUXT_SITE_URL || 'https://www.danylomorhun.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+
+  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/color-mode', '@nuxtjs/i18n', 'nuxt-og-image'],
   devtools: { enabled: true },
-  sourcemap: { client: true, server: false },
-  features: { inlineStyles: true },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/color-mode', '@nuxtjs/i18n', 'nuxt-og-image'],
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
+    },
+  },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/og-fonts.css'],
+
+  site: {
+    url: siteUrl,
+    name: 'Danylo Morhun',
+  },
 
   colorMode: {
     classSuffix: '',
@@ -20,28 +35,45 @@ export default defineNuxtConfig({
     fallback: 'dark',
   },
 
-  site: {
-    url: siteUrl,
-    name: 'Danylo Morhun',
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+        'X-Frame-Options': 'DENY',
+        'Content-Security-Policy': [
+          'default-src \'self\'',
+          'script-src \'self\' \'unsafe-inline\'',
+          'style-src \'self\' \'unsafe-inline\'',
+          'img-src \'self\' data:',
+          'font-src \'self\'',
+          'connect-src \'self\'',
+          'object-src \'none\'',
+          'base-uri \'self\'',
+          'form-action \'self\'',
+          'frame-ancestors \'none\'',
+        ].join('; '),
+      },
+    },
+    '/resume.pdf': { redirect: { to: '/Danylo_Morhun_Fullstack_Engineer_Resume.pdf', statusCode: 301 } },
   },
+  sourcemap: { client: true, server: false },
+  features: { inlineStyles: true },
+  compatibilityDate: '2025-07-15',
 
-  sitemap: {
-    zeroRuntime: true,
-    urls: () => {
-      const nonDefaultLocales = ['uk', 'pl']
-      const paths = [
-        ...caseStudies.map(cs => ({ path: `/work/${cs.slug}`, priority: 0.8 as const })),
-        ...personalProjects.map(p => ({ path: `/lab/${p.slug}`, priority: 0.7 as const })),
-      ]
-      return paths.flatMap(({ path, priority }) => [
-        { loc: path, priority },
-        ...nonDefaultLocales.map(locale => ({ loc: `/${locale}${path}`, priority })),
-      ])
+  // Every page is static content: prerender it so HTML is served from the CDN
+  // and nuxt-og-image (zeroRuntime) renders a share image for each one.
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/uk', '/pl'],
+      failOnError: true,
     },
   },
 
-  ogImage: {
-    zeroRuntime: true,
+  eslint: {
+    config: { stylistic: true },
   },
 
   i18n: {
@@ -65,16 +97,22 @@ export default defineNuxtConfig({
     },
   },
 
-  app: {
-    head: {
-      link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'manifest', href: '/site.webmanifest' },
-      ],
+  ogImage: {
+    zeroRuntime: true,
+  },
+
+  sitemap: {
+    zeroRuntime: true,
+    urls: () => {
+      const nonDefaultLocales = ['uk', 'pl']
+      const paths = [
+        ...caseStudies.map(cs => ({ path: `/work/${cs.slug}`, priority: 0.8 as const })),
+        ...personalProjects.map(p => ({ path: `/lab/${p.slug}`, priority: 0.7 as const })),
+      ]
+      return paths.flatMap(({ path, priority }) => [
+        { loc: path, priority },
+        ...nonDefaultLocales.map(locale => ({ loc: `/${locale}${path}`, priority })),
+      ])
     },
   },
 })
