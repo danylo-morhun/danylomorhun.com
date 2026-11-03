@@ -31,16 +31,23 @@ onMounted(() => {
     return
   }
 
+  // The counter is decoration; a timer, not the animation frame loop, decides when
+  // the intro ends, so a busy main thread can't hold the page hostage.
   const progress = { value: 1 }
-  gsap.to(progress, {
+  const counter = gsap.to(progress, {
     value: 100,
     duration: INTRO_MS / 1000,
     ease: 'power2.out',
     onUpdate: () => {
       percent.value = Math.round(progress.value)
     },
-    onComplete: finish,
   })
+
+  setTimeout(() => {
+    counter.kill()
+    percent.value = 100
+    finish()
+  }, INTRO_MS)
 })
 </script>
 

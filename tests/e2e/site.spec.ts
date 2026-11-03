@@ -169,9 +169,9 @@ test('every page has share metadata', async ({ page }) => {
 
 for (const colorScheme of ['dark', 'light'] as const) {
   test(`no axe violations with menus and dialogs open (${colorScheme})`, async ({ page }) => {
-    await page.emulateMedia({ colorScheme })
+    // Reduced motion so axe sees settled colors, not elements mid-fade.
+    await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' })
     await page.goto('/')
-    await waitForIntro(page)
     await page.getByRole('button', { name: 'Language' }).click()
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
