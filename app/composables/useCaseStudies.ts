@@ -21,6 +21,7 @@ export interface LocalizedCaseStudy {
   tag: string
   role: string
   overview: string
+  metaDescription: string
   challenge: string
   approach: string[]
   outcome: CaseStudyMetric[]
@@ -29,54 +30,53 @@ export interface LocalizedCaseStudy {
   library?: CaseStudyGalleryImage[]
 }
 
-type Translate = (key: string) => string
-type TranslateMessage = (key: string) => unknown
-type RenderTranslation = (message: any) => string
+type ImageText = { alt: unknown, caption: unknown }
 
-function localize(cs: CaseStudy, base: string, t: Translate, tm: TranslateMessage, rt: RenderTranslation): LocalizedCaseStudy {
-  const approach = (tm(`${base}.approach`) as unknown[]).map(entry => rt(entry))
-  const outcomeLabels = (tm(`${base}.outcome`) as unknown[]).map(entry => rt(entry))
-  const galleryText = (tm(`${base}.gallery`) as { alt: unknown, caption: unknown }[]).map(entry => ({
-    alt: rt(entry.alt),
-    caption: rt(entry.caption),
-  }))
-  const libraryText = cs.library
-    ? (tm(`${base}.library`) as { alt: unknown, caption: unknown }[]).map(entry => ({
-        alt: rt(entry.alt),
-        caption: rt(entry.caption),
-      }))
-    : undefined
+export function useLocalizeProject() {
+  const { t, te, tm, rt } = useI18n()
 
-  return {
-    slug: cs.slug,
-    dates: cs.dates,
-    nda: cs.nda,
-    liveUrl: cs.liveUrl,
-    name: t(`${base}.name`),
-    tag: t(`${base}.tag`),
-    role: t(`${base}.role`),
-    overview: t(`${base}.overview`),
-    challenge: t(`${base}.challenge`),
-    approach,
-    outcome: cs.outcome.map((value, i) => ({ value, label: outcomeLabels[i] ?? '' })),
-    gallery: cs.gallery.map((image, i) => ({
+  function renderList(key: string) {
+    return (tm(key) as unknown[]).map(entry => rt(entry as never))
+  }
+
+  function localizeImages(images: CaseStudy['gallery'], key: string) {
+    const text = tm(key) as ImageText[]
+    return images.map((image, i) => ({
       src: image.src,
-      alt: galleryText[i]?.alt ?? '',
-      caption: galleryText[i]?.caption ?? '',
-    })),
-    librarySectionTitle: cs.library ? t(`${base}.librarySectionTitle`) : undefined,
-    library: cs.library?.map((image, i) => ({
-      src: image.src,
-      alt: libraryText?.[i]?.alt ?? '',
-      caption: libraryText?.[i]?.caption ?? '',
-    })),
+      alt: text[i] ? rt(text[i].alt as never) : '',
+      caption: text[i] ? rt(text[i].caption as never) : '',
+    }))
+  }
+
+  return function localizeProject(project: CaseStudy, base: string): LocalizedCaseStudy {
+    const labels = renderList(`${base}.outcome`)
+    const values = te(`${base}.outcomeValues`) ? renderList(`${base}.outcomeValues`) : project.outcome
+    const months = renderList('dates.months')
+
+    return {
+      slug: project.slug,
+      dates: formatPeriod(project.period, months, t('dates.ongoing')),
+      nda: project.nda,
+      liveUrl: project.liveUrl,
+      name: t(`${base}.name`),
+      tag: t(`${base}.tag`),
+      role: t(`${base}.role`),
+      overview: t(`${base}.overview`),
+      metaDescription: t(`${base}.metaDescription`),
+      challenge: t(`${base}.challenge`),
+      approach: renderList(`${base}.approach`),
+      outcome: values.map((value, i) => ({ value, label: labels[i] ?? '' })),
+      gallery: localizeImages(project.gallery, `${base}.gallery`),
+      librarySectionTitle: project.library ? t(`${base}.librarySectionTitle`) : undefined,
+      library: project.library ? localizeImages(project.library, `${base}.library`) : undefined,
+    }
   }
 }
 
 export function useCaseStudies() {
-  const { t, tm, rt } = useI18n()
+  const localizeProject = useLocalizeProject()
 
-  return computed(() => caseStudiesData.map(cs => localize(cs, `caseStudies.${cs.slug}`, t, tm, rt)))
+  return computed(() => caseStudiesData.map(cs => localizeProject(cs, `caseStudies.${cs.slug}`)))
 }
 
 export function useCaseStudy(slug: string) {
