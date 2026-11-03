@@ -62,7 +62,7 @@ defineExpose({ open })
   <dialog
     ref="dialog"
     :aria-label="current?.caption"
-    class="lightbox m-0 h-dvh max-h-none w-screen max-w-none bg-bg/95 p-6 text-ink backdrop-blur-xl"
+    class="lightbox m-0 h-dvh max-h-none w-screen max-w-none bg-bg p-6 text-ink"
     @click.self="close"
     @close="onClosed"
     @touchstart.passive="onTouchStart"
