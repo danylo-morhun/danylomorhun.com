@@ -1,0 +1,183 @@
+{
+  "/case-studies/grx-pay-addmember-dialog.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-assets.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-create-invoice.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-dashboard.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-deposit-dialog.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-members.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-pay-transactions.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-about.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-careers.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-exchange.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-hero.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-pay-hero.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-public-pricing.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-ui-kit-composed.webp": {
+    "width": 488,
+    "variants": [
+      480
+    ]
+  },
+  "/case-studies/grx-ui-kit-icons.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-ui-kit-tokens.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/case-studies/grx-ui-kit-typography.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/danylomorhun-hero.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/danylomorhun-work.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/seikatsu-home.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/seikatsu-kuroji.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/seikatsu-seiryu.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/seikatsu-tsundoku.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/twojezdrowie-home.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/twojezdrowie-katalog.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "/personal-projects/twojezdrowie-produkt.webp": {
+    "width": 1440,
+    "variants": [
+      480,
+      960
+    ]
+  }
+}
