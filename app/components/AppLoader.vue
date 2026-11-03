@@ -52,7 +52,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="loader-fade" type="transition">
+  <Transition
+    name="loader-fade"
+    type="transition"
+  >
     <div
       v-if="visible"
       class="app-loader pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-bg"
