@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
+import { gotoHydrated } from './helpers'
 
 function collectErrors(page: Page) {
   const errors: string[] = []
@@ -57,7 +58,7 @@ test('reduced motion skips the intro entirely', async ({ page }) => {
 
 test('the theme toggle shows the icon for the theme it switches to', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' })
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   const toggle = page.getByRole('button', { name: 'Toggle color theme' })
 
   await expect(toggle.locator('.theme-icon-sun')).toHaveCSS('opacity', '1')
@@ -69,19 +70,19 @@ test('the theme toggle shows the icon for the theme it switches to', async ({ pa
 })
 
 test('nav links on a case study lead to the home page sections', async ({ page }) => {
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   await page.locator('nav').getByRole('link', { name: 'Contact' }).click()
   await expect(page).toHaveURL(/\/#contact$/)
   await expect(page.locator('#contact')).toBeInViewport()
 
-  await page.goto('/uk/work/grx-pay')
+  await gotoHydrated(page, '/uk/work/grx-pay')
   await page.locator('nav').getByRole('link', { name: 'Досвід' }).click()
   await expect(page).toHaveURL(/\/uk#experience$/)
   await expect(page.locator('#experience')).toBeInViewport()
 })
 
 test('nav link scrolls to the work section on the home page', async ({ page }) => {
-  await page.goto('/')
+  await gotoHydrated(page, '/')
   await waitForIntro(page)
   await page.locator('nav').getByRole('link', { name: 'Work' }).click()
   await expect(page).toHaveURL(/#work$/)
@@ -89,7 +90,7 @@ test('nav link scrolls to the work section on the home page', async ({ page }) =
 })
 
 test('the lightbox is a named, focus-trapping dialog that restores focus', async ({ page }) => {
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   const opener = page.getByRole('button', { name: /^Enlarge: Dashboard/ })
   await opener.click()
 
@@ -119,7 +120,7 @@ test('the lightbox is a named, focus-trapping dialog that restores focus', async
 })
 
 test('the language menu works from the keyboard and keeps the reader in place', async ({ page }) => {
-  await page.goto('/work/grx-pay')
+  await gotoHydrated(page, '/work/grx-pay')
   const button = page.locator('nav button[aria-expanded]').first()
   await button.focus()
   await page.keyboard.press('ArrowDown')
@@ -174,15 +175,15 @@ for (const colorScheme of ['dark', 'light'] as const) {
   test(`no axe violations with menus and dialogs open (${colorScheme})`, async ({ page }) => {
     // Reduced motion so axe sees settled colors, not elements mid-fade.
     await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' })
-    await page.goto('/')
+    await gotoHydrated(page, '/')
     await page.getByRole('button', { name: 'Language' }).click()
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
-    await page.goto('/work/grx-pay')
+    await gotoHydrated(page, '/work/grx-pay')
     await page.getByRole('button', { name: /^Enlarge: Dashboard/ }).click()
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
-    await page.goto('/nope')
+    await gotoHydrated(page, '/nope')
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
   })
 }
