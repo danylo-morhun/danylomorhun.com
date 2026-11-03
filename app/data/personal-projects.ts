@@ -3,8 +3,8 @@ import type { CaseStudy } from './case-studies'
 export const personalProjects: CaseStudy[] = [
   {
     slug: 'seikatsu',
-    dates: '2026 – ongoing',
-    outcome: ['3', '1 shell'],
+    period: { start: '2026', ongoing: true },
+    outcome: [],
     gallery: [
       { src: '/personal-projects/seikatsu-seiryu.webp' },
       { src: '/personal-projects/seikatsu-home.webp' },
@@ -15,8 +15,8 @@ export const personalProjects: CaseStudy[] = [
   },
   {
     slug: 'twoje-zdrowie',
-    dates: '2026',
-    outcome: ['0', '3 rails'],
+    period: { start: '2026' },
+    outcome: [],
     gallery: [
       { src: '/personal-projects/twojezdrowie-home.webp' },
       { src: '/personal-projects/twojezdrowie-katalog.webp' },
@@ -26,13 +26,12 @@ export const personalProjects: CaseStudy[] = [
   },
   {
     slug: 'danylomorhun-com',
-    dates: '2026',
-    outcome: ['5 sections', '1 file'],
+    period: { start: '2026' },
+    outcome: [],
     gallery: [
       { src: '/personal-projects/danylomorhun-hero.webp' },
       { src: '/personal-projects/danylomorhun-work.webp' },
-      { src: '/personal-projects/danylomorhun-lighthouse.webp' },
     ],
-    liveUrl: 'https://danylomorhun.com',
+    liveUrl: 'https://www.danylomorhun.com',
   },
 ]

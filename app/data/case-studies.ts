@@ -1,10 +1,12 @@
+import type { Period } from '../utils/formatPeriod'
+
 export interface CaseStudyImage {
   src: string
 }
 
 export interface CaseStudy {
   slug: string
-  dates: string
+  period?: Period
   nda?: boolean
   outcome: string[]
   gallery: CaseStudyImage[]
@@ -15,8 +17,8 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'grx-public-platform',
-    dates: 'Feb 2026 – Jul 2026',
-    outcome: ['95+', '50+'],
+    period: { start: '2026-02', end: '2026-08' },
+    outcome: ['95+', '40'],
     gallery: [
       { src: '/case-studies/grx-public-hero.webp' },
       { src: '/case-studies/grx-public-pay-hero.webp' },
@@ -35,35 +37,31 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'enterprise-bi-dashboard',
-    dates: '',
     nda: true,
     outcome: ['−45%', '100k+'],
     gallery: [],
   },
   {
     slug: 'marketplace-investment-platform',
-    dates: '',
     nda: true,
     outcome: ['−30%'],
     gallery: [],
   },
   {
     slug: 'air-quality-monitoring-dashboard',
-    dates: '',
     nda: true,
     outcome: ['240+', '100%'],
     gallery: [],
   },
   {
     slug: 'donation-fundraising-platform',
-    dates: '',
     nda: true,
     outcome: ['7+', '100%'],
     gallery: [],
   },
   {
     slug: 'grx-pay',
-    dates: 'Feb 2026 – Jul 2026',
+    period: { start: '2026-02', end: '2026-08' },
     outcome: ['24+', '100%'],
     gallery: [
       { src: '/case-studies/grx-pay-dashboard.webp' },

@@ -8,6 +8,6 @@ export function useSite() {
     ...site,
     title: t('site.title'),
     oneLiner: t('site.oneLiner'),
-    bio: (tm('site.bio') as any[]).map(entry => rt(entry)),
+    bio: (tm('site.bio') as unknown[]).map(entry => rt(entry as never)),
   }))
 }
