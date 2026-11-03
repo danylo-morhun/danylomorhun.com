@@ -1,58 +1,61 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 
-const heroReady = useHeroReady()
-const percent = ref(1)
-const done = ref(false)
-const show = computed(() => !done.value)
+// First-load intro on the home page only, capped so it never costs a reader more
+// than a second. CSS in this file also lifts it without JS or if the bundle fails.
+const INTRO_MS = 800
 
-let reduceMotion = false
-const progress = { value: 1 }
-let fakeTween: gsap.core.Tween | null = null
+const nuxtApp = useNuxtApp()
+const introDone = useHeroIntro()
+
+const visible = ref(import.meta.server || Boolean(nuxtApp.isHydrating))
+const percent = ref(1)
+
+function finish() {
+  visible.value = false
+  introDone.value = true
+}
+
+useHead({
+  noscript: [{ innerHTML: '<style>.app-loader{display:none}</style>' }],
+})
 
 onMounted(() => {
-  reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!visible.value) {
+    introDone.value = true
+    return
+  }
 
-  // Pages without HeroSection never flip heroReady themselves — this keeps the
-  // loader from hanging forever on those routes.
-  setTimeout(() => {
-    if (!heroReady.value) heroReady.value = true
-  }, 2800)
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    finish()
+    return
+  }
 
-  fakeTween = gsap.to(progress, {
-    value: 90,
-    duration: reduceMotion ? 0.3 : 3.2,
+  // The counter is decoration; a timer, not the animation frame loop, decides when
+  // the intro ends, so a busy main thread can't hold the page hostage.
+  const progress = { value: 1 }
+  const counter = gsap.to(progress, {
+    value: 100,
+    duration: INTRO_MS / 1000,
     ease: 'power2.out',
     onUpdate: () => {
       percent.value = Math.round(progress.value)
     },
   })
-})
 
-watch(heroReady, (ready) => {
-  if (!ready) return
-  fakeTween?.kill()
-  gsap.to(progress, {
-    value: 100,
-    duration: reduceMotion ? 0.1 : 0.4,
-    ease: 'power1.out',
-    onUpdate: () => {
-      percent.value = Math.round(progress.value)
-    },
-    onComplete: () => {
-      setTimeout(() => {
-        done.value = true
-      }, 250)
-    },
-  })
+  setTimeout(() => {
+    counter.kill()
+    percent.value = 100
+    finish()
+  }, INTRO_MS)
 })
 </script>
 
 <template>
-  <Transition name="loader-fade">
+  <Transition name="loader-fade" type="transition">
     <div
-      v-if="show"
-      class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-bg"
+      v-if="visible"
+      class="app-loader pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-bg"
       aria-hidden="true"
     >
       <span class="font-mono text-2xl tabular-nums text-ink md:text-3xl">{{ percent }}%</span>
@@ -60,14 +63,29 @@ watch(heroReady, (ready) => {
   </Transition>
 </template>
 
-<style scoped>
-.loader-fade-enter-active,
-.loader-fade-leave-active {
-  transition: opacity 0.5s ease;
+<style>
+.app-loader {
+  animation: app-loader-failsafe 1ms linear 2500ms forwards;
 }
 
-.loader-fade-enter-from,
+.loader-fade-leave-active {
+  transition: opacity 300ms ease-out;
+}
+
 .loader-fade-leave-to {
   opacity: 0;
+}
+
+@keyframes app-loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-loader {
+    display: none;
+  }
 }
 </style>

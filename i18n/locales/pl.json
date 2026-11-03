@@ -6,23 +6,27 @@
     "about": "O mnie",
     "contact": "Kontakt",
     "home": "Strona główna",
-    "language": "Język"
+    "language": "Język",
+    "menu": "Menu"
   },
   "themeToggle": {
-    "toLight": "Przełącz na jasny motyw",
-    "toDark": "Przełącz na ciemny motyw"
+    "label": "Przełącz motyw"
   },
   "site": {
     "title": "Inżynier Fullstack",
-    "oneLiner": "Architektura fullstack dla produktów, które nie mogą zwalniać — wolumeny zamówień liczone w milionach, dane finansowe na żywo, tabele powyżej 100 tys. wierszy.",
+    "oneLiner": "Inżynier fullstack z frontendowym zacięciem — dashboardy z dużą ilością danych, interfejsy czasu rzeczywistego, przepływy płatności i API za nimi, dla fintechu i B2B SaaS.",
     "bio": [
-      "Zajmuję się częściami produktu, które muszą wytrzymać realne warunki: dashboardy fintech przetwarzające sześciocyfrowe wolumeny zamówień, ekrany bankowości kryptowalutowej aktualizowane przez żywe połączenia socket, narzędzia BI renderujące setki tysięcy wierszy bez zawieszania karty.",
+      "Zajmuję się częściami produktu, które muszą wytrzymać realne warunki: dashboardy fintech z saldami na żywo, przepływy bankowości kryptowalutowej w ponad 24 walutach, narzędzia BI filtrujące i eksportujące ponad 100 000 zamówień bez zawieszania karty.",
       "Zestaw narzędzi zmienia się od projektu do projektu; prawdziwa praca to ocena sytuacji — wiedza, kiedy tabela wirtualizowana bije paginację, kiedy połączenie na żywo bije odpytywanie serwera, kiedy współdzielona biblioteka komponentów oszczędza kolejne pół roku pracy.",
       "Czasem oznacza to rozbudowywanie systemu projektowego stworzonego przez kogoś innego; innym razem w zespole nie ma w ogóle designera, więc każdą decyzję dotyczącą interfejsu podejmuję sam, od początku do końca."
     ]
   },
   "hero": {
-    "headline": ["Inżynier Fullstack.", "Fintech, business", "intelligence."],
+    "headline": [
+      "Inżynier Fullstack.",
+      "Fintech, business",
+      "intelligence."
+    ],
     "contact": "Kontakt",
     "viewWork": "Zobacz projekty",
     "scrollToWork": "Przewiń do projektów"
@@ -34,14 +38,14 @@
     "heading": "Doświadczenie",
     "entries": {
       "grx": {
-        "role": "Inżynier Fullstack",
+        "role": "Senior Frontend Engineer",
         "country": "Szwajcaria",
-        "summary": "Odpowiadałem za architekturę frontendu szwajcarskiej platformy crypto-fintech — od strony publicznej po kluczowe moduły bankowe."
+        "summary": "Odpowiadałem za frontend GRX Pay i współdzieloną bibliotekę komponentów dla produktów firmy — szwajcarski fintech: płatności krypto-fiat, tokenizowane aktywa rzeczywiste i giełda detaliczna."
       },
       "ezcloud": {
-        "role": "Inżynier Fullstack",
+        "role": "Lead Fullstack Engineer",
         "country": "Stany Zjednoczone",
-        "summary": "Samodzielnie odpowiadałem za projekt interfejsu, bez dedykowanego designera w zespole, od dashboardów analitycznych dla sprzedawców na Amazon po platformę monitorowania jakości powietrza i produkt SaaS do zbiórek charytatywnych."
+        "summary": "Prowadziłem prace fullstack w amerykańskiej firmie B2B SaaS z analityką e-commerce: analityka dla sprzedawców Amazon, platforma doładowań telefonów, narzędzia do kampanii reklamowych, produkty do monitorowania powietrza i zbiórek — także projekt interfejsów, bez dedykowanego designera."
       }
     }
   },
@@ -54,7 +58,7 @@
     "subheading": "Rzeczy, które zbudowałem dla siebie, od początku do końca — bez klienta, bez przekazania, każda decyzja moja własna."
   },
   "contact": {
-    "heading": "Otwarty na role Frontend lub Fullstack — napisz do mnie.",
+    "heading": "Otwarty na role Frontend i Fullstack — napisz do mnie.",
     "copied": "Skopiowano",
     "reachOut": "— albo napisz przez GitHub / LinkedIn.",
     "contact": "Kontakt",
@@ -84,11 +88,11 @@
     "grx-public-platform": {
       "name": "GRX — Platforma publiczna",
       "tag": "Strona publiczna · Fintech",
-      "role": "Inżynier Fullstack — pełna odpowiedzialność za architekturę",
+      "role": "Senior Frontend Engineer — pełna odpowiedzialność za architekturę",
       "overview": "GRX to szwajcarski ekosystem crypto-fintech obejmujący płatności, giełdę i tokenizowane aktywa rzeczywiste. Zbudowałem publiczną platformę od zera — stronę marketingową, strony cenowe i produktowe oraz sekcję kariery — wraz ze współdzieloną biblioteką komponentów, na której teraz działa strona i reszta produktów firmy.",
       "challenge": "GRX miał trzy produkty w budowie jednocześnie — Pay, Exchange, RWA — i nie miał ani publicznej strony, by je zaprezentować, ani współdzielonej biblioteki komponentów dla zespołów, które je budowały, więc każdy ekran produktu był osobną, jednorazową implementacją tych samych przycisków, pól i kart. Dwa problemy, jedna przyczyna: zbudować stronę od zera i zbudować pod nią system projektowy, aby strona i produkty w końcu mówiły tym samym językiem wizualnym.",
       "approach": [
-        "Wydzieliłem współdzieloną bibliotekę komponentów — ponad 50 komponentów — od zera, używaną zarówno przez stronę marketingową, jak i aplikacje produktowe, zamykając rozbieżność między tym, co pokazuje marketing, a tym, jak faktycznie wygląda produkt",
+        "Wydzieliłem od zera współdzieloną bibliotekę 40 komponentów opartą na tokenach z Figmy, używaną w 3 produktach GRX, zamykając rozbieżność między tym, co pokazuje marketing, a tym, jak faktycznie wygląda produkt",
         "Renderowanie po stronie serwera z routingiem uwzględniającym język wbudowanym w strukturę URL, więc każda strona produktu jest wysyłana przetłumaczona i statycznie wygenerowana dla każdego języka",
         "Dostępne prymitywy interakcji (dialogi, zakładki, akordeony) zbudowane raz we wspólnej bibliotece zamiast ręcznego zarządzania fokusem w każdym komponencie",
         "Treści kariery i redakcyjne tworzone jako tekst strukturalny i renderowane w czasie builda, co utrzymuje pipeline treści poza krytyczną ścieżką wdrożenia",
@@ -96,28 +100,59 @@
       ],
       "outcome": [
         "wynik Lighthouse, mobilny LCP poniżej 1,5s",
-        "współdzielona biblioteka 50+ komponentów, ~70% mniej niespójności wizualnych"
+        "komponentów we współdzielonej bibliotece dla 3 produktów — ~70% mniej niespójności wizualnych"
       ],
       "gallery": [
-        { "alt": "Sekcja hero strony głównej GRX", "caption": "Strona główna — pozycjonowanie GRX w płatnościach, giełdzie i tokenizowanych aktywach" },
-        { "alt": "Hero strony marketingowej GRX Pay", "caption": "GRX Pay — strona produktowa dla obszaru płatności" },
-        { "alt": "Strona cennika GRX Pay z warstwową strukturą prowizji", "caption": "Cennik GRX Pay — warstwowa struktura prowizji dla merchantów, od samoobsługi po indywidualne umowy wolumenowe" },
-        { "alt": "Strona listy oczekujących GRX Exchange przed premierą", "caption": "GRX Exchange — strona listy oczekujących dla handlu detalicznego, uruchomiona przed premierą" },
-        { "alt": "Strona o firmie GRX", "caption": "O GRX — strona pozycjonująca firmę" },
-        { "alt": "Strona kariery GRX", "caption": "Kariera — hub rekrutacyjny, treści tworzone w Markdown i renderowane w czasie builda" }
+        {
+          "alt": "Sekcja hero strony głównej GRX",
+          "caption": "Strona główna — pozycjonowanie GRX w płatnościach, giełdzie i tokenizowanych aktywach"
+        },
+        {
+          "alt": "Hero strony marketingowej GRX Pay",
+          "caption": "GRX Pay — strona produktowa dla obszaru płatności"
+        },
+        {
+          "alt": "Strona cennika GRX Pay z warstwową strukturą prowizji",
+          "caption": "Cennik GRX Pay — warstwowa struktura prowizji dla merchantów, od samoobsługi po indywidualne umowy wolumenowe"
+        },
+        {
+          "alt": "Strona listy oczekujących GRX Exchange przed premierą",
+          "caption": "GRX Exchange — strona listy oczekujących dla handlu detalicznego, uruchomiona przed premierą"
+        },
+        {
+          "alt": "Strona o firmie GRX",
+          "caption": "O GRX — strona pozycjonująca firmę"
+        },
+        {
+          "alt": "Strona kariery GRX",
+          "caption": "Kariera — hub rekrutacyjny, treści tworzone w Markdown i renderowane w czasie builda"
+        }
       ],
       "librarySectionTitle": "{'@'}grx/ui — biblioteka komponentów",
       "library": [
-        { "alt": "Siatka ponad 200 ikon kryptowalut z zestawu ikon {'@'}grx/ui", "caption": "200+ ikon monet — jeden z zestawów ikon dostarczanych z biblioteką" },
-        { "alt": "Strona dokumentacji tokenów projektowych pokazująca paletę kolorów", "caption": "Tokeny projektowe — skale kolorów, promieni i cieni udokumentowane w bibliotece komponentów" },
-        { "alt": "Dokumentacja skali typografii pokazująca rozmiary tekstu wyświetlacza", "caption": "Skala typografii — każdy rozmiar tekstu wyświetlacza i podstawowego, udokumentowany z dokładnymi metrykami" },
-        { "alt": "Modal ustawień integracji łączący komponenty Modal, Switch, ikonę i Typography w realistycznym złożonym ekranie", "caption": "Prawdziwy ekran ustawień, zbudowany z biblioteki — Modal, Switch, ikony i Typography działające razem" }
-      ]
+        {
+          "alt": "Siatka ponad 200 ikon kryptowalut z zestawu ikon {'@'}grx/ui",
+          "caption": "200+ ikon monet — jeden z zestawów ikon dostarczanych z biblioteką"
+        },
+        {
+          "alt": "Strona dokumentacji tokenów projektowych pokazująca paletę kolorów",
+          "caption": "Tokeny projektowe — skale kolorów, promieni i cieni udokumentowane w bibliotece komponentów"
+        },
+        {
+          "alt": "Dokumentacja skali typografii pokazująca rozmiary tekstu wyświetlacza",
+          "caption": "Skala typografii — każdy rozmiar tekstu wyświetlacza i podstawowego, udokumentowany z dokładnymi metrykami"
+        },
+        {
+          "alt": "Modal ustawień integracji łączący komponenty Modal, Switch, ikonę i Typography w realistycznym złożonym ekranie",
+          "caption": "Prawdziwy ekran ustawień, zbudowany z biblioteki — Modal, Switch, ikony i Typography działające razem"
+        }
+      ],
+      "metaDescription": "Publiczna strona i współdzielona biblioteka 40 komponentów, które zbudowałem dla GRX, szwajcarskiego crypto-fintechu: Lighthouse 95+, mobilny LCP poniżej 1,5 s."
     },
     "enterprise-bi-dashboard": {
       "name": "Korporacyjny dashboard BI",
       "tag": "Produkt · BI / Analityka",
-      "role": "Inżynier Fullstack — zbudowane od zera",
+      "role": "Lead Fullstack Engineer — zbudowane od zera",
       "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: dashboard business intelligence zbudowany dla dużego sprzedawcy na Amazon o obrotach przekraczających 10 mln USD — przychody, marża na poziomie zamówienia i zapasy zagregowane dla sześciocyfrowej liczby zamówień miesięcznie, dla zespołu operacyjnego, który musiał wychwytywać erozję marży, zanim pojawi się w rachunku zysków i strat.",
       "challenge": "Historia zamówień sprzedawcy przekraczała 100 000 wierszy i wciąż rosła, a zespół musiał filtrować, sortować i eksportować dowolny wycinek tych danych — po dacie, SKU lub statusie — bez zawieszania karty przeglądarki czy timeoutu eksportu. Dashboard obsługujący tylko pierwszą stronę danych nie przetrwałby zderzenia z rzeczywistym zbiorem danych.",
       "approach": [
@@ -131,12 +166,13 @@
         "skrócenia czasu początkowego renderowania dzięki wirtualizowanym tabelom i paginacji kursorowej",
         "zamówień możliwych do filtrowania i eksportu bez zawieszania po stronie klienta"
       ],
-      "gallery": []
+      "gallery": [],
+      "metaDescription": "Case study objęte NDA: dashboard BI dla sprzedawców Amazon z GMV 10 mln USD+ — wirtualizowane tabele dla 100 000+ zamówień, render szybszy o ~45%."
     },
     "marketplace-investment-platform": {
       "name": "Platforma inwestycyjna dla marketplace",
       "tag": "Produkt · Platforma inwestycyjna",
-      "role": "Inżynier Fullstack",
+      "role": "Lead Fullstack Engineer",
       "overview": "Ten projekt jest objęty NDA — klienta, nazwy produktu i zrzutów ekranu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: platforma zestawiająca na żywo metryki marketplace sprzedawcy na Amazon — ceny, pozycjonowanie konkurencji, poziomy zapasów — z plikami CSV dostawców w czasie rzeczywistym, oznaczając rozbieżności, zanim staną się błędami cenowymi lub brakami towaru.",
       "challenge": "Dane od dostawców napływały jako pliki CSV o skrajnie niespójnej jakości — brakujące kolumny, źle sformatowane ceny, zduplikowane SKU — i musiały być pobierane, walidowane i uzgadniane z danymi marketplace na żywo tak, by jeden wadliwy plik nie zawalił pipeline'u ani nie skorumpował porównania po cichu.",
       "approach": [
@@ -149,12 +185,13 @@
       "outcome": [
         "skrócenia czasu do interaktywności dzięki odpornemu pipeline'owi importu i walidacji CSV"
       ],
-      "gallery": []
+      "gallery": [],
+      "metaDescription": "Case study objęte NDA: metryki marketplace Amazon na żywo zestawiane z plikami CSV dostawców, z walidacją każdego wiersza i flagami rozbieżności."
     },
     "air-quality-monitoring-dashboard": {
       "name": "Dashboard monitorowania jakości powietrza",
       "tag": "Produkt · IoT / Środowisko",
-      "role": "Inżynier Fullstack — zaprojektowane i zbudowane solo, bez dedykowanego designera",
+      "role": "Lead Fullstack Engineer — zaprojektowane i zbudowane solo, bez dedykowanego designera",
       "overview": "Ten projekt jest objęty NDA — klienta i nazwy produktu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: dashboard operatora dla żywej sieci 240 rozproszonych czujników jakości powietrza w Berlinie, narzędzie, którego zespół używał codziennie, by wychwytywać awarie czujników i odczytywać trendy zanieczyszczeń w czasie rzeczywistym.",
       "challenge": "Klient prowadził sieć czujników, ale nie miał sposobu, by zobaczyć jej stan na pierwszy rzut oka — awarie czujników pozostawały niezauważone, dopóki odczyty zanieczyszczeń nie wyglądały nieprawidłowo, a nie istniał jeden widok łączący mapę czujników na żywo z historycznymi trendami, na podstawie których zespół musiał działać. Zaprojektowane i zbudowane solo, bez przekazania projektu do pracy.",
       "approach": [
@@ -168,12 +205,13 @@
         "rozproszonych czujników monitorowanych na żywo w Berlinie",
         "pokrycia testami — łącznie z testami cross-browser i dostępności"
       ],
-      "gallery": []
+      "gallery": [],
+      "metaDescription": "Case study objęte NDA: dashboard operatora dla 240 czujników jakości powietrza w Berlinie — mapa czujników, lista obserwacji i historia trendów."
     },
     "donation-fundraising-platform": {
       "name": "Platforma darowizn i zbiórek",
       "tag": "Produkt · SaaS dla non-profit",
-      "role": "Inżynier Fullstack — zaprojektowane i zbudowane solo, bez dedykowanego designera",
+      "role": "Lead Fullstack Engineer — zaprojektowane i zbudowane solo, bez dedykowanego designera",
       "overview": "Ten projekt jest objęty NDA — klienta i nazwy produktu nie można ujawnić. Poniżej ograniczam się do mojej roli i podejścia technicznego: platforma darowizn i zbiórek dla organizacji non-profit, fundacji charytatywnych oraz instytucji religijnych i edukacyjnych, zbudowana solo, od początku do końca, od schematu bazy danych po interfejs witryny.",
       "challenge": "Klient potrzebował pełnej platformy darowizn, nie tylko formularza płatności: stron kampanii, zarządzania darczyńcami, cyklicznych wpłat i widgetów dla partnerów — wszystko dostarczone przez jednego inżyniera bez przekazania projektu do pracy.",
       "approach": [
@@ -187,12 +225,13 @@
         "wysłanych modułów dla darczyńców — płatności, kampanie, CRM darczyńców, cykliczne wpłaty, osadzalne widgety",
         "zbudowane solo, od frontendu po backend, od koncepcji po produkcję"
       ],
-      "gallery": []
+      "gallery": [],
+      "metaDescription": "Case study objęte NDA: platforma darowizn i zbiórek dla organizacji non-profit, zbudowana solo — płatności, kampanie, CRM darczyńców."
     },
     "grx-pay": {
       "name": "GRX Pay — Rozwiązanie płatności kryptowalutowych",
       "tag": "Produkt · Bankowość kryptowalutowa",
-      "role": "Inżynier Fullstack",
+      "role": "Senior Frontend Engineer — odpowiedzialny za frontend od wymagań do wydania",
       "overview": "GRX Pay to wielowalutowy produkt bankowości kryptowalutowej — merchanci przyjmują płatności w ponad 24 kryptowalutach, śledzą salda i wypłacają środki przez SEPA, a każda transakcja niesie dane AML i ryzyka. Pracowałem nad dashboardem merchanta: salda, faktury, transakcje i zarządzanie zespołem.",
       "challenge": "Salda i stan transakcji zmieniają się w trakcie sesji — depozyty się rozliczają, autokonwersje kończą się, masowe wypłaty są przetwarzane — a ten stan musi pozostać spójny w kilku dużych, paginowanych tabelach (faktury, transakcje, członkowie zespołu), bez wrażenia nieaktualności dashboardu czy szarpania tabel przy każdej aktualizacji.",
       "approach": [
@@ -207,14 +246,36 @@
         "transakcji z danymi AML / ryzyka"
       ],
       "gallery": [
-        { "alt": "Dashboard GRX Pay pokazujący całkowite saldo, wykres udanych płatności i ostatnie transakcje", "caption": "Dashboard — salda, wolumen płatności i strumień transakcji na żywo w jednym widoku" },
-        { "alt": "Ekran aktywów GRX Pay pokazujący salda wielowalutowe", "caption": "Aktywa — salda wielowalutowe w czasie rzeczywistym, zablokowane i dostępne" },
-        { "alt": "Tabela transakcji GRX Pay z filtrami po typie, statusie, walucie i okresie", "caption": "Transakcje — filtrowany, paginowany rejestr dla każdej waluty" },
-        { "alt": "Tabela członków zespołu GRX Pay z rolami i statusem potwierdzenia", "caption": "Zarządzanie zespołem — dostęp oparty na rolach wśród adminów merchanta" },
-        { "alt": "Dialog depozytu GRX Pay pokazujący metody i opłaty depozytu dla każdej waluty", "caption": "Depozyt — metody i opłaty per waluta, pokazane zanim merchant zatwierdzi" },
-        { "alt": "Dialog dodawania członka GRX Pay z wyborem roli i opisami ról", "caption": "Dodaj członka — ten sam system ról z {'@'}grx/rabac, wyjaśniony w interfejsie" },
-        { "alt": "Formularz tworzenia faktury GRX Pay z walutą, kwotą i ustawieniami autokonwersji", "caption": "Utwórz fakturę — faktury o stałej kwocie i autokonwersja, kontrolowane przez FeatureScript" }
-      ]
+        {
+          "alt": "Dashboard GRX Pay pokazujący całkowite saldo, wykres udanych płatności i ostatnie transakcje",
+          "caption": "Dashboard — salda, wolumen płatności i strumień transakcji na żywo w jednym widoku"
+        },
+        {
+          "alt": "Ekran aktywów GRX Pay pokazujący salda wielowalutowe",
+          "caption": "Aktywa — salda wielowalutowe w czasie rzeczywistym, zablokowane i dostępne"
+        },
+        {
+          "alt": "Tabela transakcji GRX Pay z filtrami po typie, statusie, walucie i okresie",
+          "caption": "Transakcje — filtrowany, paginowany rejestr dla każdej waluty"
+        },
+        {
+          "alt": "Tabela członków zespołu GRX Pay z rolami i statusem potwierdzenia",
+          "caption": "Zarządzanie zespołem — dostęp oparty na rolach wśród adminów merchanta"
+        },
+        {
+          "alt": "Dialog depozytu GRX Pay pokazujący metody i opłaty depozytu dla każdej waluty",
+          "caption": "Depozyt — metody i opłaty per waluta, pokazane zanim merchant zatwierdzi"
+        },
+        {
+          "alt": "Dialog dodawania członka GRX Pay z wyborem roli i opisami ról",
+          "caption": "Dodaj członka — ten sam system ról z {'@'}grx/rabac, wyjaśniony w interfejsie"
+        },
+        {
+          "alt": "Formularz tworzenia faktury GRX Pay z walutą, kwotą i ustawieniami autokonwersji",
+          "caption": "Utwórz fakturę — faktury o stałej kwocie i autokonwersja, kontrolowane przez FeatureScript"
+        }
+      ],
+      "metaDescription": "Dashboard merchanta GRX Pay: salda w czasie rzeczywistym w ponad 24 kryptowalutach, faktury, transakcje i zarządzanie zespołem oparte na rolach."
     }
   },
   "personalProjects": {
@@ -232,15 +293,32 @@
         "Jeden model workspace i jeden system logowania współdzielony przez wszystkie aplikacje — dodanie nowej mini-aplikacji to trasa i wycinek, a nie nowy system autoryzacji"
       ],
       "outcome": [
-        "wysłane aplikacje — finanse, kanban i książki — z nawykami i listą życzeń w kolejce",
-        "jedna powłoka ze współdzieloną autoryzacją, workspace i systemem projektowym dla wszystkich aplikacji"
+        "aplikacje — finanse, kanban i książki, a w kolejce nawyki i lista życzeń",
+        "logowanie, przestrzeń robocza i system projektowy wspólne dla wszystkich aplikacji"
       ],
       "gallery": [
-        { "alt": "Tablica kanban Seiryu z kolumnami Backlog, W trakcie, Recenzja, Gotowe", "caption": "Seiryu — tablica kanban z płynną zmianą kolejności przez przeciąganie" },
-        { "alt": "Ekran główny seikatsu pokazujący siatkę aplikacji — Kuroji, Seiryu, Tsundoku i kolejne wkrótce", "caption": "Strona główna — jedna powłoka, każda mini-aplikacja o jedno kliknięcie" },
-        { "alt": "Dashboard finansowy Kuroji pokazujący wartość netto, przychody vs wydatki i podział na kategorie", "caption": "Kuroji — tracker finansowy z podwójnym zapisem i kontami wielowalutowymi" },
-        { "alt": "Siatka biblioteki Tsundoku pokazująca książki z prawdziwymi okładkami, statusem czytania i ocenami", "caption": "Tsundoku — tracker czytania z półkami, sesjami i ocenami" }
-      ]
+        {
+          "alt": "Tablica kanban Seiryu z kolumnami Backlog, W trakcie, Recenzja, Gotowe",
+          "caption": "Seiryu — tablica kanban z płynną zmianą kolejności przez przeciąganie"
+        },
+        {
+          "alt": "Ekran główny seikatsu pokazujący siatkę aplikacji — Kuroji, Seiryu, Tsundoku i kolejne wkrótce",
+          "caption": "Strona główna — jedna powłoka, każda mini-aplikacja o jedno kliknięcie"
+        },
+        {
+          "alt": "Dashboard finansowy Kuroji pokazujący wartość netto, przychody vs wydatki i podział na kategorie",
+          "caption": "Kuroji — tracker finansowy z podwójnym zapisem i kontami wielowalutowymi"
+        },
+        {
+          "alt": "Siatka biblioteki Tsundoku pokazująca książki z prawdziwymi okładkami, statusem czytania i ocenami",
+          "caption": "Tsundoku — tracker czytania z półkami, sesjami i ocenami"
+        }
+      ],
+      "outcomeValues": [
+        "3",
+        "1"
+      ],
+      "metaDescription": "seikatsu: własna super-aplikacja — jedna powłoka z trackerem finansów w podwójnym zapisie, tablicą kanban i dziennikiem lektur."
     },
     "twoje-zdrowie": {
       "name": "WellBotany — sklep ze zdrowiem i suplementami",
@@ -256,14 +334,28 @@
         "System projektowy zbudowany na jawnych anty-referencjach spisanych przed wdrożeniem jakiegokolwiek interfejsu — żadnych gradientów startupów SaaS, żadnej klinicznej biało-niebieskiej gamy, żadnych listków greenwashingu — lądując zamiast tego na ciepłej leśno-zielonej gamie w rejestrze \"ekspert, ale przystępny\""
       ],
       "outcome": [
-        "ryzyka zaokrągleń float — każda cena przechowywana jako dokładna liczba całkowita",
-        "szyny — płatność, kurier i synchronizacja z marketplace zintegrowane przez jeden hub"
+        "ryzyko błędu zaokrągleń — każda cena zapisana jako liczba całkowita",
+        "hub integracyjny dla płatności, kurierów i synchronizacji z marketplace'em"
       ],
       "gallery": [
-        { "alt": "Strona główna WellBotany z banerem hero, paskiem zaufania i siatką kategorii", "caption": "Strona główna — sygnały zaufania na pierwszym planie, siatka kategorii zasilana z katalogu produktów" },
-        { "alt": "Katalog produktów WellBotany z filtrami po kategorii, marce i tagu dietetycznym", "caption": "Katalog — filtrowanie po kategorii, marce i oświadczeniu dietetycznym" },
-        { "alt": "Strona produktu WellBotany dla TestoGainer z ceną, korzyściami i informacją o dostawie", "caption": "Strona produktu — korzyści, cena i informacje o dostawie" }
-      ]
+        {
+          "alt": "Strona główna WellBotany z banerem hero, paskiem zaufania i siatką kategorii",
+          "caption": "Strona główna — sygnały zaufania na pierwszym planie, siatka kategorii zasilana z katalogu produktów"
+        },
+        {
+          "alt": "Katalog produktów WellBotany z filtrami po kategorii, marce i tagu dietetycznym",
+          "caption": "Katalog — filtrowanie po kategorii, marce i oświadczeniu dietetycznym"
+        },
+        {
+          "alt": "Strona produktu WellBotany dla TestoGainer z ceną, korzyściami i informacją o dostawie",
+          "caption": "Strona produktu — korzyści, cena i informacje o dostawie"
+        }
+      ],
+      "outcomeValues": [
+        "0",
+        "1"
+      ],
+      "metaDescription": "WellBotany: polski sklep z suplementami zbudowany solo — dokładne ceny w liczbach całkowitych, płatności, kurierzy i synchronizacja z marketplace'em."
     },
     "danylomorhun-com": {
       "name": "danylomorhun.com — ta strona",
@@ -273,20 +365,30 @@
       "challenge": "Rekruter lub hiring manager przeglądający aplikacje daje stronie kilka sekund, często z telefonu, zanim zdecyduje, czy otworzyć CV, czy przejść dalej. Zadaniem była bezwzględna priorytetyzacja — natychmiast pokazać prawdziwe projekty i prawdziwe rezultaty, utrzymać każdą sekcję wskazującą ten sam kolejny krok i nie przeszkadzać w tej decyzji zamiast próbować zaimponować samą stroną.",
       "approach": [
         "Jedna jasna ścieżka przez treść — hero, projekty, projekty osobiste, doświadczenie, o mnie — każda sekcja zasługuje na przewinięcie do kolejnej zamiast rywalizować o uwagę",
-        "Każda sekcja powtarza to samo wezwanie do działania, więc nigdy nie ma momentu, w którym czytelnik jest zaangażowany, ale nie wie, jak się odezwać",
+        "Każda sekcja prowadzi dalej — do projektu, kolejnej sekcji lub kontaktu, a przycisk kontaktu jest w nawigacji na każdej stronie",
         "Prawdziwe rezultaty projektów i prawdziwe zrzuty ekranu wszędzie, w tym praca objęta NDA opisana uczciwie przez decyzje techniczne bez nazywania klienta",
-        "Szybka domyślnie — treść renderuje się po stronie serwera, więc jest coś do przeczytania natychmiast po dotarciu strony, a nie po rundzie ładowania po stronie klienta",
+        "Szybka domyślnie — każda strona jest wstępnie wygenerowana jako statyczny HTML i serwowana z edge, więc treść da się czytać od razu, zanim uruchomi się JavaScript",
         "Zbudowana do rozwoju — każdy projekt, case study i rola żyją w typowanym pliku danych, więc dodanie jednego to zmiana treści, a nie redesign"
       ],
       "outcome": [
-        "przewinięcie od hero do kontaktu, bez ślepych zaułków",
-        "dodanie nowego projektu to zmiana treści, a nie redesign"
+        "stron wstępnie wygenerowanych jako statyczny HTML",
+        "języki, każdy z własnym obrazem do udostępniania"
       ],
       "gallery": [
-        { "alt": "Sekcja hero strony głównej danylomorhun.com", "caption": "Strona główna — sekcja hero, którą właśnie przewinąłeś" },
-        { "alt": "Sekcja projektów danylomorhun.com z listą case studies i rezultatami", "caption": "Projekty — prawdziwe projekty i rezultaty, jedno przewinięcie od hero" },
-        { "alt": "Audyt Lighthouse pokazujący 100/100 w Performance, Accessibility, Best Practices i SEO", "caption": "100/100 w każdej kategorii Lighthouse — łącznie z Performance, nie tylko tymi łatwymi" }
-      ]
+        {
+          "alt": "Sekcja hero strony głównej danylomorhun.com",
+          "caption": "Strona główna — sekcja hero, którą właśnie przewinąłeś"
+        },
+        {
+          "alt": "Sekcja projektów danylomorhun.com z listą case studies i rezultatami",
+          "caption": "Projekty — prawdziwe projekty i rezultaty, jedno przewinięcie od hero"
+        }
+      ],
+      "outcomeValues": [
+        "30+",
+        "3"
+      ],
+      "metaDescription": "Jak zbudowane jest to portfolio: Nuxt z wstępnie wygenerowanymi stronami, WebGL hero w ścisłym budżecie, trzy języki i obrazy OG dla każdej strony."
     }
   },
   "projects": {
@@ -297,7 +399,7 @@
       "description": "Wielowalutowy produkt bankowości kryptowalutowej obsługujący ponad 24 kryptowaluty, ze śledzeniem sald w czasie rzeczywistym i rejestrami transakcji."
     },
     "enterprise-bi-dashboard": {
-      "description": "Dashboard business intelligence dla dużych sprzedawców na Amazon o obrotach powyżej 10 mln USD, obsługujący ponad 100 000 zamówień."
+      "description": "Dashboard business intelligence dla dużych sprzedawców na Amazon — 30 kont o obrotach powyżej 10 mln USD i ponad 100 000 zamówień."
     },
     "marketplace-investment-platform": {
       "description": "Zestawia na żywo metryki marketplace Amazon z feedami danych dostawców w czasie rzeczywistym."
@@ -308,5 +410,32 @@
     "donation-fundraising-platform": {
       "description": "Platforma darowizn i zbiórek dla organizacji non-profit — kampanie, cykliczne wpłaty i zarządzanie darczyńcami, zbudowana solo."
     }
+  },
+  "dates": {
+    "months": [
+      "sty",
+      "lut",
+      "mar",
+      "kwi",
+      "maj",
+      "cze",
+      "lip",
+      "sie",
+      "wrz",
+      "paź",
+      "lis",
+      "gru"
+    ],
+    "ongoing": "w toku"
+  },
+  "error": {
+    "notFoundTitle": "Nie znaleziono strony",
+    "notFoundBody": "Ta strona nie istnieje lub została przeniesiona. Wszystko inne jest o jedno kliknięcie stąd.",
+    "genericTitle": "Coś poszło nie tak",
+    "genericBody": "Na tej stronie wystąpił nieoczekiwany błąd. Spróbuj ponownie ze strony głównej.",
+    "backHome": "Strona główna"
+  },
+  "og": {
+    "tagline": "Inżynier Fullstack — fintech, business intelligence"
   }
 }

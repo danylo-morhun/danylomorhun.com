@@ -11,8 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  typecheck:
-    name: Static Type Analysis
+  check:
+    name: Lint, types and unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,15 +20,16 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install dependencies
-        run: npm install
-      - name: Prepare Nuxt Types
-        run: npx nuxi prepare
-      - name: Run Nuxt Typecheck
-        run: npm run typecheck
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
 
-  test:
-    name: Unit Tests (Vitest)
+  e2e:
+    name: Build and end-to-end tests
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,22 +37,12 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install dependencies
-        run: npm install
-      - name: Run Vitest Suite
-        run: npm run test
-
-  build:
-    name: Production Nuxt Build
-    needs: [typecheck, test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
         with:
-          node-version: 22
-          cache: npm
-      - name: Install dependencies
-        run: npm install
-      - name: Run Nuxt Production Build
-        run: npm run build
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
