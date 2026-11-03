@@ -1,27 +1,15 @@
 <script setup lang="ts">
-import { RiDownloadLine, RiGithubFill, RiLinkedinBoxFill } from '@remixicon/vue'
-import { ref } from 'vue'
 import { site } from '~/data/site'
 
 const { t } = useI18n()
-const copied = ref(false)
-
-async function copyEmail() {
-  try {
-    await navigator.clipboard.writeText(site.email)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 1500)
-  }
-  catch {
-    // clipboard unavailable — mailto link still works
-  }
-}
+const { copied, copyEmail } = useCopyEmail()
 </script>
 
 <template>
-  <section id="contact" class="border-t border-line">
+  <section
+    id="contact"
+    class="border-t border-line"
+  >
     <div class="mx-auto max-w-content px-6 py-28 text-center md:py-36">
       <h2 class="mx-auto max-w-2xl text-3xl font-medium tracking-tightest text-ink md:text-5xl">
         {{ t('contact.heading') }}
@@ -32,7 +20,10 @@ async function copyEmail() {
           class="underline decoration-dotted underline-offset-4 transition-colors duration-200 hover:text-accent"
           @click="copyEmail"
         >{{ site.email }}</a>
-        <span v-if="copied" class="ml-2 text-xs text-accent">{{ t('contact.copied') }}</span>
+        <span
+          v-if="copied"
+          class="ml-2 text-xs text-accent"
+        >{{ t('contact.copied') }}</span>
         {{ t('contact.reachOut') }}
       </p>
 
@@ -46,7 +37,10 @@ async function copyEmail() {
           :href="site.resumeUrl"
           download
           class="flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
-        ><RiDownloadLine size="16px" /> {{ t('contact.resume') }}</a>
+        ><AppIcon
+          name="download-line"
+          :size="16"
+        /> {{ t('contact.resume') }}</a>
       </div>
 
       <div class="mt-8 flex justify-center gap-6">
@@ -55,15 +49,21 @@ async function copyEmail() {
           target="_blank"
           rel="noreferrer noopener"
           aria-label="GitHub"
-          class="text-muted transition-colors duration-200 hover:text-accent"
-        ><RiGithubFill size="22px" /></a>
+          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+        ><AppIcon
+          name="github-fill"
+          :size="22"
+        /></a>
         <a
           :href="site.linkedin"
           target="_blank"
           rel="noreferrer noopener"
           aria-label="LinkedIn"
-          class="text-muted transition-colors duration-200 hover:text-accent"
-        ><RiLinkedinBoxFill size="22px" /></a>
+          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+        ><AppIcon
+          name="linkedin-box-fill"
+          :size="22"
+        /></a>
       </div>
     </div>
   </section>

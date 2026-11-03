@@ -1,56 +1,61 @@
 <script setup lang="ts">
-import { RiGithubFill, RiLinkedinBoxFill, RiMailCheckFill, RiMailFill } from '@remixicon/vue'
-import { ref } from 'vue'
 import { useSite } from '~/composables/useSite'
 
 const { t } = useI18n()
 const site = useSite()
 const year = new Date().getFullYear()
-const copied = ref(false)
-
-async function copyEmail() {
-  try {
-    await navigator.clipboard.writeText(site.value.email)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 1500)
-  }
-  catch {
-    // clipboard unavailable — no-op
-  }
-}
+const { copied, copyEmail } = useCopyEmail()
 </script>
 
 <template>
   <footer class="border-t border-line">
     <div class="mx-auto flex max-w-content flex-col gap-8 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <p class="font-sans text-base font-semibold tracking-tight text-ink">{{ site.name }}</p>
-        <p class="font-mono text-xs text-muted">{{ site.title }}</p>
+        <p class="font-sans text-base font-semibold tracking-tight text-ink">
+          {{ site.name }}
+        </p>
+        <p class="font-mono text-xs text-muted">
+          {{ site.title }}
+        </p>
       </div>
 
       <div class="flex items-center gap-5">
         <button
           type="button"
           :aria-label="t('footer.copyEmailAria')"
-          class="text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
           @click="copyEmail"
-        ><RiMailCheckFill v-if="copied" size="20px" /><RiMailFill v-else size="20px" /></button>
+        >
+          <AppIcon
+            v-if="copied"
+            name="mail-check-fill"
+            :size="20"
+          /><AppIcon
+            v-else
+            name="mail-fill"
+            :size="20"
+          />
+        </button>
         <a
           :href="site.github"
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="t('footer.githubAria')"
-          class="text-muted transition-colors duration-200 hover:text-accent"
-        ><RiGithubFill size="20px" /></a>
+          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+        ><AppIcon
+          name="github-fill"
+          :size="20"
+        /></a>
         <a
           :href="site.linkedin"
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="t('footer.linkedinAria')"
-          class="text-muted transition-colors duration-200 hover:text-accent"
-        ><RiLinkedinBoxFill size="20px" /></a>
+          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+        ><AppIcon
+          name="linkedin-box-fill"
+          :size="20"
+        /></a>
         <a
           :href="`mailto:${site.email}`"
           class="rounded-lg border border-accent px-4 py-1.5 text-sm text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
@@ -62,6 +67,9 @@ async function copyEmail() {
       &copy; {{ year }} {{ site.name }}
     </p>
 
-    <CopyToast :show="copied" :message="t('footer.emailCopiedToast')" />
+    <CopyToast
+      :show="copied"
+      :message="t('footer.emailCopiedToast')"
+    />
   </footer>
 </template>
