@@ -161,7 +161,7 @@ useReveal(section)
             <img
               :src="image.src"
               :srcset="imageSrcset(image.src)"
-              sizes="(min-width: 1200px) 512px, (min-width: 768px) calc(50vw - 88px), calc(100vw - 96px)"
+              sizes="(min-width: 768px) 336px, calc(100vw - 96px)"
               :alt="image.alt"
               width="1440"
               height="900"
