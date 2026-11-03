@@ -3,9 +3,11 @@ withDefaults(defineProps<{
   title: string
   subtitle?: string
   tag?: string
+  tagline?: string
 }>(), {
   subtitle: '',
   tag: 'danylomorhun.com',
+  tagline: 'Fullstack Engineer — Fintech, Business Intelligence',
 })
 </script>
 
@@ -17,13 +19,14 @@ withDefaults(defineProps<{
       justify-content: space-between;
       width: 1200px;
       height: 600px;
+      box-sizing: border-box;
       padding: 72px;
       background-color: #0d0d0d;
-      font-family: Geist;
+      font-family: Geist OG;
     "
   >
     <div style="display: flex; align-items: center;">
-      <span style="font-family: Geist Mono; font-size: 22px; letter-spacing: 2px; color: #8a8a8a; text-transform: uppercase;">
+      <span style="font-family: Geist Mono OG; font-size: 22px; letter-spacing: 2px; color: #8a8a8a; text-transform: uppercase;">
         {{ tag }}
       </span>
     </div>
@@ -41,8 +44,8 @@ withDefaults(defineProps<{
     </div>
 
     <div style="display: flex; align-items: center; border-top: 1px solid #333333; padding-top: 32px;">
-      <span style="font-family: Geist Mono; font-size: 20px; color: #8a8a8a;">
-        Fullstack Engineer — Fintech, Business Intelligence
+      <span style="font-family: Geist Mono OG; font-size: 20px; color: #8a8a8a;">
+        {{ tagline }}
       </span>
     </div>
   </div>

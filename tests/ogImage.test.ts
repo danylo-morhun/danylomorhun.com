@@ -9,45 +9,61 @@ import DefaultSatori from '../app/components/OgImage/Default.satori.vue'
 import { caseStudies } from '../app/data/case-studies'
 import { personalProjects } from '../app/data/personal-projects'
 
-const en = JSON.parse(readFileSync(join(__dirname, '../i18n/locales/en.json'), 'utf-8'))
-
-const fallbackFont = readFileSync(
-  join(__dirname, '../node_modules/nuxt-og-image/dist/runtime/public/_og-fonts/inter-400-latin.ttf'),
-)
+const locale = (code: string) => JSON.parse(readFileSync(join(__dirname, `../i18n/locales/${code}.json`), 'utf-8'))
+const font = (file: string) => readFileSync(join(__dirname, '../public/fonts/og', file))
 
 const WIDTH = 1200
 const HEIGHT = 600
 
-async function renderOgImageSvg(props: { title: string, subtitle?: string, tag?: string }) {
-  const app = createSSRApp(DefaultSatori, props)
-  const html = await renderToString(app)
+const fonts = [
+  { name: 'Geist OG', data: font('Geist-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Geist OG', data: font('Geist-SemiBold.ttf'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Geist Mono OG', data: font('GeistMono-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
+]
 
-  const wrapperStyle = `position: relative; display: flex; margin: 0 auto; width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden;`
-  const vnodeTree = toSatoriNodes(`<div style="${wrapperStyle}">${html}</div>`)
+// The real OG fonts as the only fonts, so a missing glyph fails loudly instead
+// of rendering a "no glyph" box.
+async function renderOgImageSvg(props: { title: string, subtitle?: string, tag?: string, tagline?: string }) {
+  const html = await renderToString(createSSRApp(DefaultSatori, props))
+  const wrapperStyle = `display: flex; width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden;`
+  let missing = ''
 
-  return satori(vnodeTree as any, {
+  const svg = await satori(toSatoriNodes(`<div style="${wrapperStyle}">${html}</div>`) as never, {
     width: WIDTH,
     height: HEIGHT,
-    fonts: [{ name: 'Geist', data: fallbackFont, weight: 400, style: 'normal' }],
+    fonts,
+    loadAdditionalAsset: async (_code, segment) => {
+      missing += segment
+      return []
+    },
   })
+
+  return { svg, missing }
 }
 
 describe('OG image generation (Satori)', () => {
-  it('renders a real case study without throwing', async () => {
-    const slug = caseStudies[0]!.slug
-    const copy = en.caseStudies[slug]
+  for (const code of ['en', 'uk', 'pl']) {
+    const copy = locale(code)
 
-    const svg = await renderOgImageSvg({ title: copy.name, subtitle: copy.role, tag: copy.tag })
+    it(`renders every case study and personal project in ${code} with real glyphs`, async () => {
+      for (const { slug } of caseStudies) {
+        const study = copy.caseStudies[slug]
+        const { svg, missing } = await renderOgImageSvg({ title: study.name, subtitle: study.role, tag: study.tag, tagline: copy.og.tagline })
+        expect(svg).toContain('<svg')
+        expect(missing).toBe('')
+      }
 
-    expect(svg).toContain('<svg')
-  })
+      for (const { slug } of personalProjects) {
+        const project = copy.personalProjects[slug]
+        const { missing } = await renderOgImageSvg({ title: project.name, subtitle: project.role, tag: project.tag, tagline: copy.og.tagline })
+        expect(missing).toBe('')
+      }
+    })
+  }
 
-  it('renders a real personal project without throwing', async () => {
-    const slug = personalProjects[0]!.slug
-    const copy = en.personalProjects[slug]
-
-    const svg = await renderOgImageSvg({ title: copy.name, subtitle: copy.role, tag: copy.tag })
-
-    expect(svg).toContain('<svg')
+  it('keeps the tagline inside the canvas', async () => {
+    const withTagline = await renderOgImageSvg({ title: 'Title', tagline: 'Tagline' })
+    const without = await renderOgImageSvg({ title: 'Title', tagline: '' })
+    expect(withTagline.svg.length).toBeGreaterThan(without.svg.length)
   })
 })
