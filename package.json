@@ -33,16 +33,17 @@
     "@nuxt/eslint": "^1.17.0",
     "@nuxtjs/robots": "^7.0.2",
     "@nuxtjs/sitemap": "^9.1.0",
-    "@nuxtjs/tailwindcss": "^6.13.1",
     "@playwright/test": "^1.64.1",
     "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/vite": "^4.3.4",
+    "@types/node": "^24.19.2",
     "@types/three": "^0.187.0",
     "@vitejs/plugin-vue": "^6.0.10",
     "eslint": "^10.14.0",
-    "nuxt-og-image": "^6.10.4",
-    "satori": "^0.63.2",
+    "nuxt-og-image": "^7.0.7",
+    "satori": "^0.47.1",
     "satori-html": "^0.3.2",
-    "tailwindcss": "^3.4.19",
+    "tailwindcss": "^4.3.4",
     "typescript": "^5.7.2",
     "vitest": "^5.0.5",
     "vue-tsc": "^3.3.14",
@@ -51,9 +52,6 @@
   "overrides": {
     "@intlify/bundle-utils": {
       "esbuild": "^0.28.0"
-    },
-    "nuxt-og-image": {
-      "tailwindcss": "$tailwindcss"
     }
   }
 }

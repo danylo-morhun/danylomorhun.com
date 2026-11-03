@@ -70,7 +70,7 @@ onMounted(() => {
   <section
     id="hero"
     ref="heroRef"
-    class="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden"
+    class="relative isolate flex min-h-dvh items-center justify-center overflow-hidden"
   >
     <ClientOnly>
       <div
@@ -92,7 +92,7 @@ onMounted(() => {
 
 
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
-      <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
+      <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest sm:leading-none text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
         <span class="flex flex-col items-center gap-y-1">
           <template
             v-for="(word, wi) in headlineWords"
