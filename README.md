@@ -17,7 +17,7 @@ My personal site: work, case studies, side projects. English, Ukrainian, Polish;
 
 ## Stack
 
-Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 3, GSAP, Three.js, Vercel.
+Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 4, GSAP, Three.js, Vercel.
 
 ## Run locally
 
