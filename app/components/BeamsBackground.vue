@@ -390,6 +390,8 @@ const initThreeJS = () => {
   ambientLight = new AmbientLight(0xffffff, 1)
   scene.add(ambientLight)
 
+  renderer.domElement.addEventListener('webglcontextlost', onContextLost)
+  renderer.domElement.addEventListener('webglcontextrestored', onContextRestored)
   container.appendChild(renderer.domElement)
 
   const resize = () => {
@@ -429,13 +431,39 @@ const initThreeJS = () => {
   animationId = requestAnimationFrame(animate)
 }
 
-const cleanup = () => {
-  clearTimeout(startTimer)
-  if (idleHandle !== undefined) cancelIdleCallback(idleHandle)
+// A lost WebGL context leaves the canvas empty: the OS reclaims GPU memory from a
+// backgrounded tab, the GPU process crashes, or the browser drops its oldest context
+// once too many are alive. three.js picks a restored context back up by itself; when
+// the browser never restores it, start over with a fresh renderer.
+const RESTORE_WAIT_MS = 1000
+const MAX_REBUILDS = 3
+let rebuilds = 0
+let restoreTimer: ReturnType<typeof setTimeout> | undefined
 
-  observer?.disconnect()
-  observer = null
+function onContextLost() {
+  hasRendered.value = false
+  clearTimeout(restoreTimer)
+  restoreTimer = setTimeout(rebuildIfLost, RESTORE_WAIT_MS)
+}
 
+function onContextRestored() {
+  clearTimeout(restoreTimer)
+}
+
+function rebuildIfLost() {
+  if (!renderer?.getContext().isContextLost()) return
+  // A hidden page may lose the new context too; the visibility listener retries.
+  if (document.hidden || rebuilds >= MAX_REBUILDS) return
+  rebuilds++
+  disposeRenderer()
+  initThreeJS()
+}
+
+function onPageShown() {
+  if (!document.hidden) rebuildIfLost()
+}
+
+function disposeRenderer() {
   resizeObserver?.disconnect()
   resizeObserver = null
 
@@ -452,7 +480,7 @@ const cleanup = () => {
 
   if (renderer) {
     // dispose() alone leaves the GL context alive, and browsers cap live contexts.
-    renderer.forceContextLoss()
+    if (!renderer.getContext().isContextLost()) renderer.forceContextLoss()
     renderer.dispose()
     renderer.domElement.remove()
     renderer = null
@@ -462,9 +490,27 @@ const cleanup = () => {
   camera = null
   directionalLight = null
   ambientLight = null
+  hasRendered.value = false
+}
+
+const cleanup = () => {
+  clearTimeout(startTimer)
+  clearTimeout(restoreTimer)
+  if (idleHandle !== undefined) cancelIdleCallback(idleHandle)
+
+  observer?.disconnect()
+  observer = null
+
+  document.removeEventListener('visibilitychange', onPageShown)
+  window.removeEventListener('pageshow', onPageShown)
+
+  disposeRenderer()
 }
 
 onMounted(() => {
+  document.addEventListener('visibilitychange', onPageShown)
+  window.addEventListener('pageshow', onPageShown)
+
   if ('IntersectionObserver' in window && containerRef.value) {
     observer = new IntersectionObserver(([entry]) => {
       if (entry) isVisible = entry.isIntersecting
