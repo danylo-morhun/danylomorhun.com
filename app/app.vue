@@ -14,12 +14,18 @@ const FONT_PRELOADS: Record<string, string[]> = {
 const colorMode = useColorMode()
 const { locale, localeProperties } = useI18n()
 const site = useSite()
-const siteConfig = useSiteConfig()
 
+const THEME_COLORS = { light: '#f5f5f5', dark: '#060606' }
+
+// The server can't know a saved theme, so it ships both colors and lets the OS pick;
+// once the reader chooses a theme, the browser chrome follows that instead.
 useHead({
-  meta: [
-    { name: 'theme-color', content: computed(() => (colorMode.value === 'light' ? '#f5f5f5' : '#060606')) },
-  ],
+  meta: () => colorMode.preference === 'system'
+    ? [
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: THEME_COLORS.light },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: THEME_COLORS.dark },
+      ]
+    : [{ name: 'theme-color', content: colorMode.value === 'light' ? THEME_COLORS.light : THEME_COLORS.dark }],
 })
 
 useHead({
@@ -37,23 +43,6 @@ useSeoMeta({
   ogType: 'website',
   ogLocale: () => localeProperties.value.language,
   twitterCard: 'summary_large_image',
-})
-
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: () => JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        'name': site.value.name,
-        'url': siteConfig.url,
-        'jobTitle': site.value.title,
-        'email': `mailto:${site.value.email}`,
-        'sameAs': [site.value.github, site.value.linkedin],
-      }),
-    },
-  ],
 })
 </script>
 
