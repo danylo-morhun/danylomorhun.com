@@ -13,7 +13,11 @@ useSeoMeta({
   description: () => site.value.oneLiner,
   ogDescription: () => site.value.oneLiner,
   twitterDescription: () => site.value.oneLiner,
+  ogImageAlt: title,
+  twitterImageAlt: title,
 })
+
+useStructuredData({ title: () => title.value, description: () => site.value.oneLiner }, profilePageGraph)
 
 // The hero is vertically centered, so painting it before its last line is parsed
 // shifts the headline up when the rest arrives. Hold first paint until it's all there.

@@ -1,7 +1,7 @@
 import type { ComputedRef } from 'vue'
 import type { LocalizedCaseStudy } from './useCaseStudies'
 
-export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>, section: 'work' | 'lab') {
+export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>) {
   const { t } = useI18n()
   const localePath = useLocalePath()
   const siteConfig = useSiteConfig()
@@ -16,6 +16,8 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>, section:
     ogDescription: () => project.value.metaDescription,
     twitterDescription: () => project.value.metaDescription,
     ogType: 'article',
+    ogImageAlt: title,
+    twitterImageAlt: title,
   })
 
   defineOgImage('Default', {
@@ -25,20 +27,13 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>, section:
     tagline: () => t('og.tagline'),
   })
 
-  useHead({
-    script: [
-      {
-        type: 'application/ld+json',
-        innerHTML: () => JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'CreativeWork',
-          'name': project.value.name,
-          'description': project.value.metaDescription,
-          'creator': { '@type': 'Person', 'name': 'Danylo Morhun' },
-          'url': `${siteConfig.url}${localePath(`/${section}/${project.value.slug}`)}`,
-          'image': project.value.gallery[0] ? `${siteConfig.url}${project.value.gallery[0].src}` : undefined,
-        }),
-      },
-    ],
-  })
+  useStructuredData(
+    { title: () => title.value, description: () => project.value.metaDescription },
+    (site, page) => projectPageGraph(site, page, {
+      name: project.value.name,
+      description: project.value.metaDescription,
+      image: project.value.gallery[0] && absoluteUrl(siteConfig.url, project.value.gallery[0].src),
+      home: { name: t('nav.home'), url: absoluteUrl(siteConfig.url, localePath('/')) },
+    }),
+  )
 }
