@@ -42,20 +42,24 @@ useReveal(list, { y: 20, duration: 0.6, start: 'top 88%' })
               aria-hidden="true"
             />
             <h3 class="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg font-medium text-ink md:text-xl">
-              <span>{{ entry.role }}</span> <span class="text-muted">· {{ entry.company }}</span>
-              <span class="group relative inline-flex self-center">
-                <img
-                  :src="`/flags/${entry.countryCode}.svg`"
-                  :alt="entry.country"
-                  width="24"
-                  height="24"
-                  tabindex="0"
-                  class="h-[1em] w-[1em] shrink-0 rounded-full"
-                >
-                <span
-                  class="pointer-events-none absolute -top-8 right-0 z-10 whitespace-nowrap sm:left-1/2 sm:right-auto sm:-translate-x-1/2 rounded-md border border-line bg-surface px-2 py-1 font-sans text-xs font-normal text-ink opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
-                  aria-hidden="true"
-                >{{ entry.country }}</span>
+              <span>{{ entry.role }}</span>
+              <!-- On phones the company gets its own line, so the dot would start it. -->
+              <span class="inline-flex items-center gap-x-2 max-sm:basis-full">
+                <span class="text-muted"><span class="max-sm:hidden">· </span>{{ entry.company }}</span>
+                <span class="group relative inline-flex self-center">
+                  <img
+                    :src="`/flags/${entry.countryCode}.svg`"
+                    :alt="entry.country"
+                    width="24"
+                    height="24"
+                    tabindex="0"
+                    class="h-[1em] w-[1em] shrink-0 rounded-full"
+                  >
+                  <span
+                    class="pointer-events-none absolute -top-8 right-0 z-10 whitespace-nowrap sm:left-1/2 sm:right-auto sm:-translate-x-1/2 rounded-md border border-line bg-surface px-2 py-1 font-sans text-xs font-normal text-ink opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+                    aria-hidden="true"
+                  >{{ entry.country }}</span>
+                </span>
               </span>
             </h3>
             <p class="mt-2 max-w-[60ch] leading-relaxed text-muted">
