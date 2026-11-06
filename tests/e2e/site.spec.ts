@@ -212,3 +212,44 @@ test('non-canonical urls point at the canonical page', async ({ request }) => {
   const trailingSlash = await request.get('/uk/work/grx-pay/')
   expect(await trailingSlash.text()).toContain('<link rel="canonical" href="https://www.danylomorhun.com/uk/work/grx-pay">')
 })
+
+test('pages describe themselves with linked structured data', async ({ page }) => {
+  const graphOf = async (path: string) => {
+    await page.goto(path)
+    const scripts = await page.locator('script[type="application/ld+json"]').allTextContents()
+    expect(scripts).toHaveLength(1)
+    return (JSON.parse(scripts[0]!)['@graph'] as Array<Record<string, unknown>>)
+  }
+
+  const home = await graphOf('/pl')
+  expect(home.map(node => node['@type'])).toEqual(['Person', 'WebSite', 'ProfilePage'])
+  expect(home[2]).toMatchObject({ url: 'https://www.danylomorhun.com/pl', inLanguage: 'pl-PL' })
+
+  const project = await graphOf('/uk/work/grx-pay')
+  const breadcrumb = project.find(node => node['@type'] === 'BreadcrumbList')!
+  expect(breadcrumb.itemListElement).toEqual([
+    expect.objectContaining({ name: 'Головна', item: 'https://www.danylomorhun.com/uk' }),
+    expect.objectContaining({ item: 'https://www.danylomorhun.com/uk/work/grx-pay' }),
+  ])
+})
+
+test('the browser chrome color follows the OS until a theme is picked', async ({ page }) => {
+  const themeColors = () => page.locator('meta[name="theme-color"]').evaluateAll(metas => metas.map(meta => `${meta.getAttribute('media') ?? 'any'}=${meta.getAttribute('content')}`))
+
+  await gotoHydrated(page, '/work/grx-pay')
+  expect(await themeColors()).toEqual(['(prefers-color-scheme: light)=#f5f5f5', '(prefers-color-scheme: dark)=#060606'])
+
+  await page.getByRole('button', { name: 'Toggle color theme' }).click()
+  await expect.poll(themeColors).toHaveLength(1)
+})
+
+test('share images have alt text', async ({ page }) => {
+  await page.goto('/uk/lab/seikatsu')
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /seikatsu/)
+})
+
+test('the sitemap lists project images but not decorative flags', async ({ request }) => {
+  const sitemap = await (await request.get('/__sitemap__/en-US.xml')).text()
+  expect(sitemap).toContain('/case-studies/')
+  expect(sitemap).not.toContain('/flags/')
+})
