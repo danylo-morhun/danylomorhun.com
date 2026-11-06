@@ -59,11 +59,11 @@ onUnmounted(() => {
     @focusout="onFocusOut"
   >
     <nav
-      class="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-xl border px-3 py-3 backdrop-blur-md sm:gap-4 sm:px-4"
+      class="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-xl border px-3 py-1.5 backdrop-blur-md sm:gap-4 sm:px-4 sm:py-3"
     >
       <a
         :href="anchorHref('#top')"
-        class="min-w-0 truncate font-sans text-base font-bold tracking-tight text-ink sm:shrink-0 sm:text-lg"
+        class="-my-2.5 min-w-0 truncate py-2.5 font-sans text-base font-bold tracking-tight text-ink sm:shrink-0 sm:text-lg"
         :aria-label="`${site.name} - ${t('nav.home')}`"
         @click="onAnchorClick($event, '#top')"
       >
@@ -98,7 +98,7 @@ onUnmounted(() => {
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
           :aria-label="t('nav.menu')"
-          class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink lg:hidden"
+          class="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink sm:size-8 lg:hidden"
           @click="menuOpen = !menuOpen"
         >
           <AppIcon

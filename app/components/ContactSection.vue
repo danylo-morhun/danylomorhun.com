@@ -49,7 +49,7 @@ const { copied, copyEmail } = useCopyEmail()
           target="_blank"
           rel="noreferrer noopener"
           aria-label="GitHub"
-          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-2.75 p-2.75 text-muted transition-colors duration-200 hover:text-accent"
         ><AppIcon
           name="github-fill"
           :size="22"
@@ -59,7 +59,7 @@ const { copied, copyEmail } = useCopyEmail()
           target="_blank"
           rel="noreferrer noopener"
           aria-label="LinkedIn"
-          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-2.75 p-2.75 text-muted transition-colors duration-200 hover:text-accent"
         ><AppIcon
           name="linkedin-box-fill"
           :size="22"

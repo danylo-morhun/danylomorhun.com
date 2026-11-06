@@ -12,7 +12,7 @@ function toggle() {
 <template>
   <button
     type="button"
-    class="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink active:scale-90"
+    class="relative flex size-11 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink active:scale-90 sm:size-8"
     :aria-label="t('themeToggle.label')"
     @click="toggle"
   >
