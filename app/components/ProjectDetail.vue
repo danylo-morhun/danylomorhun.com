@@ -30,7 +30,7 @@ useReveal(section)
   >
     <NuxtLink
       :to="localePath(backPath)"
-      class="reveal-item inline-flex items-center gap-1.5 text-sm text-muted transition-colors duration-200 hover:text-ink"
+      class="reveal-item -my-3 inline-flex items-center gap-1.5 py-3 text-sm text-muted transition-colors duration-200 hover:text-ink"
     >
       <AppIcon
         name="arrow-left-line"

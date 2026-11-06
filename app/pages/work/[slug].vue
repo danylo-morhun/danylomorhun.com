@@ -13,7 +13,7 @@ if (!studyRef.value) {
 
 const study = computed(() => studyRef.value!)
 
-useProjectSeo(study, 'work')
+useProjectSeo(study)
 </script>
 
 <template>

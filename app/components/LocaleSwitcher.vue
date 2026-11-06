@@ -87,7 +87,7 @@ onUnmounted(() => {
       type="button"
       :aria-expanded="open"
       :aria-label="t('nav.language')"
-      class="flex h-8 items-center gap-1 rounded-lg px-1.5 text-muted transition-colors duration-200 hover:text-ink"
+      class="flex h-11 min-w-11 items-center justify-center gap-1 rounded-lg px-1.5 sm:h-8 sm:min-w-0 text-muted transition-colors duration-200 hover:text-ink"
       @click="open = !open"
       @keydown="onButtonKeydown"
     >

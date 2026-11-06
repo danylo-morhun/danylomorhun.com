@@ -1,6 +1,11 @@
 {
-  "name": "Danylo Morhun - Portfolio",
+  "id": "/",
+  "name": "Danylo Morhun — Fullstack Engineer",
   "short_name": "Danylo Morhun",
+  "description": "Portfolio of Danylo Morhun, fullstack engineer: fintech dashboards, real-time interfaces, payment flows.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

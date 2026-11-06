@@ -13,7 +13,7 @@ if (!projectRef.value) {
 
 const project = computed(() => projectRef.value!)
 
-useProjectSeo(project, 'lab')
+useProjectSeo(project)
 </script>
 
 <template>

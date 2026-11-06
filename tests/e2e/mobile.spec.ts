@@ -33,3 +33,27 @@ test('the lightbox can be paged on a phone', async ({ page }) => {
   await dialog.getByRole('button', { name: 'Next image' }).click()
   await expect(dialog).toHaveAccessibleName(/Assets/)
 })
+
+test('controls are easy to tap', async ({ page }) => {
+  await gotoHydrated(page, '/pl/work/grx-pay')
+  const targets = [
+    page.getByRole('button', { name: 'Język' }),
+    page.getByRole('button', { name: 'Przełącz motyw' }),
+    page.getByRole('button', { name: 'Menu' }),
+    page.locator('article').getByRole('link').first(),
+    page.locator('footer').getByRole('button'),
+    page.locator('footer').getByRole('link', { name: /GitHub/ }),
+  ]
+  for (const target of targets) {
+    const box = (await target.boundingBox())!
+    expect(Math.min(box.width, box.height), await target.evaluate(el => el.outerHTML.slice(0, 80))).toBeGreaterThanOrEqual(44)
+  }
+})
+
+test('the company sits on its own line under the role', async ({ page }) => {
+  await page.goto('/uk')
+  const heading = page.locator('#experience h3').first()
+  const [role, company] = await heading.locator(':scope > span').all()
+  expect((await company!.boundingBox())!.y).toBeGreaterThan((await role!.boundingBox())!.y)
+  await expect(company!.getByText('·')).toBeHidden()
+})

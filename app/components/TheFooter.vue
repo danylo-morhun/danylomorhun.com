@@ -19,11 +19,11 @@ const { copied, copyEmail } = useCopyEmail()
         </p>
       </div>
 
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-6">
         <button
           type="button"
           :aria-label="t('footer.copyEmailAria')"
-          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-3 p-3 text-muted transition-colors duration-200 hover:text-accent"
           @click="copyEmail"
         >
           <AppIcon
@@ -41,7 +41,7 @@ const { copied, copyEmail } = useCopyEmail()
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="t('footer.githubAria')"
-          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-3 p-3 text-muted transition-colors duration-200 hover:text-accent"
         ><AppIcon
           name="github-fill"
           :size="20"
@@ -51,14 +51,14 @@ const { copied, copyEmail } = useCopyEmail()
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="t('footer.linkedinAria')"
-          class="-m-2 p-2 text-muted transition-colors duration-200 hover:text-accent"
+          class="-m-3 p-3 text-muted transition-colors duration-200 hover:text-accent"
         ><AppIcon
           name="linkedin-box-fill"
           :size="20"
         /></a>
         <a
           :href="`mailto:${site.email}`"
-          class="rounded-lg border border-accent px-4 py-1.5 text-sm text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
+          class="relative rounded-lg border border-accent px-4 py-1.5 text-sm after:absolute after:inset-x-0 after:-inset-y-1.5 text-accent transition-colors duration-200 hover:bg-accent hover:text-accent-ink"
         >{{ t('footer.contact') }}</a>
       </div>
     </div>
