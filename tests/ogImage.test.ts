@@ -5,7 +5,7 @@ import { renderToString } from 'vue/server-renderer'
 import { describe, expect, it } from 'vitest'
 import satori from 'satori'
 import { html as toSatoriNodes } from 'satori-html'
-import DefaultSatori from '../app/components/OgImage/Default.satori.vue'
+import BeamsSatori from '../app/components/OgImage/Beams.satori.vue'
 import { caseStudies } from '../app/data/case-studies'
 import { personalProjects } from '../app/data/personal-projects'
 
@@ -27,7 +27,7 @@ const fonts = [
 // The real OG fonts as the only fonts, so a missing glyph fails loudly instead
 // of rendering a "no glyph" box.
 async function renderOgImageSvg(props: { title: string, subtitle?: string, tag?: string, tagline?: string }) {
-  const html = (await renderToString(createSSRApp(DefaultSatori, props))).replace('src="/og/beams.jpg"', `src="${beams}"`)
+  const html = (await renderToString(createSSRApp(BeamsSatori, props))).replace('src="/og/beams.jpg"', `src="${beams}"`)
   const wrapperStyle = `display: flex; width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden;`
   let missing = ''
 

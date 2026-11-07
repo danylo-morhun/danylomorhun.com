@@ -25,7 +25,7 @@ useHead({
   link: [{ rel: 'expect', href: '#hero-end', blocking: 'render' }],
 })
 
-defineOgImage('Default', {
+defineOgImage('Beams', {
   title: () => site.value.name,
   subtitle: () => site.value.title,
   tagline: () => t('og.tagline'),
