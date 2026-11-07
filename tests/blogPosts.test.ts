@@ -30,11 +30,19 @@ describe('parsePost', () => {
 
 describe('publishedPosts', () => {
   const post = (slug: string, date: string, draft = false) => ({ meta: { slug, date, draft } as never })
+  const slugs = (posts: Array<{ meta: unknown }>) => posts.map(p => (p.meta as { slug: string }).slug)
+  const posts = [post('old', '2026-01-01'), post('today', '2026-11-07'), post('wip', '2026-10-01', true), post('next', '2026-11-16')]
 
-  it('sorts newest first and hides drafts unless asked', () => {
-    const posts = [post('old', '2026-01-01'), post('new', '2026-11-07'), post('wip', '2026-12-01', true)]
-    expect(publishedPosts(posts, false).map(p => (p.meta as { slug: string }).slug)).toEqual(['new', 'old'])
-    expect(publishedPosts(posts, true).map(p => (p.meta as { slug: string }).slug)).toEqual(['wip', 'new', 'old'])
+  it('shows published posts up to today, newest first', () => {
+    expect(slugs(publishedPosts(posts, { preview: false, today: '2026-11-07' }))).toEqual(['today', 'old'])
+  })
+
+  it('publishes a scheduled post on its date', () => {
+    expect(slugs(publishedPosts(posts, { preview: false, today: '2026-11-16' }))).toEqual(['next', 'today', 'old'])
+  })
+
+  it('shows drafts and scheduled posts in preview', () => {
+    expect(slugs(publishedPosts(posts, { preview: true, today: '2026-11-07' }))).toEqual(['next', 'today', 'wip', 'old'])
   })
 })
 

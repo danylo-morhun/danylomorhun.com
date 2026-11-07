@@ -70,10 +70,13 @@ export function readingMinutes(markdown: string) {
   return Math.max(1, Math.round(words / WORDS_PER_MINUTE))
 }
 
-/** Newest first; drafts only when asked for. */
-export function publishedPosts<T extends { meta: PostMeta }>(posts: T[], includeDrafts: boolean) {
+/**
+ * What's live: published posts dated today or earlier, newest first.
+ * `preview` also shows drafts and scheduled (future-dated) posts, for review.
+ */
+export function publishedPosts<T extends { meta: PostMeta }>(posts: T[], { preview, today }: { preview: boolean, today: string }) {
   return posts
-    .filter(post => includeDrafts || !post.meta.draft)
+    .filter(post => preview || (!post.meta.draft && post.meta.date <= today))
     .sort((a, b) => b.meta.date.localeCompare(a.meta.date) || a.meta.slug.localeCompare(b.meta.slug))
 }
 
