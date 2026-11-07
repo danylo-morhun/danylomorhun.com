@@ -1,6 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 import { caseStudies } from './app/data/case-studies'
 import { personalProjects } from './app/data/personal-projects'
+import { loadPosts } from './modules/blog/source'
 
 const siteUrl = process.env.NUXT_SITE_URL || 'https://www.danylomorhun.com'
 
@@ -124,10 +125,15 @@ export default defineNuxtConfig({
         ...caseStudies.map(cs => ({ path: `/work/${cs.slug}`, priority: 0.8 as const })),
         ...personalProjects.map(p => ({ path: `/lab/${p.slug}`, priority: 0.7 as const })),
       ]
-      return paths.flatMap(({ path, priority }) => [
-        { loc: path, priority },
-        ...nonDefaultLocales.map(locale => ({ loc: `/${locale}${path}`, priority })),
-      ])
+      // Posts are English-only, so they have no /uk or /pl copies.
+      const posts = loadPosts().map(({ meta }) => ({ loc: `/blog/${meta.slug}`, lastmod: meta.updated ?? meta.date, priority: 0.7 as const }))
+      return [
+        ...paths.flatMap(({ path, priority }) => [
+          { loc: path, priority },
+          ...nonDefaultLocales.map(locale => ({ loc: `/${locale}${path}`, priority })),
+        ]),
+        ...posts,
+      ]
     },
   },
 })
