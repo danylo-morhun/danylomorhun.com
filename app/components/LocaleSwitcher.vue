@@ -11,6 +11,10 @@ function flagUrl(localeCode: string) {
 
 const { t, locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
+const localePath = useLocalePath()
+
+// English-only pages (the blog) have no uk/pl copy: send those to that language's home page.
+const localeHref = (code: typeof locale.value) => switchLocalePath(code) || localePath('/', code)
 
 const availableLocales = computed(() => locales.value as Array<{ code: typeof locale.value, name?: string, language?: string }>)
 
@@ -125,7 +129,7 @@ onUnmounted(() => {
           :key="l.code"
         >
           <NuxtLink
-            :to="switchLocalePath(l.code)"
+            :to="localeHref(l.code)"
             :hreflang="l.language"
             :lang="l.language"
             :aria-current="l.code === locale ? 'true' : undefined"

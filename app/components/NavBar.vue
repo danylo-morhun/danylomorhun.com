@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { blog } from '#shared/blog'
 import { site } from '~/data/site'
 
 const { t } = useI18n()
@@ -78,6 +79,10 @@ onUnmounted(() => {
           class="whitespace-nowrap text-sm text-muted transition-colors duration-200 hover:text-ink"
           @click="onAnchorClick($event, link.hash)"
         >{{ link.label }}</a>
+        <NuxtLink
+          :to="blog.path"
+          class="whitespace-nowrap text-sm text-muted transition-colors duration-200 hover:text-ink"
+        >{{ t('nav.blog') }}</NuxtLink>
       </div>
 
       <div class="flex shrink-0 items-center gap-1 sm:gap-4">
@@ -135,6 +140,11 @@ onUnmounted(() => {
           class="flex min-h-11 items-center rounded-lg px-3 text-sm text-ink transition-colors duration-150"
           @click="onMenuLink($event, link.hash)"
         >{{ link.label }}</a>
+        <NuxtLink
+          :to="blog.path"
+          class="flex min-h-11 items-center rounded-lg px-3 text-sm text-ink transition-colors duration-150"
+          @click="closeMenu()"
+        >{{ t('nav.blog') }}</NuxtLink>
         <a
           :href="anchorHref('#contact')"
           class="mt-1 flex min-h-11 items-center justify-center rounded-lg bg-accent px-3 text-sm font-medium text-accent-ink sm:hidden"
