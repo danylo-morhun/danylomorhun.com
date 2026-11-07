@@ -12,6 +12,9 @@ import { personalProjects } from '../app/data/personal-projects'
 const locale = (code: string) => JSON.parse(readFileSync(join(__dirname, `../i18n/locales/${code}.json`), 'utf-8'))
 const font = (file: string) => readFileSync(join(__dirname, '../public/fonts/og', file))
 
+// nuxt-og-image inlines public files at build; raw Satori needs the data itself.
+const beams = `data:image/jpeg;base64,${readFileSync(join(__dirname, '../public/og/beams.jpg')).toString('base64')}`
+
 const WIDTH = 1200
 const HEIGHT = 600
 
@@ -24,7 +27,7 @@ const fonts = [
 // The real OG fonts as the only fonts, so a missing glyph fails loudly instead
 // of rendering a "no glyph" box.
 async function renderOgImageSvg(props: { title: string, subtitle?: string, tag?: string, tagline?: string }) {
-  const html = await renderToString(createSSRApp(DefaultSatori, props))
+  const html = (await renderToString(createSSRApp(DefaultSatori, props))).replace('src="/og/beams.jpg"', `src="${beams}"`)
   const wrapperStyle = `display: flex; width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden;`
   let missing = ''
 

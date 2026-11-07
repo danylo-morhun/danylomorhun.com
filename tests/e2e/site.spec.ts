@@ -16,7 +16,7 @@ async function waitForIntro(page: Page) {
 }
 
 for (const colorScheme of ['dark', 'light'] as const) {
-  for (const path of ['/', '/uk', '/pl', '/work/grx-pay', '/uk/lab/seikatsu']) {
+  for (const path of ['/', '/uk', '/pl', '/work/grx-pay', '/uk/lab/seikatsu', '/blog', '/blog/webgl-context-lost-for-good']) {
     test(`${path} renders without errors or hydration mismatches (${colorScheme})`, async ({ page }) => {
       await page.emulateMedia({ colorScheme })
       const errors = collectErrors(page)
@@ -163,7 +163,7 @@ test('unknown pages get the site 404 in the current language', async ({ page }) 
 })
 
 test('every page has share metadata', async ({ page }) => {
-  for (const path of ['/', '/uk/work/grx-pay', '/pl/lab/seikatsu']) {
+  for (const path of ['/', '/uk/work/grx-pay', '/pl/lab/seikatsu', '/blog/webgl-context-lost-for-good']) {
     await page.goto(path)
     for (const property of ['og:title', 'og:description', 'og:image']) {
       await expect(page.locator(`meta[property="${property}"]`)).toHaveAttribute('content', /.+/)
@@ -184,6 +184,9 @@ for (const colorScheme of ['dark', 'light'] as const) {
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
     await gotoHydrated(page, '/nope')
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
+
+    await gotoHydrated(page, '/blog/webgl-context-lost-for-good')
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
   })
 }
@@ -252,4 +255,38 @@ test('the sitemap lists project images but not decorative flags', async ({ reque
   const sitemap = await (await request.get('/__sitemap__/en-US.xml')).text()
   expect(sitemap).toContain('/case-studies/')
   expect(sitemap).not.toContain('/flags/')
+})
+
+test('the blog lists posts and each post is marked up as a BlogPosting', async ({ page }) => {
+  await gotoHydrated(page, '/')
+  await page.getByRole('link', { name: 'Blog' }).first().click()
+  await expect(page).toHaveURL('/blog')
+
+  await page.getByRole('link', { name: /When the WebGL context never comes back/ }).click()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('When the WebGL context never comes back')
+  await expect(page.locator('.post-body pre.shiki').first()).toBeVisible()
+
+  const graph = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent() ?? '{}')
+  const post = graph['@graph'].find((node: { '@type': string }) => node['@type'] === 'BlogPosting')
+  expect(post).toMatchObject({ headline: 'When the WebGL context never comes back', datePublished: '2026-11-07' })
+})
+
+test('the blog is English-only, and the language menu sends other languages home', async ({ page, request }) => {
+  expect((await request.get('/uk/blog')).status()).toBe(404)
+
+  await gotoHydrated(page, '/blog')
+  await page.getByRole('button', { name: 'Language' }).click()
+  await expect(page.getByRole('link', { name: 'Українська' })).toHaveAttribute('href', '/uk')
+})
+
+test('the blog has an RSS feed and its posts are in the sitemap', async ({ page, request }) => {
+  const feed = await request.get('/blog/rss.xml')
+  expect(feed.headers()['content-type']).toContain('xml')
+  expect(await feed.text()).toContain('<link>https://www.danylomorhun.com/blog/webgl-context-lost-for-good</link>')
+
+  await page.goto('/blog')
+  await expect(page.locator('link[rel="alternate"][type="application/rss+xml"]')).toHaveAttribute('href', /\/blog\/rss\.xml$/)
+
+  const sitemap = await (await request.get('/__sitemap__/en-US.xml')).text()
+  expect(sitemap).toContain('/blog/webgl-context-lost-for-good</loc>')
 })

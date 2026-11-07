@@ -106,3 +106,149 @@
     }
   }
 }
+
+/* Blog post body: HTML rendered from markdown, so it's styled by element, not by class. */
+@layer components {
+  .post-body {
+    max-width: 70ch;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+
+  .post-body > * + * {
+    margin-top: 1.25em;
+  }
+
+  .post-body h2,
+  .post-body h3 {
+    color: var(--color-ink);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .post-body h2 {
+    margin-top: 2.5em;
+    font-size: 1.5rem;
+  }
+
+  .post-body h3 {
+    margin-top: 2em;
+    font-size: 1.2rem;
+  }
+
+  .post-body :is(h2, h3) + * {
+    margin-top: 0.75em;
+  }
+
+  .post-body :is(h2, h3) a {
+    color: inherit;
+  }
+
+  .post-body :is(h2, h3) a:hover::after {
+    content: '#';
+    margin-left: 0.4em;
+    color: var(--color-muted);
+  }
+
+  .post-body strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .post-body :is(p, li) a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-line);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 200ms;
+  }
+
+  .post-body :is(p, li) a:hover {
+    text-decoration-color: var(--color-ink);
+  }
+
+  .post-body ul > li {
+    position: relative;
+    padding-left: 1.25em;
+  }
+
+  .post-body ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--color-accent);
+  }
+
+  .post-body ol {
+    list-style: decimal;
+    padding-left: 1.25em;
+  }
+
+  .post-body li + li {
+    margin-top: 0.5em;
+  }
+
+  .post-body :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: 0.1em 0.35em;
+  }
+
+  .post-body pre {
+    margin-top: 1.75em;
+    margin-bottom: 1.75em;
+    overflow-x: auto;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  /* Shiki writes both palettes as variables; pick the one for the active theme. */
+  .post-body .shiki span {
+    color: var(--shiki-dark);
+  }
+
+  .light .post-body .shiki span {
+    color: var(--shiki-light);
+  }
+
+  /* The light palette is tuned for white; on the gray surface its reds fail contrast. */
+  .light .post-body pre.shiki {
+    background: var(--shiki-light-bg);
+  }
+
+  @media (max-width: 639px) {
+    .post-body pre {
+      padding: 1rem;
+    }
+  }
+
+  .post-body blockquote {
+    border-left: 2px solid var(--color-line);
+    padding-left: 1.25em;
+  }
+
+  .post-body img {
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+  }
+
+  .post-body hr {
+    border-top: 1px solid var(--color-line);
+    margin-block: 3em;
+  }
+}
