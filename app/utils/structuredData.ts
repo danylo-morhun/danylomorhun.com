@@ -112,8 +112,77 @@ export function projectPageGraph(site: SiteIdentity, page: PageInfo, project: Pr
   ])
 }
 
-/** Absolute URL for a site path, matching the canonical form (root has no trailing slash). */
-export function absoluteUrl(siteUrl: string, path: string) {
-  const root = siteUrl.replace(/\/+$/, '')
-  return path === '/' ? root : `${root}${path}`
+export interface PostInfo {
+  title: string
+  description: string
+  /** YYYY-MM-DD */
+  date: string
+  updated?: string
+  tags: string[]
+  blog: { name: string, url: string }
+}
+
+/** One blog post, written by the person, inside the blog. */
+export function blogPostingGraph(site: SiteIdentity, page: PageInfo, post: PostInfo) {
+  const postId = `${page.url}#post`
+  const breadcrumbId = `${page.url}#breadcrumb`
+
+  return graph([
+    personNode(site),
+    websiteNode(site, page),
+    {
+      ...pageNode('WebPage', site, page),
+      mainEntity: { '@id': postId },
+      breadcrumb: { '@id': breadcrumbId },
+    },
+    {
+      '@type': 'BlogPosting',
+      '@id': postId,
+      'headline': post.title,
+      'description': post.description,
+      'url': page.url,
+      'mainEntityOfPage': { '@id': `${page.url}#webpage` },
+      'inLanguage': page.language,
+      'datePublished': post.date,
+      'dateModified': post.updated ?? post.date,
+      'keywords': post.tags,
+      'author': { '@id': personId(site) },
+      'publisher': { '@id': personId(site) },
+      'isPartOf': { '@type': 'Blog', '@id': `${post.blog.url}#blog`, 'name': post.blog.name, 'url': post.blog.url },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': breadcrumbId,
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': site.url },
+        { '@type': 'ListItem', 'position': 2, 'name': post.blog.name, 'item': post.blog.url },
+        { '@type': 'ListItem', 'position': 3, 'name': post.title, 'item': page.url },
+      ],
+    },
+  ])
+}
+
+/** The blog index: a blog by the person, listing its posts. */
+export function blogGraph(site: SiteIdentity, page: PageInfo, posts: Array<{ title: string, url: string, date: string }>) {
+  return graph([
+    personNode(site),
+    websiteNode(site, page),
+    { ...pageNode('CollectionPage', site, page), mainEntity: { '@id': `${page.url}#blog` } },
+    {
+      '@type': 'Blog',
+      '@id': `${page.url}#blog`,
+      'name': page.title,
+      'description': page.description,
+      'url': page.url,
+      'inLanguage': page.language,
+      'author': { '@id': personId(site) },
+      'blogPost': posts.map(post => ({
+        '@type': 'BlogPosting',
+        '@id': `${post.url}#post`,
+        'headline': post.title,
+        'url': post.url,
+        'datePublished': post.date,
+      })),
+    },
+  ])
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { absoluteUrl, profilePageGraph, projectPageGraph } from '../app/utils/structuredData'
+import { blogGraph, blogPostingGraph, profilePageGraph, projectPageGraph } from '../app/utils/structuredData'
+import { absoluteUrl } from '../shared/utils/absoluteUrl'
 
 const site = {
   url: 'https://example.com',
@@ -72,5 +73,49 @@ describe('projectPageGraph', () => {
   it('leaves out the image when the project has none', () => {
     const noImage = projectPageGraph(site, page, { name: 'Pay', description: '', home: { name: 'Home', url: site.url } })
     expect(byType(noImage, 'CreativeWork')).not.toHaveProperty('image')
+  })
+})
+
+describe('blogPostingGraph', () => {
+  const postPage = { ...page, url: 'https://example.com/blog/hello', language: 'en-US', title: 'Hello — Jane Doe' }
+  const graph = blogPostingGraph(site, postPage, {
+    title: 'Hello',
+    description: 'First post.',
+    date: '2026-11-07',
+    tags: ['webgl'],
+    blog: { name: 'Blog', url: 'https://example.com/blog' },
+  })
+
+  it('credits the person as author and uses the publish date when never updated', () => {
+    const person = byType(graph, 'Person')
+    expect(byType(graph, 'BlogPosting')).toMatchObject({
+      headline: 'Hello',
+      datePublished: '2026-11-07',
+      dateModified: '2026-11-07',
+      author: { '@id': person['@id'] },
+      keywords: ['webgl'],
+    })
+  })
+
+  it('has a breadcrumb home → blog → post', () => {
+    const items = byType(graph, 'BreadcrumbList').itemListElement as Array<Record<string, unknown>>
+    expect(items.map(item => item.item)).toEqual(['https://example.com', 'https://example.com/blog', postPage.url])
+  })
+
+  it('references only nodes that exist in the graph', () => {
+    const ids = new Set(nodes(graph).map(node => node['@id']))
+    const refs = JSON.stringify(graph).match(/\{"@id":"[^"]+"\}/g)!.map(ref => JSON.parse(ref)['@id'])
+    expect(refs.every(ref => ids.has(ref))).toBe(true)
+  })
+})
+
+describe('blogGraph', () => {
+  it('lists every post on the blog', () => {
+    const graph = blogGraph(site, { ...page, url: 'https://example.com/blog' }, [
+      { title: 'Hello', url: 'https://example.com/blog/hello', date: '2026-11-07' },
+    ])
+    expect(byType(graph, 'Blog').blogPost).toEqual([
+      { '@type': 'BlogPosting', '@id': 'https://example.com/blog/hello#post', 'headline': 'Hello', 'url': 'https://example.com/blog/hello', 'datePublished': '2026-11-07' },
+    ])
   })
 })
