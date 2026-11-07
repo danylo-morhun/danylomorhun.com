@@ -115,6 +115,8 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true,
+    // 1.91:1, the ratio LinkedIn, X and Slack crop to.
+    defaults: { width: 1200, height: 630 },
   },
 
   sitemap: {
