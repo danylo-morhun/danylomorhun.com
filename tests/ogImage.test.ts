@@ -16,7 +16,7 @@ const font = (file: string) => readFileSync(join(__dirname, '../public/fonts/og'
 const beams = `data:image/jpeg;base64,${readFileSync(join(__dirname, '../public/og/beams.jpg')).toString('base64')}`
 
 const WIDTH = 1200
-const HEIGHT = 600
+const HEIGHT = 630
 
 const fonts = [
   { name: 'Geist OG', data: font('Geist-Regular.ttf'), weight: 400 as const, style: 'normal' as const },

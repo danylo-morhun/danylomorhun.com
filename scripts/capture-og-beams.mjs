@@ -4,7 +4,7 @@ import { chromium } from 'playwright'
 import sharp from 'sharp'
 
 const WIDTH = 1200
-const HEIGHT = 600
+const HEIGHT = 630
 const OUT = 'public/og/beams.jpg'
 
 const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader', '--use-angle=swiftshader'] })
@@ -27,6 +27,8 @@ await page.evaluate(() => {
 })
 
 const png = await page.screenshot({ clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } })
-await sharp(png).jpeg({ quality: 82, mozjpeg: true }).toFile(OUT)
+// Social sites shrink share images to ~480px and re-encode them as JPEG.
+// The shader's film grain turns into blocky noise there, so smooth it out first.
+await sharp(png).blur(1.6).jpeg({ quality: 90, mozjpeg: true }).toFile(OUT)
 await browser.close()
 console.log(`wrote ${OUT}`)
