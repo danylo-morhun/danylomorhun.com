@@ -20,7 +20,7 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>) {
     twitterImageAlt: title,
   })
 
-  defineOgImage('Default', {
+  defineOgImage('Beams', {
     title: () => project.value.name,
     subtitle: () => project.value.role,
     tag: () => project.value.tag,

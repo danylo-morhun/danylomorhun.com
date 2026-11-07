@@ -32,5 +32,5 @@ export function useBlogSeo(page: { title: string, description: string, ogTitle: 
     link: [{ rel: 'alternate', type: 'application/rss+xml', title: blog.title, href: absoluteUrl(siteConfig.url, blog.feedPath) }],
   })
 
-  defineOgImage('Default', { title: page.ogTitle, subtitle: page.ogSubtitle, tag: 'danylomorhun.com/blog', tagline: blog.title })
+  defineOgImage('Beams', { title: page.ogTitle, subtitle: page.ogSubtitle, tag: 'danylomorhun.com/blog', tagline: blog.title })
 }
