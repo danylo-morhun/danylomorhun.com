@@ -1,0 +1,34 @@
+name: Publish scheduled posts
+
+# The site is prerendered, so a post dated in the future only goes live when
+# the site is rebuilt on or after that date. This rebuilds production on the
+# morning a post is due.
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Find posts due today
+        id: due
+        run: |
+          slugs=$(node scripts/posts-due.mjs | paste -sd, -)
+          echo "slugs=$slugs" >> "$GITHUB_OUTPUT"
+          echo "Due today: ${slugs:-none}"
+
+      - name: Rebuild production
+        if: steps.due.outputs.slugs != '' || github.event_name == 'workflow_dispatch'
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: curl --fail --silent --show-error -X POST "$DEPLOY_HOOK"
