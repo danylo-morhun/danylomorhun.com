@@ -1,35 +1,66 @@
 # danylomorhun.com
 
-[![CI](https://github.com/danylo-morhun/danylomorhun.com/actions/workflows/ci.yml/badge.svg)](https://github.com/danylo-morhun/danylomorhun.com/actions/workflows/ci.yml)
+personal site with work, case studies, side projects and a blog.
+it is in English, Ukrainian and Polish, with light and dark themes.
 
-My personal site: work, case studies, side projects. English, Ukrainian, Polish; light and dark.
+live at [danylomorhun.com](https://danylomorhun.com).
 
-[danylomorhun.com](https://danylomorhun.com)
+## pages
 
-## How it works
+| path           | what it is                                                 |
+| :------------- | :--------------------------------------------------------- |
+| `/`            | about, experience, work, side projects, contact            |
+| `/work/<slug>` | case study of a work project                               |
+| `/lab/<slug>`  | side project                                               |
+| `/blog`        | blog posts in English, with an RSS feed at `/blog/rss.xml` |
 
-- **WebGL hero** — Three.js beams with custom GLSL spliced into the physical material; light mode is a CSS invert of the grayscale scene
-- **WebGL budget** — loads client-only after idle, skipped under reduced motion, Save-Data or low device memory, capped at 30 fps, pauses off-screen, releases its GL context on unmount
-- **Intro** — a sub-second first-load intro on the home page only; pure CSS hides it without JavaScript
-- **Motion** — GSAP reveals; ScrollTrigger loaded on demand and reverted on unmount; everything off under `prefers-reduced-motion`
-- **Static by default** — every page and locale is prerendered, so HTML is served from the CDN
-- **SEO** — hreflang and canonical per locale, JSON-LD, sitemap per locale, a share image per page and locale (Satori, static Geist with Cyrillic)
+## how it works
 
-## Stack
+every page and locale is prerendered, so HTML is served from the CDN.
 
-Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 4, GSAP, Three.js, Vercel.
+the hero background is a Three.js scene with custom GLSL shaders. it loads only in the browser
+after the page is idle, and is skipped with reduced motion, Save-Data or less than 4 GB of device
+memory. it renders at 30 fps at most, pauses when off screen and frees its WebGL context on unmount.
+in light mode the grayscale scene is inverted with CSS.
 
-## Run locally
+the home page has a short intro on first load. it works without JavaScript and is off
+with reduced motion. scroll reveals use GSAP. ScrollTrigger loads only when needed.
+
+the blog is a small Nuxt module that reads Markdown from `content/blog` at build time
+and highlights code with Shiki. posts with `draft: true` or a future date are left out
+of production but shown on preview deploys. a daily workflow rebuilds the site
+on the morning a scheduled post is due.
+
+each locale has its own canonical URL, hreflang tags, JSON-LD and sitemap. each page
+has its own share image per locale, rendered with Satori.
+
+## stack
+
+Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 4, GSAP, Three.js, Shiki, Vercel.
+
+## run locally
 
 ```bash
 npm install
-npm run dev   # http://localhost:3000
+npm run dev
 ```
 
-Checks: `npm run lint`, `npm run typecheck`, `npm run test` (Vitest), `npm run test:e2e` (Playwright, includes axe).
+the site runs on port 3000.
 
-Adding a gallery image: drop a 1440px WebP into `public/case-studies/` or `public/personal-projects/`, then run `npm run images`.
+| command             | what it does                             |
+| :------------------ | :--------------------------------------- |
+| `npm run lint`      | ESLint                                   |
+| `npm run typecheck` | type check                               |
+| `npm run test`      | Vitest                                   |
+| `npm run test:e2e`  | Playwright with axe accessibility checks |
+| `npm run images`    | builds image variants for the galleries  |
 
-## License
+to add a gallery image, put a 1440px WebP into `public/case-studies/` or
+`public/personal-projects/` and run `npm run images`.
 
-MIT. `app/components/BeamsBackground.vue` is adapted from [Vue Bits](https://vue-bits.dev) under MIT + Commons Clause. Icons are from [Remix Icon](https://remixicon.com), flags from [flag-icons](https://github.com/lipis/flag-icons) (MIT), and the share-image fonts are [Geist](https://vercel.com/font) (SIL OFL 1.1).
+## license
+
+MIT. `app/components/BeamsBackground.vue` is adapted from [Vue Bits](https://vue-bits.dev)
+under MIT with the Commons Clause. icons are from [Remix Icon](https://remixicon.com),
+flags from [flag-icons](https://github.com/lipis/flag-icons) (MIT), and share image fonts
+are [Geist](https://vercel.com/font) (SIL OFL 1.1).
