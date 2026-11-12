@@ -13,6 +13,11 @@ updates:
       # vue-tsc can't load TypeScript 7 yet (ERR_PACKAGE_PATH_NOT_EXPORTED).
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
+      # nuxt-og-image pins satori as a peer (^0.47); bump it only with nuxt-og-image.
+      - dependency-name: satori
+      # Types follow the Node major that CI and Vercel run (22).
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
     open-pull-requests-limit: 5
 
   - package-ecosystem: github-actions
