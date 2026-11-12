@@ -111,11 +111,11 @@ onMounted(() => {
       >
         <a
           href="#contact"
-          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('hero.contact') }}</a>
         <a
           href="#work"
-          class="rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+          class="rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('hero.viewWork') }}</a>
       </div>
       <span id="hero-end" />

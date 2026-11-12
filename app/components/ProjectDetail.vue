@@ -204,7 +204,7 @@ useReveal(section)
         :href="project.liveUrl"
         target="_blank"
         rel="noreferrer noopener"
-        class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+        class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       >
         {{ isGithub ? t('project.viewSource') : t('project.visitLive') }}
         <AppIcon
@@ -214,7 +214,7 @@ useReveal(section)
       </a>
       <NuxtLink
         :to="localePath(backPath)"
-        class="inline-flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+        class="inline-flex items-center gap-1.5 rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       >
         <AppIcon
           name="arrow-left-line"

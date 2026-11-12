@@ -36,13 +36,13 @@ const { copied, copyEmail } = useCopyEmail()
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a
           :href="`mailto:${site.email}`"
-          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('contact.contact') }}</a>
         <a
           v-if="site.resumeUrl"
           :href="site.resumeUrl"
           download
-          class="flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+          class="flex items-center gap-1.5 rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         ><AppIcon
           name="download-line"
           :size="16"

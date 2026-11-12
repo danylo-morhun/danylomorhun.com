@@ -33,7 +33,7 @@ function goHome() {
       </p>
       <a
         :href="localePath('/')"
-        class="mt-10 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+        class="mt-10 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         @click.prevent="goHome"
       >{{ t('error.backHome') }}</a>
     </section>

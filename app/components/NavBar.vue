@@ -93,7 +93,7 @@ onUnmounted(() => {
 
         <a
           :href="anchorHref('#contact')"
-          class="hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-opacity duration-200 hover:opacity-85 sm:block"
+          class="relative hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform duration-200 after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] sm:block"
           @click="onAnchorClick($event, '#contact')"
         >{{ t('nav.contact') }}</a>
 
