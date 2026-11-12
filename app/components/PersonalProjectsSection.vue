@@ -55,8 +55,8 @@ useReveal(list)
               class="mt-0.5 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
             />
           </h3>
-          <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">
-            {{ project.overview }}
+          <p class="mt-2 text-sm leading-relaxed text-muted">
+            {{ project.description }}
           </p>
         </NuxtLink>
       </div>

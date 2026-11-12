@@ -15,10 +15,10 @@
   },
   "site": {
     "title": "Fullstack Engineer",
-    "oneLiner": "Fullstack engineer with a frontend lean — data-heavy dashboards, real-time interfaces, payment flows, and the APIs behind them, for fintech and B2B SaaS.",
+    "oneLiner": "Fullstack engineer for fintech and B2B SaaS: data-heavy dashboards, real-time interfaces, payment flows and the APIs behind them.",
     "bio": [
       "I work on the parts of a product that have to hold up under real conditions: fintech dashboards with live balances, crypto banking flows across 24+ currencies, BI tools filtering and exporting 100,000+ orders without stalling the tab.",
-      "The toolkit shifts from project to project; the actual job is judgment — knowing when a virtualized table beats pagination, when a live connection beats polling, when a shared component library saves the next six months of work.",
+      "The toolkit shifts from project to project; the actual job is judgment: knowing when a virtualized table beats pagination, when a live connection beats polling, when a shared component library saves the next six months of work.",
       "Sometimes that means building on top of a design system someone else shipped; other times there's no designer on the team at all, and every interface decision is mine to make, start to finish."
     ]
   },
@@ -41,27 +41,27 @@
       "grx": {
         "role": "Senior Frontend Engineer",
         "country": "Switzerland",
-        "summary": "Owned the GRX Pay frontend and the shared component library behind the company's products — Swiss fintech spanning crypto-fiat payments, tokenized real-world assets, and a retail exchange."
+        "summary": "Owned the GRX Pay frontend and the shared component library behind the products of a Swiss fintech: crypto-fiat payments, tokenized real-world assets and a retail exchange."
       },
       "ezcloud": {
         "role": "Lead Fullstack Engineer",
         "country": "United States",
-        "summary": "Led fullstack work for a US-based B2B SaaS and e-commerce intelligence company: Amazon seller analytics, a phone top-up platform, ad-campaign tooling, and air-quality and donation products — owning interface design with no dedicated designer."
+        "summary": "Led fullstack work for a US-based B2B SaaS and e-commerce intelligence company: Amazon seller analytics, product sourcing, a phone top-up platform, ad-campaign tooling, online art auctions and a lab system for a biobank, all on a shared design system. Owned interface design with no dedicated designer."
       }
     }
   },
   "work": {
     "heading": "Selected work",
-    "subheading": "Six production builds across fintech, B2B SaaS, IoT, and nonprofit platforms — the architecture calls and the outcomes they produced."
+    "subheading": "Production builds for fintech and B2B SaaS: payments, analytics, auctions, lab software and the design systems behind them."
   },
   "lab": {
     "heading": "Personal projects",
-    "subheading": "Things I've built for myself, end to end — no client, no handoff, every decision mine to own."
+    "subheading": "Built and run on my own, end to end."
   },
   "contact": {
-    "heading": "Open to Frontend and Fullstack roles — let's talk.",
+    "heading": "Open to Frontend and Fullstack roles. Let's talk.",
     "copied": "Copied",
-    "reachOut": "— or reach out on GitHub / LinkedIn.",
+    "reachOut": "or reach out on GitHub / LinkedIn.",
     "contact": "Contact",
     "resume": "Resume"
   },
@@ -79,337 +79,531 @@
     "backToWork": "Back to work",
     "backToLab": "Back to personal projects",
     "visitLive": "Visit live site",
-    "ndaBadge": "Under NDA — client and product details withheld",
     "enlargeAria": "Enlarge: {caption}",
     "closeAria": "Close",
     "prevAria": "Previous image",
-    "nextAria": "Next image"
+    "nextAria": "Next image",
+    "stack": "Stack",
+    "viewSource": "View on GitHub"
   },
   "caseStudies": {
-    "grx-public-platform": {
-      "name": "GRX — Public Platform",
-      "tag": "Public site · Fintech",
-      "role": "Senior Frontend Engineer — owned architecture end to end",
-      "overview": "GRX is a Swiss crypto-fintech ecosystem spanning payments, exchange, and tokenized real-world assets. I built the public-facing platform from scratch — the marketing site, pricing and product pages, and the careers hub — along with the shared component library it and the rest of the company's products now run on.",
-      "challenge": "GRX had three products in flight — Pay, Exchange, RWA — and neither a public website to showcase any of them nor a shared component library for the teams building them, so every product screen was its own one-off implementation of the same buttons, inputs, and cards. Two problems, one root cause: build the site from scratch, and build the design system underneath it so both the site and the products could finally speak the same visual language.",
+    "grx-pay": {
+      "name": "GRX Pay",
+      "tag": "Product · Crypto payments",
+      "description": "A crypto payment gateway: merchant dashboard, admin panel and hosted payment pages, with real-time balances across 24+ currencies.",
+      "overview": "GRX Pay lets businesses accept crypto. Merchants issue invoices and payment links, take funds in any supported coin and network, convert, and withdraw in crypto or euros via SEPA. The platform team verifies merchants and controls fees, limits and every operation from an admin panel.",
+      "challenge": "Three audiences, three apps, one product: merchants managing money, a compliance and finance team watching it, and buyers who pay once and never come back. Payments pass through many states, from network confirmations to underpayment and compliance blocks, and each one has to be clear to the person on the other side.",
       "approach": [
-        "Extracted a shared component library — 40 components driven by Figma design tokens — from scratch, used across 3 GRX products, closing the drift between what marketing ships and what the product actually looks like",
-        "Server-rendered with locale-aware routing baked into the URL structure, so every product page ships translated and statically generated per locale",
-        "Accessible interaction primitives (dialogs, tabs, accordions) built once into the shared library instead of hand-rolling focus management per component",
-        "Careers and editorial content authored as structured text and rendered at build time, keeping the content pipeline outside the deploy critical path",
-        "A performance budget enforced as an automated gate rather than a one-time audit, so regressions get caught before merge"
+        "Micro-frontends with a BFF layer that shapes data from the backend microservices per page, with performance budgeted from day one.",
+        "Hosted payment pages cover the full lifecycle: currency and network choice with the fee shown up front, QR and timer, network confirmations, paid late, underpaid with a top-up, expired, blocked by compliance.",
+        "Withdrawals run as a wizard with saved recipients and status tracking. Mass payouts upload a CSV, validate every row, catch duplicates, and preview fees and balance before launch.",
+        "Compliance built into the UI: KYC/KYB through Sumsub, Chainalysis risk scores and blocks on invoices, Travel Rule details.",
+        "Admin: a merchant card with 10 tabs. Fee and limit groups are edited inline in the grid, and a conflict dialog resolves edits when two people change the same group."
       ],
       "outcome": [
-        "Lighthouse score, sub-1.5s mobile LCP",
-        "components in the shared library, used across 3 products — ~70% fewer visual inconsistencies"
+        "currencies and networks, balances live over WebSocket",
+        "Lighthouse score, mobile LCP under 1.5s"
       ],
       "gallery": [
         {
-          "alt": "GRX homepage hero section",
-          "caption": "Homepage — positioning GRX across payments, exchange, and tokenized assets"
+          "caption": "Merchant dashboard: payment volume, balances and latest transactions"
         },
         {
-          "alt": "GRX Pay marketing page hero",
-          "caption": "GRX Pay — the product landing page for the payments surface"
+          "caption": "Invoice with QR code and payment link"
         },
         {
-          "alt": "GRX Pay pricing page with tiered commission structure",
-          "caption": "GRX Pay pricing — tiered commission structure for merchants, from self-serve to custom volume deals"
+          "caption": "Payment page: amount, QR, wallet address and countdown"
         },
         {
-          "alt": "GRX Exchange coming-soon waitlist page",
-          "caption": "GRX Exchange — waitlist page for the retail trading product, shipped ahead of launch"
+          "caption": "Assets: balances per coin with deposit, withdraw and convert"
         },
         {
-          "alt": "About GRX page",
-          "caption": "About GRX — company positioning page"
+          "caption": "Transactions: every operation type with live status"
         },
         {
-          "alt": "GRX careers landing page",
-          "caption": "Careers — the hiring hub, content authored in Markdown and rendered at build time"
+          "caption": "Admin: platform volume, merchants to review, failed transactions"
+        },
+        {
+          "caption": "Admin: withdrawals across coins and networks"
         }
       ],
-      "librarySectionTitle": "{'@'}grx/ui — the component library",
+      "metaDescription": "GRX Pay, a crypto payment gateway: merchant dashboard, admin panel and hosted payment pages with live balances across 24+ currencies."
+    },
+    "grx-public-platform": {
+      "name": "GRG Public Platform",
+      "tag": "Public site · Fintech",
+      "description": "The public face of a Swiss fintech: marketing site, waitlists, careers and API docs, on one shared design system.",
+      "overview": "GRG builds payments (GRX Pay), a retail exchange and real-world asset tokenization. The public platform brings in merchants and leads, collects waitlists for products still in development, hires through Careers, and documents the API for integrators.",
+      "challenge": "One brand across two apps, the site and the docs, several products at different stages, and a fintech security bar. Analytics and reCAPTCHA still had to run under a strict content security policy.",
+      "approach": [
+        "Turborepo monorepo: the site, the docs portal and {'@'}grx/ui share one design system (components, form wrappers, 300+ icons, a theme on CSS variables), with no duplicated code.",
+        "Strict CSP with a nonce per request, generated in middleware together with i18n routing. Analytics and reCAPTCHA load only after cookie consent.",
+        "Forms run through Server Actions: one Zod schema on client and server, reCAPTCHA v3, and leads delivered straight to Slack.",
+        "Careers pulls jobs from the HR system with a static fallback, so job pages stay indexed even when the HR API is down.",
+        "API reference rendered from the OpenAPI spec. The search index and per-page share images are built at build time, so search works without a backend."
+      ],
+      "outcome": [
+        "components in {'@'}grx/ui, shared by 3 products",
+        "languages, detected automatically"
+      ],
+      "gallery": [
+        {
+          "caption": "Homepage: payments, exchange and tokenized assets in one ecosystem"
+        },
+        {
+          "caption": "GRX Pay landing page for merchants"
+        },
+        {
+          "caption": "Exchange: waitlist, shipped ahead of the product"
+        },
+        {
+          "caption": "Careers: open roles pulled from the HR system, with filters"
+        },
+        {
+          "caption": "Book a demo: one form schema on client and server, leads sent to Slack"
+        },
+        {
+          "caption": "API docs: endpoint reference rendered from the OpenAPI spec"
+        },
+        {
+          "caption": "API docs: search index built at build time, no backend"
+        }
+      ],
+      "librarySectionTitle": "{'@'}grx/ui, the component library",
       "library": [
         {
-          "alt": "Grid of over 200 cryptocurrency coin icons from the {'@'}grx/ui icon set",
-          "caption": "200+ coin icons — one of the icon sets shipped with the library"
+          "caption": "Design tokens: color, radius and shadow scales"
         },
         {
-          "alt": "Design tokens documentation page showing the color palette",
-          "caption": "Design tokens — color, radius, and shadow scales documented in the component library"
+          "caption": "Type scale with exact metrics"
         },
         {
-          "alt": "Typography scale documentation showing display text sizes",
-          "caption": "Typography scale — every display and text size, documented with its exact metrics"
+          "caption": "200+ coin icons from the icon set"
         },
         {
-          "alt": "Integration settings modal combining Modal, Switch, icon, and Typography components in a realistic composed screen",
-          "caption": "A real settings screen, built from the library — Modal, Switch, icons, and Typography working together"
+          "caption": "A settings screen composed from library parts"
         }
       ],
-      "metaDescription": "The public site and 40-component shared library I built for GRX, a Swiss crypto-fintech: Lighthouse 95+, sub-1.5s mobile LCP."
+      "metaDescription": "The public platform of a Swiss fintech: marketing site, waitlists, careers and API docs in 6 languages, on a shared 40-component library."
     },
     "enterprise-bi-dashboard": {
-      "name": "Enterprise BI Dashboard",
-      "tag": "Product · BI / Analytics",
-      "role": "Lead Fullstack Engineer — built from scratch",
-      "overview": "This project is under NDA — the client, product name, and any screenshots can't be shared. What follows is limited to my role and the technical approach: a business intelligence dashboard built for an enterprise Amazon seller doing $10M+ in GMV — revenue, order-level margin, and inventory rolled up across six figures of monthly orders, for an ops team that needed to catch margin erosion before it showed up in the P&L.",
-      "challenge": "The seller's order history ran past 100,000 rows and kept growing, and the team needed to filter, sort, and export any slice of it — by date, SKU, or status — without the browser tab stalling or the export timing out. A dashboard that only handled the first page of data wasn't going to survive contact with the actual dataset.",
+      "name": "Ledgerline",
+      "tag": "Product · Amazon P&L analytics",
+      "description": "Profit analytics for Amazon sellers: true net margin per order, product and account, across 22 marketplaces.",
+      "overview": "Ledgerline turns raw Amazon sales, fees, ad spend and returns into a real P&L. Buyers, team managers and admins each see the part they own.",
+      "challenge": "Amazon reports revenue, not profit. Fees, ads and returns land days later, in different time zones and currencies. The numbers had to be right over 100,000+ orders, and the tables fast enough to work in every day.",
       "approach": [
-        "Virtualized table rendering so only visible rows mount to the DOM, keeping scroll and filter interactions smooth over 100,000+ orders",
-        "Cursor-based pagination against the API instead of offset pagination, avoiding the slow-count problem on a table that size",
-        "Debounced, server-side filtering (date range, SKU, status) so the client never holds more than one page of results in memory",
-        "Client-side CSV/PDF export built as a background job with a progress state, rather than blocking the UI while the file streams down",
-        "Margin and revenue aggregates computed server-side and cached per period, so the dashboard renders instantly instead of summing rows in the browser"
+        "P&L math (fees, COGS, ads, returns, tax, ACoS, TACoS) lives in one pure domain package shared by server and client, so every screen computes margin the same way.",
+        "Built for scale from day one: virtualized tables and cursor pagination keep 100,000+ orders smooth to scroll, filter and export.",
+        "SP-API and Advertising API connected via OAuth across 22 marketplaces, with automatic token rotation and expiry alerts.",
+        "Imports map columns and log errors per row, then retry only the failed rows. Exports run in a background queue with live progress.",
+        "Alerts on price, Buy Box, rank, stock and returns, delivered over WebSocket, push and Slack.",
+        "Built on the shared EZCLOUD design system."
       ],
       "outcome": [
-        "initial render time via virtualized tables + cursor pagination",
-        "orders filterable and exportable without a client-side stall"
-      ],
-      "gallery": [],
-      "metaDescription": "NDA case study: a BI dashboard for Amazon sellers with $10M+ GMV — virtualized tables over 100,000+ orders, ~45% faster render."
-    },
-    "marketplace-investment-platform": {
-      "name": "Marketplace Investment Platform",
-      "tag": "Product · Investment platform",
-      "role": "Lead Fullstack Engineer",
-      "overview": "This project is under NDA — the client, product name, and any screenshots can't be shared. What follows is limited to my role and the technical approach: a platform that cross-references a seller's live Amazon marketplace metrics — pricing, competitor positioning, stock levels — against supplier CSV feeds in real time, flagging discrepancies before they turn into pricing errors or stockouts.",
-      "challenge": "Supplier data arrived as CSVs of wildly inconsistent quality — missing columns, malformed prices, duplicate SKUs — and had to be ingested, validated, and reconciled against live marketplace data without a bad file taking down the pipeline or silently corrupting the comparison.",
-      "approach": [
-        "A resilient CSV ingestion pipeline with per-row validation, so one malformed row degrades gracefully instead of failing the whole upload",
-        "Variance detection against a configurable tolerance band, flagging rows for manual review instead of auto-accepting supplier data at face value",
-        "Upload history with explicit Processed / Failed / Pending states, so a failed feed is visible immediately rather than discovered downstream",
-        "Live marketplace metrics polled on a short interval with an explicit \"last updated\" timestamp, keeping the live/stale distinction visible in the UI",
-        "Optimistic UI for review actions (ignore / flag), reconciled against the server response rather than blocking on a round trip"
-      ],
-      "outcome": [
-        "time-to-interactive via resilient CSV ingestion + validation pipeline"
-      ],
-      "gallery": [],
-      "metaDescription": "NDA case study: live Amazon marketplace metrics reconciled against supplier CSV feeds, with per-row validation and variance flags."
-    },
-    "air-quality-monitoring-dashboard": {
-      "name": "Air-Quality Monitoring Dashboard",
-      "tag": "Product · IoT / Environmental",
-      "role": "Lead Fullstack Engineer — designed and built solo, no dedicated designer",
-      "overview": "This project is under NDA — the client and product name can't be shared. What follows is limited to my role and the technical approach: an operator dashboard for a live network of 240 distributed air-quality sensors across Berlin, the tool staff used daily to catch failing sensors and read pollution trends in real time.",
-      "challenge": "The client ran the sensor network but had no way to see its state at a glance — failing sensors went unnoticed until pollution readings looked wrong, and there was no single view connecting a live sensor map to the historical trends staff needed to act on. Designed and built solo, with no design handoff to work from.",
-      "approach": [
-        "A sensor map with pollution-level color coding and a pollutant toggle, so operators read the whole network's state at a glance instead of drilling into each sensor individually",
-        "A watchlist with rolling trend sparklines, surfacing sensors trending toward failure before they actually dropped offline",
-        "A history view that zoomed from a single day out to a month on the same chart, instead of forcing a page reload to change range",
-        "Scoring and trend calculations kept walled off from the UI layer, so that logic could move server-side later without touching the interface",
-        "A real automated test suite covering cross-browser and accessibility behavior, with a layout usable from a wide desktop monitor down to a phone"
-      ],
-      "outcome": [
-        "distributed sensors monitored live across Berlin",
-        "test-suite coverage — cross-browser and accessibility checks included"
-      ],
-      "gallery": [],
-      "metaDescription": "NDA case study: an operator dashboard for 240 live air-quality sensors across Berlin — sensor map, watchlist, and trend history."
-    },
-    "donation-fundraising-platform": {
-      "name": "Donation & Fundraising Platform",
-      "tag": "Product · Nonprofit SaaS",
-      "role": "Lead Fullstack Engineer — designed and built solo, no dedicated designer",
-      "overview": "This project is under NDA — the client and product name can't be shared. What follows is limited to my role and the technical approach: a donation and fundraising platform for nonprofits, charities, and religious and educational institutions, built solo, start to finish, from the database schema to the storefront UI.",
-      "challenge": "The client needed a full donation platform, not just a checkout form: campaign pages, donor management, recurring giving, and partner-facing widgets, all shipped by a single engineer with no design handoff to work from.",
-      "approach": [
-        "Checkout and donation forms handling one-time and recurring gifts, with donor accounts to manage giving history",
-        "Campaign pages built as a self-serve surface staff could launch and edit without touching code",
-        "Donor management with segmentation, so outreach could target donors by giving history instead of blasting the full list",
-        "Embeddable donation widgets and white-label campaign landing pages, letting partner organizations run their own campaigns on the platform's rails",
-        "Automated tax-receipt generation with export to accounting tools, removing a manual bookkeeping step at year-end"
-      ],
-      "outcome": [
-        "donor-facing modules shipped — checkout, campaigns, donor CRM, recurring giving, embeddable widgets",
-        "built solo, frontend to backend, concept to production"
-      ],
-      "gallery": [],
-      "metaDescription": "NDA case study: a donation and fundraising platform for nonprofits, built solo — checkout, campaigns, donor CRM, recurring giving."
-    },
-    "grx-pay": {
-      "name": "GRX Pay — Crypto Payment Solution",
-      "tag": "Product · Crypto banking",
-      "role": "Senior Frontend Engineer — owned the frontend from requirements to release",
-      "overview": "GRX Pay is a multi-currency crypto banking product — merchants accept payments across 24+ cryptocurrencies, track balances, and move funds out via SEPA, with every transaction carrying AML and risk data. I worked on the merchant dashboard: balances, invoices, transactions, and team management.",
-      "challenge": "Balances and transaction state change mid-session — deposits settling, auto-conversions completing, mass payouts processing — and that state has to stay correct across several large, paginated tables (invoices, transactions, team members) without the dashboard feeling stale or the tables janking on every update.",
-      "approach": [
-        "A normalized client-side data layer, so a balance update in one view is reflected everywhere else it's rendered without a manual refetch",
-        "A dedicated async query layer for the state around real-time balance and transaction updates, keeping loading/stale/error states explicit instead of implicit",
-        "Paginated, cursor-based tables for invoices, transactions, and members rather than loading full result sets client-side",
-        "A shared role-based access layer — admin, merchant, and member views render different actions from the same components instead of forking screens per role",
-        "Flag-gated rollout for new payment features (auto-convert, fixed-sum invoices), so product could ship behind a flag and turn it on per merchant"
-      ],
-      "outcome": [
-        "currencies, real-time balances via WebSocket",
-        "transactions surfaced with AML / risk data"
+        "GMV across 30 seller accounts",
+        "orders, filtered and exported without a stall"
       ],
       "gallery": [
         {
-          "alt": "GRX Pay dashboard showing total balance, successful payments chart, and recent transactions",
-          "caption": "Dashboard — balances, payment volume, and the live transaction feed in one view"
+          "caption": "Dashboard: sales, net profit, margin and TACoS against the previous period"
         },
         {
-          "alt": "GRX Pay assets screen showing multi-currency balances",
-          "caption": "Assets — real-time multi-currency balances, held and available"
+          "caption": "Products: 58 metrics per item, column presets and inline cost editing"
         },
         {
-          "alt": "GRX Pay transactions table with filters for type, status, currency, and period",
-          "caption": "Transactions — filterable, paginated ledger across every currency"
-        },
-        {
-          "alt": "GRX Pay team members table with roles and confirmation status",
-          "caption": "Team management — role-based access across merchant admins"
-        },
-        {
-          "alt": "GRX Pay deposit dialog showing per-currency deposit methods and fees",
-          "caption": "Deposit — per-currency methods and fees, surfaced before the merchant commits"
-        },
-        {
-          "alt": "GRX Pay add member dialog with role picker and role descriptions",
-          "caption": "Add member — the same role system from {'@'}grx/rabac, explained inline"
-        },
-        {
-          "alt": "GRX Pay create invoice form with currency, amount, and auto-convert settings",
-          "caption": "Create invoice — fixed-sum invoices and auto-convert, gated behind FeatureScript"
+          "caption": "Settlements: every payout reconciled against sales, fees and refunds"
         }
       ],
-      "metaDescription": "GRX Pay merchant dashboard: real-time balances across 24+ cryptocurrencies, invoices, transactions, and role-based team management."
+      "metaDescription": "Ledgerline: profit analytics for Amazon sellers. Net margin per order, product and account across 22 marketplaces, $10M+ GMV and 100k+ orders."
+    },
+    "sourcely": {
+      "name": "Sourcely",
+      "tag": "Product · Wholesale sourcing",
+      "description": "Turns supplier price lists into buy decisions: matches each item to its Amazon listing and shows profit and ROI after fees.",
+      "overview": "Analysts upload a supplier price list. Sourcely matches it to Amazon listings, prices in every fee and moves each product through Review, Invest or Don't invest.",
+      "challenge": "Supplier files are large and messy, while Amazon and Keepa limit API calls. Decisions had to be fast, shared across the team and explainable: why a product was bought or skipped.",
+      "approach": [
+        "Price lists parsed in a Web Worker with an instant preview and resumable enrichment that stays inside Amazon and Keepa rate limits.",
+        "UPC-to-ASIN matching with 90-day Keepa history. FBA/FBM, referral and seasonal storage fees computed down to net ROI.",
+        "A rules engine (\"buy if…\") previews how many products a rule will hit before saving. Manual overrides keep a reversible link to the rule.",
+        "Kanban pipeline with drag and drop and keyboard control, synced live for the whole team.",
+        "Migrated about 150 components from Vue 2 to Vue 3 and TypeScript over 3 months, with no feature freeze.",
+        "Built on the shared EZCLOUD design system."
+      ],
+      "outcome": [
+        "products per catalog",
+        "analysts using it daily"
+      ],
+      "gallery": [
+        {
+          "caption": "Pipeline: every product in Review, Invest, Don't invest or Snoozed"
+        },
+        {
+          "caption": "Analyze: matched products ranked by profit and ROI, with a decision on each"
+        },
+        {
+          "caption": "Product: listing data, offers and 90-day sales rank"
+        },
+        {
+          "caption": "Imports: every supplier file with matched rows and errors"
+        },
+        {
+          "caption": "Marketing site: the landing page runs real product pieces"
+        }
+      ],
+      "metaDescription": "Sourcely turns supplier price lists into buy decisions: Amazon matching, profit and ROI after fees, over 100k-product catalogs for 10 analysts."
+    },
+    "dialtone": {
+      "name": "Dialtone",
+      "tag": "Product · Telecom retail / POS",
+      "description": "Phone top-up and device rental platform for retail counters, with customer, owner and staff interfaces.",
+      "overview": "Dialtone runs a phone shop's counter: number top-ups, scheduled auto-refills and device rentals. It covers the staff screen, the owner's finances and a customer account.",
+      "challenge": "Real money moves at a busy counter on unreliable networks. A dropped connection or a double click must never charge a card twice, and a failed refill must never get lost.",
+      "approach": [
+        "Card data is entered only in the payment provider's isolated fields. Idempotent payment requests stop double charges on retries or dropped connections.",
+        "PWA with offline mode: reference data cached locally, transactions queued and synced when the network returns.",
+        "Three-step refill wizard. Scheduled auto-refills with a failed-payment queue and one-click retry.",
+        "Six-step rental wizard with live device availability, deposits, tax, delivery, late fees and returns.",
+        "Withdrawals need a second person's approval. Receipts print straight to thermal printers, and barcode scanners identify SIMs.",
+        "Built on the shared EZCLOUD design system."
+      ],
+      "outcome": [
+        "API operations, built end to end",
+        "role-based interfaces"
+      ],
+      "gallery": [
+        {
+          "caption": "Today: customer search, quick actions and the \"Do now\" queue"
+        },
+        {
+          "caption": "Rentals: bookings, deposits, balances due and shipping status"
+        },
+        {
+          "caption": "Transactions: balances, failed refills and every refill with its status"
+        }
+      ],
+      "metaDescription": "Dialtone: phone top-ups, auto-refills and device rentals for retail counters. A 170-operation API, offline PWA and payments safe from double charges."
+    },
+    "ezcloud-design-system": {
+      "name": "EZCLOUD Design System",
+      "tag": "Design system · React + Vue",
+      "description": "One design system from Figma tokens, built for React and Vue and used across EZCLOUD products, each with its own theme.",
+      "overview": "EZCLOUD products run on two stacks. Instead of two diverging UIs, they share one design system: the same tokens and components in React and Vue, with a theme per product.",
+      "challenge": "Data-heavy products need the same hard pieces again and again: tables, filters, money and number formatting, file imports, charts, wizards. Built separately per product and per stack, they drift apart and get fixed three times.",
+      "approach": [
+        "Colors, type, radii and shadows come from Figma as tokens, so design and code use the same values and a theme is a set of tokens, not a fork.",
+        "20 ready blocks over the base components: app shell, data table with column presets, filter bar, date-range picker, file upload with column mapping, job progress, KPI card, 7 chart types, step wizard.",
+        "Loading, empty and error states are part of every component, not left to each screen.",
+        "A fix lands once and reaches every product: the step wizard was reworked in the shared component, and every app's wizards updated with it."
+      ],
+      "outcome": [
+        "components and blocks (54 base, 20 composed)",
+        "Storybook stories, documented on 78 pages"
+      ],
+      "gallery": [
+        {
+          "caption": "Color tokens from Figma: surfaces, brand and soft pairs"
+        },
+        {
+          "caption": "Data table: column presets, compact mode, totals row"
+        },
+        {
+          "caption": "File import: columns mapped automatically, with a preview"
+        },
+        {
+          "caption": "Waterfall chart: from sales to net profit"
+        },
+        {
+          "caption": "Type scale with tabular figures for money columns"
+        }
+      ],
+      "metaDescription": "One design system from Figma tokens for React and Vue: 74 components and blocks, 176 Storybook stories, a theme per EZCLOUD product."
+    },
+    "heirwell": {
+      "name": "Heirwell",
+      "tag": "Product · Online art auctions",
+      "description": "Timed online auctions for a US art dealer: live bidding with a timer per lot, invoices paid online, and consignments from owners.",
+      "overview": "Heirwell runs timed online sales for a US art dealer. Every lot has its own clock, bids arrive in real time, and the winner pays an invoice online. Owners can also offer works for sale.",
+      "challenge": "The final seconds decide the sale. Bids flood in at once, a late bid extends the clock, and every visitor's clock is a little off. The result has to stay consistent under that load, while the site loads fast, ranks in search and looks like a premium auction house.",
+      "approach": [
+        "Bids in the closing seconds go through a Redis lock and a Postgres transaction, so two bids can't both win. A late bid extends the lot, and when the timer ends the lot is re-read from the server.",
+        "Contract-first API: Orval turns the OpenAPI spec into types, TanStack Query hooks, Zod schemas and MSW mocks. The frontend runs ahead of the backend, and a contract change shows up as a type error.",
+        "Next.js Cache Components: server-rendered by default, with cached data and dynamic parts streamed through Suspense, so the first screen is fast and indexable.",
+        "Lot catalogue imports of tens of thousands of rows are streamed and processed in BullMQ workers, so a large upload never runs the API out of memory.",
+        "Stripe and PayPal webhooks pass through an idempotency table, so a duplicate webhook can't record a payment twice."
+      ],
+      "outcome": [
+        "end-to-end specs on desktop Chrome and mobile Safari, each with accessibility checks",
+        "ways to pay (Stripe, PayPal, bank transfer), with webhooks that never record a payment twice"
+      ],
+      "gallery": [
+        {
+          "caption": "Home: the current sale with a live countdown"
+        },
+        {
+          "caption": "Lot: bidding, estimate and the clock that extends on late bids"
+        },
+        {
+          "caption": "Auctions: upcoming, live and closed sales"
+        },
+        {
+          "caption": "Catalogue with filters kept in the URL"
+        },
+        {
+          "caption": "Sell: owners offer a work with photos"
+        }
+      ],
+      "metaDescription": "Heirwell: timed online art auctions with live bidding, a clock per lot, consistent results in the final seconds and invoices paid online."
+    },
+    "cryovault": {
+      "name": "Cryovault",
+      "tag": "Product · Health-tech / LIMS",
+      "description": "A lab system for a stem-cell biobank: batch tracking, electronic protocols with e-signatures, sample databases and a cryo-storage map, from intake to clinical release.",
+      "overview": "Cryovault follows every batch of stem cells through intake, processing, quality control, freezing and release. Lab staff fill electronic protocols, sign them, track samples in spreadsheet-like databases and see each vial's place in the cryo-storage.",
+      "challenge": "Clinical records leave no room for error. Formulas must compute themselves, a signed document must not change silently, and a vial's place in a dewar must match the database exactly while several people work at once.",
+      "approach": [
+        "One form engine renders all 17 protocols from backend-defined JSON schemas: typed fields, dynamic sub-tables, calculated formula fields, draft autosave and validation that jumps to the broken field.",
+        "Signatures are confirmed with a password. A fully signed form locks, and unlocking it requires a reason that goes into the audit log.",
+        "Lab databases are editable grids with keyboard navigation, undo and CSV export, plus server-side edit locks so two people can't overwrite each other.",
+        "The cryo-storage map shows dewars, racks and boxes down to a single cell, with search by vial code and moves that check the cell is free.",
+        "Certificates and batch passports render as A4 print layouts, filled from the batch's forms, with missing sources highlighted."
+      ],
+      "outcome": [
+        "clinical forms on one schema-driven form engine",
+        "user roles, each document signed and locked"
+      ],
+      "gallery": [
+        {
+          "caption": "Batch path: every batch by stage, with signatures awaiting the current user"
+        },
+        {
+          "caption": "Cryo-storage: dewars, racks and boxes down to a single cell"
+        },
+        {
+          "caption": "Protocol form with section progress and the signature panel"
+        },
+        {
+          "caption": "Clinical release: vials picked by patient weight and target dose"
+        },
+        {
+          "caption": "Quality certificate built from the batch's forms, ready to print"
+        }
+      ],
+      "metaDescription": "Cryovault: a lab system for a stem-cell biobank. Electronic protocols with e-signatures, sample databases and a cryo-storage map."
     }
   },
   "personalProjects": {
-    "seikatsu": {
-      "name": "seikatsu — Personal Super App",
-      "tag": "Personal project · Multi-app platform",
-      "role": "Solo — architecture, backend, and UI, end to end",
-      "overview": "Off-the-shelf apps are too rigid for how I actually track my life, so seikatsu is a self-built alternative: one authenticated shell with independent mini-apps underneath — a finance tracker, a kanban board, a books log, with a habit tracker and a wishlist manager next in line. Public sign-in is open at seikatsu.danylomorhun.com.",
-      "challenge": "Each mini-app is a real, full-featured product in its own right — the finance tracker alone does double-entry bookkeeping with multi-currency support. Building several of those, with more planned, without the codebase collapsing into an unmaintainable pile meant the shared infrastructure (auth, workspace, design system) had to be genuinely reusable, not just copy-pasted between apps.",
+    "wellbotany": {
+      "name": "Well Botany",
+      "tag": "Live store · E-commerce, Poland",
+      "description": "A live online shop for herbs, supplements and organic food, which I build and run as the sole developer: storefront, checkout, customer accounts and an admin panel.",
       "approach": [
-        "A shared internal library layer split from the apps themselves, so every mini-app draws from one data layer and one component library instead of duplicating either",
-        "Each mini-app lives as its own self-contained slice — actions, components, and logic kept together — so the finance tracker, the kanban board, and the books log evolve independently without stepping on each other",
-        "The finance tracker is a real double-entry ledger: every transaction posts balanced entries across accounts, not a flat amount-plus-category row, with multi-currency entries reconciled against cached historical exchange rates",
-        "The kanban board's drag-reorder uses a positioning scheme that never requires rewriting sibling rows, so reordering one card stays a single write",
-        "One workspace model and one sign-in system shared across every app — adding a new mini-app is a route and a slice, not a new auth system"
+        "Checkout runs in one database transaction. Conditional writes for stock and coupon limits mean the shop can't sell more than it has.",
+        "Postgres triggers record every price change. Each crossed-out price is counted from the lowest price of the last 30 days (EU Omnibus).",
+        "Stock syncs from the shop's Subiekt GT through xylem, a Windows service written in C#. It sends signed changes every 3 minutes and refuses broken snapshots.",
+        "The admin flags products missing data the law requires on a label: ingredients, warnings, serving size, photos.",
+        "CI runs every pull request on a fresh Neon branch. Nightly deploys migrate only on change, smoke-test and roll back on failure."
       ],
       "outcome": [
-        "apps shipped — finance, kanban, and books — with habits and a wishlist next",
-        "sign-in, workspace, and design system shared across every app"
+        "products, each with a full ingredient list",
+        "stock sync from the shop's ERP, through a Windows service in C#"
+      ],
+      "outcomeValues": [
+        "1,300+",
+        "3 min"
       ],
       "gallery": [
         {
-          "alt": "Seiryu kanban board with columns Backlog, In Progress, Review, Done",
-          "caption": "Seiryu — kanban board with smooth drag-reorder"
+          "caption": "Homepage: seasonal offers in the hero slider"
         },
         {
-          "alt": "seikatsu home screen showing the app grid — Kuroji, Seiryu, Tsundoku, and apps coming soon",
-          "caption": "Home — one shell, every mini-app one click away"
+          "caption": "Hero slider: each slide links to its own category"
         },
         {
-          "alt": "Kuroji finance dashboard showing net worth, income vs expenses, and category breakdown",
-          "caption": "Kuroji — double-entry finance tracker with multi-currency accounts"
+          "caption": "Product page: variants, unit price and delivery options"
         },
         {
-          "alt": "Tsundoku library grid showing books with real cover art, reading status, and ratings",
-          "caption": "Tsundoku — reading tracker with shelves, sessions, and ratings"
+          "caption": "Category with filters, unit prices and stock"
+        },
+        {
+          "caption": "Gift set builder: pick 3 to 8 products, the price updates as you go"
+        },
+        {
+          "caption": "Checkout: pickup points and couriers with live prices"
+        },
+        {
+          "caption": "Admin: products missing data the law requires on a label"
         }
       ],
-      "outcomeValues": [
-        "3",
-        "1"
-      ],
-      "metaDescription": "seikatsu: a self-built super app — one shell with a double-entry finance tracker, a kanban board, and a reading log."
+      "metaDescription": "Well Botany, a live Polish shop for herbs and supplements: storefront, checkout, accounts and admin, built and run by one developer."
     },
-    "twoje-zdrowie": {
-      "name": "WellBotany — Health & Supplements Store",
-      "tag": "Personal project · E-commerce · Polish market",
-      "role": "Solo — designed and built end to end, backend and frontend",
-      "overview": "A production Polish-market e-commerce store for supplements, vitamins, and bio products, live at wellbotany.pl — designed and built solo end to end, from the database schema through to the storefront UI. Wired to real Polish commerce rails: online payment, parcel-locker and courier shipping, and a hub syncing stock and orders with a major marketplace.",
-      "challenge": "Health-product e-commerce in Poland carries constraints most storefronts don't: prices need exact arithmetic (no float rounding at checkout), product copy has to satisfy local health-claim and labeling rules across three languages, and the brand had to land as \"trusted pharmacist\" — not generic SaaS gradients, not clinical hospital-white, not greenwashed wellness cliché. All three had to be solved before the first product page shipped.",
+    "seikatsu": {
+      "name": "seikatsu",
+      "tag": "Personal app · 7 apps, one shell",
+      "description": "My own app for money, tasks, books, habits, job search, car care and a wishlist. Installable, works offline, with an MCP server for AI assistants.",
       "approach": [
-        "Every price and tax figure stored as a whole number of grosz (the smallest Polish currency unit) rather than a decimal, so checkout math is exact by construction instead of rounded after the fact",
-        "A consistent feature-sliced structure across the codebase, with every mutation going through a validated server-side action rather than a client-trusted form post",
-        "One integration hub sits between the storefront and the marketplace/courier network, so the storefront never talks to those external systems directly and stays decoupled from their sync and label generation",
-        "Product data carries structured nutrition facts, allergen info, and health warnings as machine-readable fields, so regulatory copy renders consistently across Polish, English, and Ukrainian",
-        "Design system built against explicit anti-references written down before any UI shipped — no SaaS-startup gradients, no clinical white-and-blue, no greenwashing leaf icons — landing on a warm forest-green \"expert but approachable\" register instead"
+        "Finance is double-entry: every transaction posts entries that sum to zero, in one database transaction, with exchange rates cached per day.",
+        "PSD2 bank sync and statement imports share one pipeline that skips records already imported.",
+        "Offline changes are queued and sent again when the connection returns, and each one is safe to send twice.",
+        "Server components read the database directly and changes go through server actions. No client cache; UI state lives in the URL.",
+        "Nightly encrypted backups are restored into a temporary Postgres to prove they work."
       ],
       "outcome": [
-        "float-rounding risk — every price stored as an exact integer",
-        "integration hub for payment, courier, and marketplace sync"
+        "apps on one login, database and deploy",
+        "MCP tools that give AI assistants the same data"
       ],
       "gallery": [
         {
-          "alt": "WellBotany homepage with hero banner, trust strip, and category grid",
-          "caption": "Homepage — trust signals up front, category grid seeded from the product catalog"
+          "caption": "Apps: each one shows its key number at a glance"
         },
         {
-          "alt": "WellBotany product catalog with filters by category, brand, and dietary tag",
-          "caption": "Catalog — filterable by category, brand, and dietary claim"
+          "caption": "Today: tasks, habits and what is in progress, across every app"
         },
         {
-          "alt": "WellBotany product detail page for TestoGainer with price, benefits, and shipping info",
-          "caption": "Product page — benefits, pricing, and shipping details"
+          "caption": "Kuroji: double-entry finance with budgets and monthly flow"
+        },
+        {
+          "caption": "Seiryu: kanban with labels, checklists and due dates"
+        },
+        {
+          "caption": "Tsundoku: reading progress, the pile and the year so far"
+        },
+        {
+          "caption": "Keizoku: habits with streaks and a year of check-ins"
+        },
+        {
+          "caption": "Kyuu: where job applications stop, by stage and by source"
         }
       ],
-      "outcomeValues": [
-        "0",
-        "1"
+      "metaDescription": "seikatsu: my own app for money, tasks, books, habits, job search, car care and a wishlist. 7 apps in one shell, offline-ready, with an MCP server."
+    },
+    "unitbot": {
+      "name": "unitbot",
+      "tag": "AI agent · Developer tooling",
+      "description": "A Claude Code agent that writes unit tests for each pull request, checks them with coverage and mutation testing, and opens them as a separate PR without touching production code.",
+      "approach": [
+        "Changed files are classified without an LLM first. With nothing to test, the agent is not called at all.",
+        "Tests are checked with patch coverage and mutation testing, not only \"they pass\".",
+        "The agent's patch is verified again from scratch, with no secrets and with tooling from the base branch.",
+        "Hooks block writes outside test files and shell commands outside an allowlist.",
+        "A report is posted as one comment on the pull request. When existing tests fail, it reports a regression instead of rewriting them."
       ],
-      "metaDescription": "WellBotany: a Polish supplements store built solo end to end — exact integer pricing, payments, couriers, and marketplace sync."
+      "outcome": [
+        "CI jobs, and only one of them holds the LLM key"
+      ],
+      "gallery": [
+        {
+          "caption": "Report: a \"refactor\" that changed behaviour, caught as a regression"
+        },
+        {
+          "caption": "The workflow: resolve, detect, generate, verify, publish"
+        },
+        {
+          "caption": "Tests the agent wrote, opened as their own pull request"
+        }
+      ],
+      "metaDescription": "unitbot: a Claude Code agent that writes unit tests for every pull request, checks them with mutation testing and opens them as a separate PR."
+    },
+    "aerolit": {
+      "name": "aerolit",
+      "tag": "IoT dashboard · Vue",
+      "description": "An operator dashboard for 240 air-quality sensors in Berlin, with key decisions written up as ADRs.",
+      "approach": [
+        "The domain layer (AQI, trends, KPIs) is pure functions with no dependencies, enforced by ESLint and checked against figures computed separately in Python.",
+        "Cursor pagination in both directions. Search switches the table to a mode that covers the whole network and says so.",
+        "Light and dark themes from one token set, including map tiles and charts. Works from 2560px down to a phone, with nothing hover-only.",
+        "End-to-end tests at three widths, with axe checks in both themes."
+      ],
+      "outcome": [
+        "sensors on a live map",
+        "test layers, from unit tests to pixel baselines"
+      ],
+      "gallery": [
+        {
+          "caption": "Dashboard: KPIs, sensor map and tracked districts"
+        },
+        {
+          "caption": "Dark theme from the same tokens, map included"
+        },
+        {
+          "caption": "Sensor list with sorting and cursor pagination"
+        }
+      ],
+      "metaDescription": "aerolit: an operator dashboard for 240 air-quality sensors in Berlin, built in Vue with key decisions written up as ADRs."
+    },
+    "hisashi": {
+      "name": "hisashi",
+      "tag": "macOS app · Swift",
+      "description": "Turns the MacBook notch into a live panel for music, today's calendar, notifications, a file shelf, Claude Code sessions and CI runs.",
+      "approach": [
+        "State lives in one pure reducer; the shell only feeds it events. That is also how these screenshots were made: the real views, rendered over demo state.",
+        "Claude Code hooks stream over a unix socket: the notch shows the current step and elapsed time, and single-choice questions can be answered from it.",
+        "GitHub Actions runs from every signed-in account. Failures stay with a rerun button.",
+        "The equalizer reads system audio levels through a Core Audio tap and an FFT. Nothing is recorded."
+      ],
+      "outcome": [
+        "live feeds in one notch: music, calendar, notifications, Claude Code, CI"
+      ],
+      "gallery": [
+        {
+          "caption": "Today: the day's events with a join button, weather, battery and a timer"
+        },
+        {
+          "caption": "Status: Claude Code sessions and CI runs in one feed"
+        },
+        {
+          "caption": "Now playing from any player, with controls"
+        }
+      ],
+      "metaDescription": "hisashi: a macOS app in Swift that turns the MacBook notch into a live panel for music, calendar, notifications, Claude Code and CI."
     },
     "danylomorhun-com": {
-      "name": "danylomorhun.com — This Site",
-      "tag": "Personal project · Portfolio",
-      "role": "Solo — design and build",
-      "overview": "This site — rebuilt from scratch to do one job well: let someone hiring a fullstack engineer find me, see what I've built, and reach out, in under a minute.",
-      "challenge": "A recruiter or hiring manager scanning applications gives a site seconds, often on a phone, before deciding whether to open the resume or move on. The job was ruthless prioritization — surface real projects and real outcomes immediately, keep every section pointing at the same next step, and stay out of the way of that decision rather than trying to impress with the site itself.",
+      "name": "danylomorhun.com",
+      "tag": "Portfolio · Nuxt",
+      "description": "This site: prerendered in 3 languages, with a WebGL hero, per-page share images and a blog.",
       "approach": [
-        "One clear path through the content — hero, work, personal projects, experience, about — each section earning the scroll to the next instead of competing for attention",
-        "Every section ends in a way forward — a project to open, the next section, or the contact block — and the contact button stays in the nav on every page",
-        "Real project outcomes and real screenshots throughout, including NDA-scoped client work described honestly by its technical decisions without naming the client",
-        "Fast by default — every page is prerendered to static HTML and served from the edge, so the content is readable the moment it arrives, before any JavaScript runs",
-        "Built to grow — every project, case study, and role lives in a typed data file, so adding one is a content change, not a redesign"
+        "Every page and locale is prerendered and served from the CDN, each with its own canonical URL, hreflang, JSON-LD and sitemap entry.",
+        "The hero is a three.js scene with custom shaders. It starts once the page is idle, is skipped with reduced motion, Save-Data or low memory, runs at 30 fps at most and recovers from a lost WebGL context.",
+        "Each page gets its own share image per locale, rendered at build time.",
+        "The blog is a small Nuxt module: Markdown read at build time, code highlighted with Shiki, scheduled posts published by a daily workflow.",
+        "CI runs lint, type check, unit tests and Playwright with axe accessibility checks on every pull request."
       ],
       "outcome": [
-        "prerendered pages, served as static HTML",
-        "languages, each with its own share image"
+        "LCP on Lighthouse's throttled mobile profile",
+        "Lighthouse accessibility, best practices and SEO"
       ],
       "gallery": [
         {
-          "alt": "danylomorhun.com homepage hero section",
-          "caption": "Homepage — the hero section you just scrolled past"
+          "caption": "Hero: a three.js scene that starts only after the page is idle"
         },
         {
-          "alt": "danylomorhun.com work section listing case studies with outcomes",
-          "caption": "Work — real projects and outcomes, one scroll down from the hero"
+          "caption": "Work: each case with company, dates and its key numbers"
+        },
+        {
+          "caption": "Case page: stack, overview and approach"
+        },
+        {
+          "caption": "Personal projects in the light theme"
+        },
+        {
+          "caption": "Experience in Ukrainian: every page exists in 3 languages"
+        },
+        {
+          "caption": "Blog post, rendered from Markdown at build time"
+        },
+        {
+          "caption": "Lighthouse on desktop: 100 in every category, LCP 0.6 s"
+        },
+        {
+          "caption": "Lighthouse on mobile for a case page: 100 in every category, LCP 0.8 s"
         }
       ],
+      "metaDescription": "danylomorhun.com: this portfolio, prerendered with Nuxt in 3 languages, with a WebGL hero, per-page share images and a blog.",
       "outcomeValues": [
-        "30+",
-        "3"
-      ],
-      "metaDescription": "How this portfolio is built: Nuxt with prerendered pages, a WebGL hero on a tight budget, three languages, and per-page share images."
-    }
-  },
-  "projects": {
-    "grx-public-platform": {
-      "description": "Public-facing website for a Swiss crypto-fintech platform, built end to end from design handoff to production — including the shared component library behind it."
-    },
-    "grx-pay": {
-      "description": "Multi-currency crypto banking product supporting 24+ cryptocurrencies, with real-time balance tracking and transaction ledgers."
-    },
-    "enterprise-bi-dashboard": {
-      "description": "Business intelligence dashboard for enterprise Amazon sellers — 30 accounts with $10M+ GMV and 100,000+ orders."
-    },
-    "marketplace-investment-platform": {
-      "description": "Cross-references live Amazon marketplace metrics against supplier data feeds in real time."
-    },
-    "air-quality-monitoring-dashboard": {
-      "description": "Operator dashboard for a live network of 240 distributed air-quality sensors, monitoring pollution trends in real time."
-    },
-    "donation-fundraising-platform": {
-      "description": "Donation and fundraising platform for nonprofits — campaigns, recurring giving, and donor management, built solo."
+        "0.8 s",
+        "100"
+      ]
     }
   },
   "dates": {
@@ -437,6 +631,6 @@
     "backHome": "Back to home"
   },
   "og": {
-    "tagline": "Fullstack Engineer — Fintech, Business Intelligence"
+    "tagline": "Fullstack Engineer · Fintech, Business Intelligence"
   }
 }

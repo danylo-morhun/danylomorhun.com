@@ -7,7 +7,7 @@ withDefaults(defineProps<{
 }>(), {
   subtitle: '',
   tag: 'danylomorhun.com',
-  tagline: 'Fullstack Engineer — Fintech, Business Intelligence',
+  tagline: 'Fullstack Engineer · Fintech, Business Intelligence',
 })
 </script>
 

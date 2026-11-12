@@ -96,7 +96,7 @@ defineExpose({ open })
           <span
             v-if="hasMany"
             class="whitespace-nowrap"
-          >— {{ index + 1 }} / {{ images.length }}</span>
+          >· {{ index + 1 }} / {{ images.length }}</span>
         </figcaption>
       </figure>
 

@@ -49,16 +49,16 @@ describe('OG image generation (Satori)', () => {
     const copy = locale(code)
 
     it(`renders every case study and personal project in ${code} with real glyphs`, async () => {
-      for (const { slug } of caseStudies) {
+      for (const { slug, company } of caseStudies) {
         const study = copy.caseStudies[slug]
-        const { svg, missing } = await renderOgImageSvg({ title: study.name, subtitle: study.role, tag: study.tag, tagline: copy.og.tagline })
+        const { svg, missing } = await renderOgImageSvg({ title: study.name, subtitle: company, tag: study.tag, tagline: copy.og.tagline })
         expect(svg).toContain('<svg')
         expect(missing).toBe('')
       }
 
       for (const { slug } of personalProjects) {
         const project = copy.personalProjects[slug]
-        const { missing } = await renderOgImageSvg({ title: project.name, subtitle: project.role, tag: project.tag, tagline: copy.og.tagline })
+        const { missing } = await renderOgImageSvg({ title: project.name, tag: project.tag, tagline: copy.og.tagline })
         expect(missing).toBe('')
       }
     })

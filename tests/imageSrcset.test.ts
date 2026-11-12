@@ -10,8 +10,8 @@ const publicFile = (src: string) => join(__dirname, '../public', src)
 
 describe('imageSrcset', () => {
   it('lists smaller variants before the original', () => {
-    expect(imageSrcset('/case-studies/grx-pay-dashboard.webp')).toBe(
-      '/case-studies/grx-pay-dashboard-480w.webp 480w, /case-studies/grx-pay-dashboard-960w.webp 960w, /case-studies/grx-pay-dashboard.webp 1440w',
+    expect(imageSrcset('/case-studies/grx-pay-assets.webp')).toBe(
+      '/case-studies/grx-pay-assets-480w.webp 480w, /case-studies/grx-pay-assets-960w.webp 960w, /case-studies/grx-pay-assets-1440w.webp 1440w, /case-studies/grx-pay-assets.webp 2880w',
     )
   })
 

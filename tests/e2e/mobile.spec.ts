@@ -27,11 +27,11 @@ test('the mobile menu reaches every section', async ({ page }) => {
 
 test('the lightbox can be paged on a phone', async ({ page }) => {
   await gotoHydrated(page, '/work/grx-pay')
-  await page.getByRole('button', { name: /^Enlarge: Dashboard/ }).click()
+  await page.getByRole('button', { name: /^Enlarge: Merchant dashboard/ }).click()
   const dialog = page.getByRole('dialog')
   await expect(dialog.getByRole('button', { name: 'Next image' })).toBeVisible()
   await dialog.getByRole('button', { name: 'Next image' }).click()
-  await expect(dialog).toHaveAccessibleName(/Assets/)
+  await expect(dialog).toHaveAccessibleName(/Invoice/)
 })
 
 test('controls are easy to tap', async ({ page }) => {

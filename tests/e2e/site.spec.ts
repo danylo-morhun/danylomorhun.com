@@ -91,11 +91,11 @@ test('nav link scrolls to the work section on the home page', async ({ page }) =
 
 test('the lightbox is a named, focus-trapping dialog that restores focus', async ({ page }) => {
   await gotoHydrated(page, '/work/grx-pay')
-  const opener = page.getByRole('button', { name: /^Enlarge: Dashboard/ })
+  const opener = page.getByRole('button', { name: /^Enlarge: Merchant dashboard/ })
   await opener.click()
 
   const dialog = page.getByRole('dialog')
-  await expect(dialog).toHaveAccessibleName(/Dashboard/)
+  await expect(dialog).toHaveAccessibleName(/Merchant dashboard/)
 
   // A modal <dialog> makes the page behind it inert: Tab cycles through the
   // dialog and the browser UI, never back into the page.
@@ -108,7 +108,7 @@ test('the lightbox is a named, focus-trapping dialog that restores focus', async
   }
 
   await page.keyboard.press('ArrowRight')
-  await expect(dialog).toHaveAccessibleName(/Assets/)
+  await expect(dialog).toHaveAccessibleName(/Invoice/)
 
   const scrollBefore = await page.evaluate(() => scrollY)
   await page.mouse.wheel(0, 600)
@@ -149,7 +149,7 @@ test('gallery images load a size that fits the slot', async ({ browser }) => {
 
 test('Ukrainian and Polish pages show localized dates', async ({ page }) => {
   await page.goto('/uk')
-  await expect(page.locator('#experience')).toContainText('лют. 2026 — серп. 2026')
+  await expect(page.locator('#experience')).toContainText('лют. 2026 – серп. 2026')
   await page.goto('/pl/work/grx-pay')
   await expect(page.locator('article header')).toContainText('lut 2026 – sie 2026')
 })
@@ -180,7 +180,7 @@ for (const colorScheme of ['dark', 'light'] as const) {
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
     await gotoHydrated(page, '/work/grx-pay')
-    await page.getByRole('button', { name: /^Enlarge: Dashboard/ }).click()
+    await page.getByRole('button', { name: /^Enlarge: Merchant dashboard/ }).click()
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
     await gotoHydrated(page, '/nope')
@@ -203,6 +203,18 @@ test('the old resume url redirects permanently', async ({ request }) => {
   const response = await request.get('/resume.pdf', { maxRedirects: 0 })
   expect(response.status()).toBe(301)
   expect(response.headers().location).toBe('/Danylo_Morhun_Fullstack_Engineer_Resume.pdf')
+})
+
+test('moved and retired project urls redirect permanently', async ({ request }) => {
+  for (const [from, to] of [
+    ['/lab/twoje-zdrowie', '/lab/wellbotany'],
+    ['/uk/work/air-quality-monitoring-dashboard', '/uk/lab/aerolit'],
+    ['/pl/work/donation-fundraising-platform', '/pl#work'],
+  ]) {
+    const response = await request.get(from!, { maxRedirects: 0 })
+    expect(response.status(), from).toBe(301)
+    expect(response.headers().location, from).toBe(to)
+  }
 })
 
 test('non-canonical urls point at the canonical page', async ({ request }) => {

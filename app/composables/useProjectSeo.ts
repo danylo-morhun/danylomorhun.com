@@ -6,7 +6,7 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>) {
   const localePath = useLocalePath()
   const siteConfig = useSiteConfig()
 
-  const title = computed(() => `${project.value.name} — Danylo Morhun`)
+  const title = computed(() => `${project.value.name} · Danylo Morhun`)
 
   useSeoMeta({
     title,
@@ -22,7 +22,7 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>) {
 
   defineOgImage('Beams', {
     title: () => project.value.name,
-    subtitle: () => project.value.role,
+    subtitle: () => project.value.meta || undefined,
     tag: () => project.value.tag,
     tagline: () => t('og.tagline'),
   })

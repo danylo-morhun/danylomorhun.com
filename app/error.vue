@@ -10,7 +10,7 @@ const isNotFound = computed(() => props.error.statusCode === 404)
 const heading = computed(() => t(isNotFound.value ? 'error.notFoundTitle' : 'error.genericTitle'))
 
 useSeoMeta({
-  title: () => `${heading.value} — Danylo Morhun`,
+  title: () => `${heading.value} · Danylo Morhun`,
   robots: 'noindex',
 })
 

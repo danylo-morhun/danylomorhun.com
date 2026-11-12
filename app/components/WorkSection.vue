@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useProjects } from '~/composables/useProjects'
+import { useCaseStudies } from '~/composables/useCaseStudies'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-const projects = useProjects()
+const projects = useCaseStudies()
 const list = ref<HTMLElement | null>(null)
 
 useReveal(list)
@@ -43,7 +43,12 @@ useReveal(list)
                 class="mt-1 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
               />
             </h3>
-            <p class="mt-2 text-sm text-muted">{{ project.role }}</p>
+            <p
+              v-if="project.meta"
+              class="mt-2 text-sm text-muted"
+            >
+              {{ project.meta }}
+            </p>
           </div>
 
           <p class="text-base leading-relaxed text-muted lg:col-span-4">
@@ -52,7 +57,7 @@ useReveal(list)
 
           <div class="flex flex-row gap-8 lg:col-span-3 lg:flex-col lg:gap-4">
             <div
-              v-for="metric in project.metrics"
+              v-for="metric in project.outcome"
               :key="metric.label"
             >
               <p class="text-2xl font-semibold text-ink">{{ metric.value }}</p>

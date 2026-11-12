@@ -3,7 +3,7 @@ export const blog = {
   path: '/blog',
   feedPath: '/blog/rss.xml',
   name: 'Blog',
-  title: 'Blog — Danylo Morhun',
+  title: 'Blog · Danylo Morhun',
   heading: 'Writing',
   description: 'Notes from building web products: bugs worth explaining, architecture decisions, and what I learned shipping them.',
   backToBlog: 'All posts',
