@@ -11,10 +11,6 @@ function collectErrors(page: Page) {
   return errors
 }
 
-async function waitForIntro(page: Page) {
-  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 3_000 })
-}
-
 for (const colorScheme of ['dark', 'light'] as const) {
   for (const path of ['/', '/uk', '/pl', '/work/grx-pay', '/uk/lab/seikatsu', '/blog', '/blog/webgl-context-lost-for-good']) {
     test(`${path} renders without errors or hydration mismatches (${colorScheme})`, async ({ page }) => {
@@ -29,31 +25,19 @@ for (const colorScheme of ['dark', 'light'] as const) {
   }
 }
 
-test('the intro lifts quickly and only plays on the home page', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 5_000 })
-  // Measured from navigation start: 800ms intro + 300ms fade after hydration,
-  // and never later than the 2.5s CSS failsafe.
-  expect(await page.evaluate(() => performance.now())).toBeLessThan(2_500 + 1_000)
-
-  await page.goto('/work/grx-pay')
-  await expect(page.locator('.app-loader')).toHaveCount(0)
-})
-
 test('content is readable without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false })
   const page = await context.newPage()
   await page.goto('/')
-  await expect(page.locator('.app-loader')).toBeHidden()
   await expect(page.locator('h1')).toBeVisible()
   await context.close()
 })
 
-test('reduced motion skips the intro entirely', async ({ page }) => {
+test('reduced motion turns off the hero entrance', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
-  await expect(page.locator('.app-loader')).toBeHidden()
   await expect(page.locator('h1')).toBeInViewport()
+  expect(await page.locator('.word-reveal').first().evaluate(el => getComputedStyle(el).animationName)).toBe('none')
 })
 
 test('the theme toggle shows the icon for the theme it switches to', async ({ page }) => {
@@ -83,7 +67,6 @@ test('nav links on a case study lead to the home page sections', async ({ page }
 
 test('nav link scrolls to the work section on the home page', async ({ page }) => {
   await gotoHydrated(page, '/')
-  await waitForIntro(page)
   await page.locator('nav').getByRole('link', { name: 'Work' }).click()
   await expect(page).toHaveURL(/#work$/)
   await expect(page.locator('#work')).toBeInViewport()

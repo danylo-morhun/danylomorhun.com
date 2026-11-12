@@ -104,6 +104,14 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
+  hooks: {
+    // The only lazy chunk prefetched on load is three.js (~530 KB) for the hero beams,
+    // which start after the page is idle anyway; fetching it early competes with LCP.
+    'build:manifest': (manifest) => {
+      for (const chunk of Object.values(manifest)) chunk.prefetch = false
+    },
+  },
+
   eslint: {
     config: { stylistic: true },
   },

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { gsap } from 'gsap'
-import { computed, defineAsyncComponent, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref } from 'vue'
 import { useSite } from '~/composables/useSite'
+import { heroPoster } from '~/data/hero-poster'
 
 const BeamsBackground = defineAsyncComponent(() => import('~/components/BeamsBackground.vue'))
 
@@ -9,34 +9,7 @@ const { t, tm, rt } = useI18n()
 const site = useSite()
 const headlineWords = computed(() => (tm('hero.headline') as unknown[]).map(entry => rt(entry as never)))
 
-const heroRef = ref<HTMLElement | null>(null)
-const subtext = ref<HTMLElement | null>(null)
-const ctas = ref<HTMLElement | null>(null)
-
-const nuxtApp = useNuxtApp()
-const introDone = useHeroIntro()
 const showBeams = ref(false)
-
-let hasStarted = false
-
-function startEntrance() {
-  if (hasStarted) return
-  hasStarted = true
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-  const words = heroRef.value?.querySelectorAll<HTMLElement>('.word-reveal') ?? []
-
-  gsap.timeline()
-    .from(words, {
-      yPercent: 110,
-      duration: 0.85,
-      ease: 'expo.out',
-      stagger: 0.045,
-    })
-    .from(subtext.value, { opacity: 0, y: 20, duration: 0.6, ease: 'expo.out' }, '-=0.5')
-    .from(ctas.value, { opacity: 0, y: 20, duration: 0.6, ease: 'expo.out' }, '-=0.4')
-}
 
 function canAffordBeams() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
@@ -44,24 +17,35 @@ function canAffordBeams() {
     connection?: { saveData?: boolean }
     deviceMemory?: number
   }
-  return !connection?.saveData && (deviceMemory ?? 8) >= 4
+  return !connection?.saveData && (deviceMemory ?? 8) >= 4 && supportsWebGL2()
 }
 
-// On a first load the intro lifts first, so the entrance is actually seen.
-// On a client-side return to home there's no intro to wait for.
-const waitsForIntro = Boolean(nuxtApp.isHydrating) && !introDone.value
+// three.js needs WebGL2. Without it the inlined poster stays, instead of a renderer error.
+function supportsWebGL2() {
+  try {
+    const gl = document.createElement('canvas').getContext('webgl2')
+    gl?.getExtension('WEBGL_lose_context')?.loseContext()
+    return Boolean(gl)
+  }
+  catch {
+    return false
+  }
+}
 
-watch(introDone, (done) => {
-  if (done) startEntrance()
-})
+// The beams are decoration: they wait until the page has loaded and the main thread is idle.
+function whenIdle(callback: () => void) {
+  const schedule = () => 'requestIdleCallback' in window
+    ? window.requestIdleCallback(callback, { timeout: 2000 })
+    : setTimeout(callback, 300)
+  if (document.readyState === 'complete') schedule()
+  else window.addEventListener('load', schedule, { once: true })
+}
 
 onMounted(() => {
-  if (!waitsForIntro) startEntrance()
-
   if (canAffordBeams()) {
-    setTimeout(() => {
+    whenIdle(() => {
       showBeams.value = true
-    }, 800)
+    })
   }
 })
 </script>
@@ -69,9 +53,13 @@ onMounted(() => {
 <template>
   <section
     id="hero"
-    ref="heroRef"
     class="relative isolate flex min-h-dvh items-center justify-center overflow-hidden"
   >
+    <div
+      class="hero-poster absolute inset-0 -z-30"
+      :style="{ '--poster': `url(${heroPoster.landscape})`, '--poster-portrait': `url(${heroPoster.portrait})` }"
+      aria-hidden="true"
+    />
     <ClientOnly>
       <div
         v-if="showBeams"
@@ -98,22 +86,23 @@ onMounted(() => {
             :key="wi"
           >
             <span class="shrink-0 overflow-hidden pb-1">
-              <span class="word-reveal inline-block whitespace-nowrap">{{ word }}</span>
+              <span
+                class="word-reveal inline-block whitespace-nowrap"
+                :style="{ '--i': wi }"
+              >{{ word }}</span>
             </span>{{ wi < headlineWords.length - 1 ? ' ' : '' }}
           </template>
         </span>
       </h1>
 
       <p
-        ref="subtext"
         class="mx-auto mt-6 max-w-[46ch] text-lg leading-relaxed text-muted"
       >
         {{ site.oneLiner }}
       </p>
 
       <div
-        ref="ctas"
-        class="mt-10 flex flex-wrap items-center justify-center gap-4"
+        class="hero-ctas mt-10 flex flex-wrap items-center justify-center gap-4"
       >
         <a
           href="#contact"
@@ -141,8 +130,46 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* Upscaled from a tiny still, so a blur hides the pixels; the scale keeps the blurred edges off screen. */
+.hero-poster {
+  background-image: var(--poster);
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px);
+  transform: scale(1.1);
+}
+
+@media (orientation: portrait) {
+  .hero-poster {
+    background-image: var(--poster-portrait);
+  }
+}
+
+html.light .hero-poster {
+  filter: invert(1) blur(12px);
+}
+
+/* The entrance is pure CSS, so it starts with the first paint instead of waiting for
+   hydration. The subtitle stays still: it is the largest text, so it sets LCP. */
 .word-reveal {
-  will-change: transform;
+  animation: word-rise 850ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 45ms) both;
+}
+
+.hero-ctas {
+  animation: fade-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) 350ms both;
+}
+
+@keyframes word-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
 
 .scroll-cue {
@@ -159,7 +186,9 @@ onMounted(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-cue {
+  .scroll-cue,
+  .word-reveal,
+  .hero-ctas {
     animation: none;
   }
 }

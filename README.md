@@ -18,13 +18,14 @@ live at [danylomorhun.com](https://danylomorhun.com).
 
 every page and locale is prerendered, so HTML is served from the CDN.
 
-the hero background is a Three.js scene with custom GLSL shaders. it loads only in the browser
+the hero background is a Three.js scene with custom GLSL shaders. a sub-kilobyte still of it
+is inlined in the HTML, so the hero looks finished on first paint. the scene loads only in the browser
 after the page is idle, and is skipped with reduced motion, Save-Data or less than 4 GB of device
 memory. it renders at 30 fps at most, pauses when off screen and frees its WebGL context on unmount.
 in light mode the grayscale scene is inverted with CSS.
 
-the home page has a short intro on first load. it works without JavaScript and is off
-with reduced motion. scroll reveals use GSAP. ScrollTrigger loads only when needed.
+the hero entrance is plain CSS, so it starts with the first paint and needs no JavaScript.
+it is off with reduced motion. scroll reveals use GSAP. ScrollTrigger loads only when needed.
 
 the blog is a small Nuxt module that reads Markdown from `content/blog` at build time
 and highlights code with Shiki. posts with `draft: true` or a future date are left out

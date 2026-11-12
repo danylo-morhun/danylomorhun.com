@@ -34,7 +34,6 @@ defineOgImage('Beams', {
 
 <template>
   <div>
-    <AppLoader />
     <HeroSection />
     <WorkSection />
     <PersonalProjectsSection />
