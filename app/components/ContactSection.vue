@@ -18,12 +18,18 @@ const { copied, copyEmail } = useCopyEmail()
         <a
           :href="`mailto:${site.email}`"
           class="underline decoration-dotted underline-offset-4 transition-colors duration-200 hover:text-accent"
-          @click="copyEmail"
         >{{ site.email }}</a>
-        <span
-          v-if="copied"
-          class="ml-2 text-xs text-accent"
-        >{{ t('contact.copied') }}</span>
+        <button
+          type="button"
+          :aria-label="t('footer.copyEmailAria')"
+          class="relative mx-1 inline-flex size-6 items-center justify-center rounded-md align-[-0.2em] text-muted transition-colors duration-200 after:absolute after:-inset-2.5 hover:text-ink"
+          @click="copyEmail"
+        >
+          <AppIcon
+            :name="copied ? 'mail-check-fill' : 'mail-fill'"
+            :size="16"
+          />
+        </button>
         {{ t('contact.reachOut') }}
       </p>
 
@@ -66,5 +72,10 @@ const { copied, copyEmail } = useCopyEmail()
         /></a>
       </div>
     </div>
+
+    <CopyToast
+      :show="copied"
+      :message="t('footer.emailCopiedToast')"
+    />
   </section>
 </template>
