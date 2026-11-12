@@ -42,7 +42,7 @@ useReveal(list)
               width="1440"
               height="900"
               loading="lazy"
-              class="aspect-8/5 w-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+              class="aspect-8/5 w-full object-cover object-top transition-transform duration-300 ease-out motion-safe:group-hover:scale-[1.03]"
             >
           </div>
 
@@ -52,7 +52,7 @@ useReveal(list)
             <AppIcon
               name="arrow-right-up-line"
               :size="16"
-              class="mt-0.5 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+              class="mt-0.5 text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
             />
           </h3>
           <p class="mt-2 text-sm leading-relaxed text-muted">

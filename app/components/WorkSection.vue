@@ -40,7 +40,7 @@ useReveal(list)
               <AppIcon
                 name="arrow-right-up-line"
                 :size="18"
-                class="mt-1 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                class="mt-1 text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
               />
             </h3>
             <p
@@ -65,6 +65,37 @@ useReveal(list)
             </div>
           </div>
         </NuxtLink>
+      </div>
+
+      <div
+        v-if="more.length"
+        class="mt-6 border-t border-line pt-10"
+      >
+        <h3 class="text-lg font-medium text-ink">
+          {{ t('work.moreHeading') }}
+        </h3>
+        <ul class="mt-4 divide-y divide-line">
+          <li
+            v-for="project in more"
+            :key="project.slug"
+          >
+            <NuxtLink
+              :to="localePath(`/work/${project.slug}`)"
+              class="group grid gap-x-8 gap-y-1 py-4 sm:grid-cols-12 sm:items-baseline"
+            >
+              <span class="flex items-center gap-1.5 font-medium text-ink sm:col-span-4">
+                <span class="underline decoration-line underline-offset-4 transition-colors duration-200 group-hover:decoration-ink">{{ project.name }}</span>
+                <AppIcon
+                  name="arrow-right-up-line"
+                  :size="16"
+                  class="text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
+                />
+              </span>
+              <span class="font-mono text-xs text-muted sm:col-span-4">{{ project.tag }}</span>
+              <span class="text-sm text-muted sm:col-span-4 sm:text-right">{{ project.meta }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
     </div>
   </section>

@@ -37,6 +37,12 @@ function toggle() {
 .dark .theme-icon-moon,
 .light .theme-icon-sun {
   opacity: 0;
-  transform: rotate(45deg) scale(0.7);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dark .theme-icon-moon,
+  .light .theme-icon-sun {
+    transform: rotate(45deg) scale(0.7);
+  }
 }
 </style>

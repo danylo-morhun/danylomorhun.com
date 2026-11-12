@@ -83,16 +83,11 @@
     text-wrap: pretty;
   }
 
+  /* No global kill: components drop movement themselves (motion-safe: variants, their own
+     media blocks) and keep opacity/color feedback so state changes stay visible. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
-    }
-
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
   }
 
