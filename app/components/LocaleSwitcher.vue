@@ -18,6 +18,8 @@ const localeHref = (code: typeof locale.value) => switchLocalePath(code) || loca
 
 const availableLocales = computed(() => locales.value as Array<{ code: typeof locale.value, name?: string, language?: string }>)
 
+const currentName = computed(() => availableLocales.value.find(l => l.code === locale.value)?.name ?? locale.value)
+
 const root = ref<HTMLElement | null>(null)
 const button = ref<HTMLButtonElement | null>(null)
 const list = ref<HTMLElement | null>(null)
@@ -90,8 +92,8 @@ onUnmounted(() => {
       ref="button"
       type="button"
       :aria-expanded="open"
-      :aria-label="t('nav.language')"
-      class="flex h-11 min-w-11 items-center justify-center gap-1 rounded-lg px-1.5 sm:h-8 sm:min-w-0 text-muted transition-colors duration-200 hover:text-ink"
+      :aria-label="`${t('nav.language')}: ${currentName}`"
+      class="flex h-11 min-w-11 items-center justify-center gap-1 rounded-lg px-1.5 pointer-fine:h-8 pointer-fine:min-w-0 text-muted transition-colors duration-200 hover:text-ink"
       @click="open = !open"
       @keydown="onButtonKeydown"
     >
