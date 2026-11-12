@@ -46,6 +46,10 @@ function onTouchStart(event: TouchEvent) {
   touchStartX = event.touches.length === 1 ? event.touches[0]!.clientX : null
 }
 
+function onTouchCancel() {
+  touchStartX = null
+}
+
 function onTouchEnd(event: TouchEvent) {
   if (touchStartX === null || !hasMany.value) return
   const distance = event.changedTouches[0]!.clientX - touchStartX
@@ -67,6 +71,7 @@ defineExpose({ open })
     @close="onClosed"
     @touchstart.passive="onTouchStart"
     @touchend.passive="onTouchEnd"
+    @touchcancel.passive="onTouchCancel"
   >
     <div
       v-if="isOpen && current"
