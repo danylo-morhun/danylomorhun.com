@@ -103,7 +103,7 @@ onUnmounted(() => {
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
           :aria-label="t('nav.menu')"
-          class="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink sm:size-8 lg:hidden"
+          class="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink pointer-fine:size-8 lg:hidden"
           @click="menuOpen = !menuOpen"
         >
           <AppIcon
