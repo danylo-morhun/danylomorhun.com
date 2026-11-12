@@ -184,7 +184,7 @@ html.light .hero-poster {
 }
 
 .scroll-cue {
-  animation: float 2.2s ease-in-out infinite;
+  animation: float 2.2s ease-in-out 3;
 }
 
 @keyframes float {
