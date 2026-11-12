@@ -77,6 +77,11 @@ onMounted(() => {
         />
       </div>
     </ClientOnly>
+    <!-- Keeps the headline and muted subtitle legible when a beam crosses behind them. -->
+    <div
+      class="hero-scrim pointer-events-none absolute inset-0 -z-10"
+      aria-hidden="true"
+    />
 
     <div class="relative mx-auto w-full max-w-3xl px-6 py-24 text-center">
       <h1 class="font-sans text-3xl font-bold leading-[1.15] tracking-tightest sm:leading-none text-ink sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,6rem)]">
@@ -147,6 +152,12 @@ onMounted(() => {
 
 html.light .hero-poster {
   filter: invert(1) blur(12px);
+}
+
+.hero-scrim {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 50%, color-mix(in oklch, var(--color-bg) 70%, transparent), transparent 75%),
+    linear-gradient(to bottom, transparent 70%, var(--color-bg));
 }
 
 /* The entrance is pure CSS, so it starts with the first paint instead of waiting for
