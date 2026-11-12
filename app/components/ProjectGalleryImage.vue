@@ -31,7 +31,7 @@ const { t } = useI18n()
         class="aspect-8/5 w-full rounded-xl border border-line object-cover shadow-lg transition-opacity duration-200 group-hover:opacity-90"
         :class="topAligned && 'object-top'"
       >
-      <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-ink opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+      <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-bg/75 text-ink opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
         <AppIcon
           name="zoom-in-line"
           :size="18"

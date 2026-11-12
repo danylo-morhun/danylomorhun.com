@@ -1,20 +1,26 @@
 import { describe, expect, it } from 'vitest'
-import { projects } from '../app/data/projects'
 import { caseStudies } from '../app/data/case-studies'
+import { personalProjects } from '../app/data/personal-projects'
 
 describe('projects data consistency', () => {
-  it('contains valid project references', () => {
-    expect(projects.length).toBeGreaterThan(0)
-    for (const p of projects) {
-      expect(p.slug).toBeTruthy()
-      expect(p.metricsCount).toBeGreaterThan(0)
+  const all = [...caseStudies, ...personalProjects]
+
+  it('has unique slugs across work and lab', () => {
+    const slugs = all.map(project => project.slug)
+    expect(new Set(slugs).size).toBe(slugs.length)
+  })
+
+  it('gives every project a stack, at least one metric and a gallery', () => {
+    for (const project of all) {
+      expect(project.stack, project.slug).toBeTruthy()
+      expect(project.outcome.length, project.slug).toBeGreaterThan(0)
+      expect(project.gallery.length, project.slug).toBeGreaterThan(0)
     }
   })
 
-  it('maps each project slug to an existing case study', () => {
-    const csSlugs = new Set(caseStudies.map(cs => cs.slug))
-    for (const p of projects) {
-      expect(csSlugs.has(p.slug)).toBe(true)
+  it('links only over https', () => {
+    for (const { slug, liveUrl } of all) {
+      if (liveUrl) expect(liveUrl, slug).toMatch(/^https:\/\//)
     }
   })
 })

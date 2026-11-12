@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import sharp from 'sharp'
 
 const DIRECTORIES = ['case-studies', 'personal-projects']
-const WIDTHS = [480, 960]
+const WIDTHS = [480, 960, 1440]
 const VARIANT = /-\d+w\.webp$/
 
 const manifest = {}

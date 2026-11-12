@@ -11,10 +11,6 @@ function collectErrors(page: Page) {
   return errors
 }
 
-async function waitForIntro(page: Page) {
-  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 3_000 })
-}
-
 for (const colorScheme of ['dark', 'light'] as const) {
   for (const path of ['/', '/uk', '/pl', '/work/grx-pay', '/uk/lab/seikatsu', '/blog', '/blog/webgl-context-lost-for-good']) {
     test(`${path} renders without errors or hydration mismatches (${colorScheme})`, async ({ page }) => {
@@ -29,31 +25,19 @@ for (const colorScheme of ['dark', 'light'] as const) {
   }
 }
 
-test('the intro lifts quickly and only plays on the home page', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.app-loader')).toHaveCount(0, { timeout: 5_000 })
-  // Measured from navigation start: 800ms intro + 300ms fade after hydration,
-  // and never later than the 2.5s CSS failsafe.
-  expect(await page.evaluate(() => performance.now())).toBeLessThan(2_500 + 1_000)
-
-  await page.goto('/work/grx-pay')
-  await expect(page.locator('.app-loader')).toHaveCount(0)
-})
-
 test('content is readable without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false })
   const page = await context.newPage()
   await page.goto('/')
-  await expect(page.locator('.app-loader')).toBeHidden()
   await expect(page.locator('h1')).toBeVisible()
   await context.close()
 })
 
-test('reduced motion skips the intro entirely', async ({ page }) => {
+test('reduced motion turns off the hero entrance', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
-  await expect(page.locator('.app-loader')).toBeHidden()
   await expect(page.locator('h1')).toBeInViewport()
+  expect(await page.locator('.word-reveal').first().evaluate(el => getComputedStyle(el).animationName)).toBe('none')
 })
 
 test('the theme toggle shows the icon for the theme it switches to', async ({ page }) => {
@@ -83,7 +67,6 @@ test('nav links on a case study lead to the home page sections', async ({ page }
 
 test('nav link scrolls to the work section on the home page', async ({ page }) => {
   await gotoHydrated(page, '/')
-  await waitForIntro(page)
   await page.locator('nav').getByRole('link', { name: 'Work' }).click()
   await expect(page).toHaveURL(/#work$/)
   await expect(page.locator('#work')).toBeInViewport()
@@ -91,11 +74,11 @@ test('nav link scrolls to the work section on the home page', async ({ page }) =
 
 test('the lightbox is a named, focus-trapping dialog that restores focus', async ({ page }) => {
   await gotoHydrated(page, '/work/grx-pay')
-  const opener = page.getByRole('button', { name: /^Enlarge: Dashboard/ })
+  const opener = page.getByRole('button', { name: /^Enlarge: Merchant dashboard/ })
   await opener.click()
 
   const dialog = page.getByRole('dialog')
-  await expect(dialog).toHaveAccessibleName(/Dashboard/)
+  await expect(dialog).toHaveAccessibleName(/Merchant dashboard/)
 
   // A modal <dialog> makes the page behind it inert: Tab cycles through the
   // dialog and the browser UI, never back into the page.
@@ -108,7 +91,7 @@ test('the lightbox is a named, focus-trapping dialog that restores focus', async
   }
 
   await page.keyboard.press('ArrowRight')
-  await expect(dialog).toHaveAccessibleName(/Assets/)
+  await expect(dialog).toHaveAccessibleName(/Invoice/)
 
   const scrollBefore = await page.evaluate(() => scrollY)
   await page.mouse.wheel(0, 600)
@@ -149,7 +132,7 @@ test('gallery images load a size that fits the slot', async ({ browser }) => {
 
 test('Ukrainian and Polish pages show localized dates', async ({ page }) => {
   await page.goto('/uk')
-  await expect(page.locator('#experience')).toContainText('лют. 2026 — серп. 2026')
+  await expect(page.locator('#experience')).toContainText('лют. 2026 – серп. 2026')
   await page.goto('/pl/work/grx-pay')
   await expect(page.locator('article header')).toContainText('lut 2026 – sie 2026')
 })
@@ -180,7 +163,7 @@ for (const colorScheme of ['dark', 'light'] as const) {
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
     await gotoHydrated(page, '/work/grx-pay')
-    await page.getByRole('button', { name: /^Enlarge: Dashboard/ }).click()
+    await page.getByRole('button', { name: /^Enlarge: Merchant dashboard/ }).click()
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
     await gotoHydrated(page, '/nope')
@@ -203,6 +186,18 @@ test('the old resume url redirects permanently', async ({ request }) => {
   const response = await request.get('/resume.pdf', { maxRedirects: 0 })
   expect(response.status()).toBe(301)
   expect(response.headers().location).toBe('/Danylo_Morhun_Fullstack_Engineer_Resume.pdf')
+})
+
+test('moved and retired project urls redirect permanently', async ({ request }) => {
+  for (const [from, to] of [
+    ['/lab/twoje-zdrowie', '/lab/wellbotany'],
+    ['/uk/work/air-quality-monitoring-dashboard', '/uk/lab/aerolit'],
+    ['/pl/work/donation-fundraising-platform', '/pl#work'],
+  ]) {
+    const response = await request.get(from!, { maxRedirects: 0 })
+    expect(response.status(), from).toBe(301)
+    expect(response.headers().location, from).toBe(to)
+  }
 })
 
 test('non-canonical urls point at the canonical page', async ({ request }) => {

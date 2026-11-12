@@ -52,11 +52,10 @@ useReveal(list, { y: 20, duration: 0.6, start: 'top 88%' })
                     :alt="entry.country"
                     width="24"
                     height="24"
-                    tabindex="0"
                     class="h-[1em] w-[1em] shrink-0 rounded-full"
                   >
                   <span
-                    class="pointer-events-none absolute -top-8 right-0 z-10 whitespace-nowrap sm:left-1/2 sm:right-auto sm:-translate-x-1/2 rounded-md border border-line bg-surface px-2 py-1 font-sans text-xs font-normal text-ink opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+                    class="pointer-events-none absolute -top-8 right-0 z-10 whitespace-nowrap sm:left-1/2 sm:right-auto sm:-translate-x-1/2 rounded-md border border-line bg-surface px-2 py-1 font-sans text-xs font-normal text-ink opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100"
                     aria-hidden="true"
                   >{{ entry.country }}</span>
                 </span>

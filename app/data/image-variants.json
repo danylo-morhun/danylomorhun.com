@@ -1,93 +1,218 @@
 {
-  "/case-studies/grx-pay-addmember-dialog.webp": {
-    "width": 1440,
+  "/case-studies/cryovault-batches.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/case-studies/cryovault-certificate.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/cryovault-cryo-storage.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/cryovault-dose-search.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/cryovault-protocol.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/dialtone-rentals.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/dialtone-today.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/dialtone-transactions.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ezcloud-ds-colors.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ezcloud-ds-data-table.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ezcloud-ds-file-import.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ezcloud-ds-typography.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ezcloud-ds-waterfall.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-careers.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-demo.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-docs-invoice.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-docs-search.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-exchange.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-home.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grg-public-pay.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grx-pay-admin-dashboard.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/grx-pay-admin-withdrawals.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   },
   "/case-studies/grx-pay-assets.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/case-studies/grx-pay-create-invoice.webp": {
-    "width": 1440,
+  "/case-studies/grx-pay-checkout.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/case-studies/grx-pay-dashboard.webp": {
-    "width": 1440,
+  "/case-studies/grx-pay-invoice.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/case-studies/grx-pay-deposit-dialog.webp": {
-    "width": 1440,
+  "/case-studies/grx-pay-merchant-dashboard.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
-    ]
-  },
-  "/case-studies/grx-pay-members.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
+      960,
+      1440
     ]
   },
   "/case-studies/grx-pay-transactions.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-about.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-careers.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-exchange.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-hero.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-pay-hero.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
-    ]
-  },
-  "/case-studies/grx-public-pricing.webp": {
-    "width": 1440,
-    "variants": [
-      480,
-      960
+      960,
+      1440
     ]
   },
   "/case-studies/grx-ui-kit-composed.webp": {
@@ -117,67 +242,356 @@
       960
     ]
   },
-  "/personal-projects/danylomorhun-hero.webp": {
-    "width": 1440,
+  "/case-studies/heirwell-auctions.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/case-studies/heirwell-catalogue.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/heirwell-home.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/heirwell-lot.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/heirwell-sell.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ledgerline-dashboard.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ledgerline-products.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/ledgerline-settlements.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/sourcely-analyze.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/sourcely-imports.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/sourcely-pipeline.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/sourcely-product.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/case-studies/sourcely-website.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/aerolit-dashboard-dark.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/aerolit-dashboard-light.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/aerolit-sensors.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-blog.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-case.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-experience.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-hero.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-lab.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-lighthouse-desktop.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/danylomorhun-lighthouse-mobile.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   },
   "/personal-projects/danylomorhun-work.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/personal-projects/seikatsu-home.webp": {
-    "width": 1440,
+  "/personal-projects/hisashi-media.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/hisashi-status.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/hisashi-today.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/seikatsu-apps.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/seikatsu-keizoku.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   },
   "/personal-projects/seikatsu-kuroji.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/seikatsu-kyuu.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   },
   "/personal-projects/seikatsu-seiryu.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/seikatsu-today.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   },
   "/personal-projects/seikatsu-tsundoku.webp": {
-    "width": 1440,
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/personal-projects/twojezdrowie-home.webp": {
-    "width": 1440,
+  "/personal-projects/unitbot-report.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/personal-projects/twojezdrowie-katalog.webp": {
-    "width": 1440,
+  "/personal-projects/unitbot-run.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
     ]
   },
-  "/personal-projects/twojezdrowie-produkt.webp": {
-    "width": 1440,
+  "/personal-projects/unitbot-tests-pr.webp": {
+    "width": 2880,
     "variants": [
       480,
-      960
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-admin-missing-data.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-catalog.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-checkout.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-gift-builder.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-hero.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-home.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-product.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
     ]
   }
 }

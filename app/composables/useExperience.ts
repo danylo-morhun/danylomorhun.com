@@ -9,7 +9,7 @@ export function useExperience() {
 
     return experience.map(entry => ({
       ...entry,
-      dates: formatPeriod(entry.period, months, t('dates.ongoing'), ' — '),
+      dates: formatPeriod(entry.period, months, t('dates.ongoing'), ' – '),
       role: t(`experience.entries.${entry.key}.role`),
       country: t(`experience.entries.${entry.key}.country`),
       summary: t(`experience.entries.${entry.key}.summary`),

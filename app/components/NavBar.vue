@@ -60,7 +60,7 @@ onUnmounted(() => {
     @focusout="onFocusOut"
   >
     <nav
-      class="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-xl border px-3 py-1.5 backdrop-blur-md sm:gap-4 sm:px-4 sm:py-3"
+      class="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-xl border bg-bg/70 px-3 py-1.5 backdrop-blur-md sm:gap-4 sm:px-4 sm:py-3"
     >
       <a
         :href="anchorHref('#top')"
@@ -93,7 +93,7 @@ onUnmounted(() => {
 
         <a
           :href="anchorHref('#contact')"
-          class="hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-opacity duration-200 hover:opacity-85 sm:block"
+          class="relative hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform duration-200 after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] sm:block"
           @click="onAnchorClick($event, '#contact')"
         >{{ t('nav.contact') }}</a>
 
@@ -103,7 +103,7 @@ onUnmounted(() => {
           :aria-expanded="menuOpen"
           aria-controls="mobile-menu"
           :aria-label="t('nav.menu')"
-          class="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink sm:size-8 lg:hidden"
+          class="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink pointer-fine:size-8 lg:hidden"
           @click="menuOpen = !menuOpen"
         >
           <AppIcon
@@ -122,11 +122,11 @@ onUnmounted(() => {
 
     <Transition
       enter-active-class="transition duration-150 ease-out"
-      enter-from-class="opacity-0 -translate-y-1"
+      enter-from-class="opacity-0 motion-safe:-translate-y-1"
       enter-to-class="opacity-100 translate-y-0"
       leave-active-class="transition duration-100 ease-out"
       leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 -translate-y-1"
+      leave-to-class="opacity-0 motion-safe:-translate-y-1"
     >
       <div
         v-if="menuOpen"

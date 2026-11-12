@@ -14,6 +14,8 @@ const localePath = useLocalePath()
 
 const section = ref<HTMLElement | null>(null)
 const lightbox = ref<InstanceType<typeof ImageLightbox> | null>(null)
+const isGithub = computed(() => props.project.liveUrl?.startsWith('https://github.com/') ?? false)
+const stackItems = computed(() => props.project.stack.split(', '))
 const allImages = computed(() => [...props.project.gallery, ...(props.project.library ?? [])])
 
 function openLightbox(src: string) {
@@ -46,28 +48,42 @@ useReveal(section)
       <h1 class="mt-2 text-3xl font-medium tracking-tightest text-ink md:text-5xl">
         {{ project.name }}
       </h1>
-      <p class="mt-4 text-sm text-muted">
-        {{ project.role }}<template v-if="project.dates">
-          · {{ project.dates }}
-        </template>
-      </p>
-      <span
-        v-if="project.nda"
-        class="mt-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted"
+      <p
+        v-if="project.meta"
+        class="mt-4 text-sm text-muted"
       >
-        <AppIcon
-          name="lock-line"
-          :size="13"
-        />
-        {{ t('project.ndaBadge') }}
-      </span>
+        {{ project.meta }}
+      </p>
+      <dl class="mt-8 max-w-[70ch] border-t border-line pt-5">
+        <dt class="font-mono text-xs text-muted">
+          {{ t('project.stack') }}
+        </dt>
+        <dd class="mt-2">
+          <ul class="text-base leading-relaxed text-ink">
+            <li
+              v-for="(item, i) in stackItems"
+              :key="item"
+              class="inline-block"
+            >
+              {{ item }}<span
+                v-if="i < stackItems.length - 1"
+                class="px-2 text-muted"
+                aria-hidden="true"
+              >/</span>
+            </li>
+          </ul>
+        </dd>
+      </dl>
     </header>
 
     <p class="reveal-item mt-10 max-w-[70ch] text-lg leading-relaxed text-muted">
       {{ project.overview }}
     </p>
 
-    <section class="reveal-item mt-16 border-t border-line pt-10">
+    <section
+      v-if="project.challenge"
+      class="reveal-item mt-16 border-t border-line pt-10"
+    >
       <h2 class="text-xl font-medium text-ink md:text-2xl">
         {{ t('project.theChallenge') }}
       </h2>
@@ -168,7 +184,7 @@ useReveal(section)
               loading="lazy"
               class="max-h-full w-full object-contain transition-opacity duration-200 group-hover:opacity-90"
             >
-            <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-ink opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+            <span class="pointer-events-none absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-bg/75 text-ink opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
               <AppIcon
                 name="zoom-in-line"
                 :size="18"
@@ -188,17 +204,17 @@ useReveal(section)
         :href="project.liveUrl"
         target="_blank"
         rel="noreferrer noopener"
-        class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+        class="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       >
-        {{ t('project.visitLive') }}
+        {{ isGithub ? t('project.viewSource') : t('project.visitLive') }}
         <AppIcon
-          name="external-link-line"
+          :name="isGithub ? 'github-fill' : 'external-link-line'"
           :size="16"
         />
       </a>
       <NuxtLink
         :to="localePath(backPath)"
-        class="inline-flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
+        class="inline-flex items-center gap-1.5 rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       >
         <AppIcon
           name="arrow-left-line"

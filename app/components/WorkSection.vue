@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useProjects } from '~/composables/useProjects'
+import { computed, ref } from 'vue'
+import { useCaseStudies } from '~/composables/useCaseStudies'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-const projects = useProjects()
+const projects = useCaseStudies()
+// A recruiter skims: the strongest four get the full row, the rest a one-line index.
+const FEATURED_COUNT = 4
+const featured = computed(() => projects.value.slice(0, FEATURED_COUNT))
+const more = computed(() => projects.value.slice(FEATURED_COUNT))
 const list = ref<HTMLElement | null>(null)
 
 useReveal(list)
@@ -28,7 +32,7 @@ useReveal(list)
         class="mt-16 divide-y divide-line"
       >
         <NuxtLink
-          v-for="project in projects"
+          v-for="project in featured"
           :key="project.slug"
           :to="localePath(`/work/${project.slug}`)"
           class="reveal-item group grid gap-6 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
@@ -40,10 +44,15 @@ useReveal(list)
               <AppIcon
                 name="arrow-right-up-line"
                 :size="18"
-                class="mt-1 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                class="mt-1 text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
               />
             </h3>
-            <p class="mt-2 text-sm text-muted">{{ project.role }}</p>
+            <p
+              v-if="project.meta"
+              class="mt-2 text-sm text-muted"
+            >
+              {{ project.meta }}
+            </p>
           </div>
 
           <p class="text-base leading-relaxed text-muted lg:col-span-4">
@@ -52,7 +61,7 @@ useReveal(list)
 
           <div class="flex flex-row gap-8 lg:col-span-3 lg:flex-col lg:gap-4">
             <div
-              v-for="metric in project.metrics"
+              v-for="metric in project.outcome"
               :key="metric.label"
             >
               <p class="text-2xl font-semibold text-ink">{{ metric.value }}</p>
@@ -60,6 +69,37 @@ useReveal(list)
             </div>
           </div>
         </NuxtLink>
+      </div>
+
+      <div
+        v-if="more.length"
+        class="mt-6 border-t border-line pt-10"
+      >
+        <h3 class="text-lg font-medium text-ink">
+          {{ t('work.moreHeading') }}
+        </h3>
+        <ul class="mt-4 divide-y divide-line">
+          <li
+            v-for="project in more"
+            :key="project.slug"
+          >
+            <NuxtLink
+              :to="localePath(`/work/${project.slug}`)"
+              class="group grid gap-x-8 gap-y-1 py-4 sm:grid-cols-12 sm:items-baseline"
+            >
+              <span class="flex items-center gap-1.5 font-medium text-ink sm:col-span-4">
+                <span class="underline decoration-line underline-offset-4 transition-colors duration-200 group-hover:decoration-ink">{{ project.name }}</span>
+                <AppIcon
+                  name="arrow-right-up-line"
+                  :size="16"
+                  class="text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
+                />
+              </span>
+              <span class="font-mono text-xs text-muted sm:col-span-4">{{ project.tag }}</span>
+              <span class="text-sm text-muted sm:col-span-4 sm:text-right">{{ project.meta }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
     </div>
   </section>

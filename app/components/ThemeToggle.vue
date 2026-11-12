@@ -12,7 +12,7 @@ function toggle() {
 <template>
   <button
     type="button"
-    class="relative flex size-11 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink active:scale-90 sm:size-8"
+    class="relative flex size-11 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink motion-safe:active:scale-90 pointer-fine:size-8"
     :aria-label="t('themeToggle.label')"
     @click="toggle"
   >
@@ -37,6 +37,12 @@ function toggle() {
 .dark .theme-icon-moon,
 .light .theme-icon-sun {
   opacity: 0;
-  transform: rotate(45deg) scale(0.7);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dark .theme-icon-moon,
+  .light .theme-icon-sun {
+    transform: rotate(45deg) scale(0.7);
+  }
 }
 </style>

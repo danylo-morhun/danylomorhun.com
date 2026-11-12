@@ -36,7 +36,8 @@ describe('locale files', () => {
       }
       for (const project of personalProjects) {
         const copy = locales[code].personalProjects[project.slug]
-        expect(copy.outcome, `${code} ${project.slug}`).toHaveLength(copy.outcomeValues.length)
+        expect(copy.outcome, `${code} ${project.slug}`).toHaveLength(project.outcome.length)
+        if (copy.outcomeValues) expect(copy.outcomeValues, `${code} ${project.slug}`).toHaveLength(project.outcome.length)
         expect(copy.gallery, `${code} ${project.slug}`).toHaveLength(project.gallery.length)
       }
     }

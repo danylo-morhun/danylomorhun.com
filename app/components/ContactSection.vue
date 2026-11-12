@@ -18,25 +18,31 @@ const { copied, copyEmail } = useCopyEmail()
         <a
           :href="`mailto:${site.email}`"
           class="underline decoration-dotted underline-offset-4 transition-colors duration-200 hover:text-accent"
-          @click="copyEmail"
         >{{ site.email }}</a>
-        <span
-          v-if="copied"
-          class="ml-2 text-xs text-accent"
-        >{{ t('contact.copied') }}</span>
+        <button
+          type="button"
+          :aria-label="t('footer.copyEmailAria')"
+          class="relative mx-1 inline-flex size-6 items-center justify-center rounded-md align-[-0.2em] text-muted transition-colors duration-200 after:absolute after:-inset-2.5 hover:text-ink"
+          @click="copyEmail"
+        >
+          <AppIcon
+            :name="copied ? 'mail-check-fill' : 'mail-fill'"
+            :size="16"
+          />
+        </button>
         {{ t('contact.reachOut') }}
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a
           :href="`mailto:${site.email}`"
-          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('contact.contact') }}</a>
         <a
           v-if="site.resumeUrl"
           :href="site.resumeUrl"
           download
-          class="flex items-center gap-1.5 rounded-xl border border-line px-6 py-3 text-sm text-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+          class="flex items-center gap-1.5 rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         ><AppIcon
           name="download-line"
           :size="16"
@@ -66,5 +72,10 @@ const { copied, copyEmail } = useCopyEmail()
         /></a>
       </div>
     </div>
+
+    <CopyToast
+      :show="copied"
+      :message="t('footer.emailCopiedToast')"
+    />
   </section>
 </template>

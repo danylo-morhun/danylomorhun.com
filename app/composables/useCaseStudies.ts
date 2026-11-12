@@ -14,23 +14,24 @@ export interface CaseStudyGalleryImage {
 
 export interface LocalizedCaseStudy {
   slug: string
-  dates: string
-  nda?: boolean
+  /** "Company · dates", or whichever of the two exists. */
+  meta: string
   liveUrl?: string
   name: string
   tag: string
-  role: string
+  description: string
   overview: string
   metaDescription: string
-  challenge: string
+  challenge?: string
   approach: string[]
+  stack: string
   outcome: CaseStudyMetric[]
   gallery: CaseStudyGalleryImage[]
   librarySectionTitle?: string
   library?: CaseStudyGalleryImage[]
 }
 
-type ImageText = { alt: unknown, caption: unknown }
+type ImageText = { caption: unknown }
 
 export function useLocalizeProject() {
   const { t, te, tm, rt } = useI18n()
@@ -39,32 +40,34 @@ export function useLocalizeProject() {
     return (tm(key) as unknown[]).map(entry => rt(entry as never))
   }
 
+  // The caption describes the screen, so it doubles as the alt text.
   function localizeImages(images: CaseStudy['gallery'], key: string) {
     const text = tm(key) as ImageText[]
-    return images.map((image, i) => ({
-      src: image.src,
-      alt: text[i] ? rt(text[i].alt as never) : '',
-      caption: text[i] ? rt(text[i].caption as never) : '',
-    }))
+    return images.map((image, i) => {
+      const caption = text[i] ? rt(text[i].caption as never) : ''
+      return { src: image.src, alt: caption, caption }
+    })
   }
 
   return function localizeProject(project: CaseStudy, base: string): LocalizedCaseStudy {
     const labels = renderList(`${base}.outcome`)
     const values = te(`${base}.outcomeValues`) ? renderList(`${base}.outcomeValues`) : project.outcome
     const months = renderList('dates.months')
+    const dates = formatPeriod(project.period, months, t('dates.ongoing'))
+    const description = t(`${base}.description`)
 
     return {
       slug: project.slug,
-      dates: formatPeriod(project.period, months, t('dates.ongoing')),
-      nda: project.nda,
+      meta: [project.company, dates].filter(Boolean).join(' · '),
       liveUrl: project.liveUrl,
       name: t(`${base}.name`),
       tag: t(`${base}.tag`),
-      role: t(`${base}.role`),
-      overview: t(`${base}.overview`),
+      description,
+      overview: te(`${base}.overview`) ? t(`${base}.overview`) : description,
       metaDescription: t(`${base}.metaDescription`),
-      challenge: t(`${base}.challenge`),
+      challenge: te(`${base}.challenge`) ? t(`${base}.challenge`) : undefined,
       approach: renderList(`${base}.approach`),
+      stack: project.stack,
       outcome: values.map((value, i) => ({ value, label: labels[i] ?? '' })),
       gallery: localizeImages(project.gallery, `${base}.gallery`),
       librarySectionTitle: project.library ? t(`${base}.librarySectionTitle`) : undefined,

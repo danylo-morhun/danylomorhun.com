@@ -3,6 +3,21 @@ import { caseStudies } from './app/data/case-studies'
 import { personalProjects } from './app/data/personal-projects'
 import { loadPosts } from './modules/blog/source'
 
+// Projects that moved or were retired keep their old URLs working, in every locale.
+const MOVED_PROJECTS: Record<string, string> = {
+  '/lab/twoje-zdrowie': '/lab/wellbotany',
+  '/work/air-quality-monitoring-dashboard': '/lab/aerolit',
+  '/work/marketplace-investment-platform': '/#work',
+  '/work/donation-fundraising-platform': '/#work',
+}
+
+function movedProjectRedirects() {
+  return Object.fromEntries(['', '/uk', '/pl'].flatMap(prefix => Object.entries(MOVED_PROJECTS).map(([from, to]) => [
+    `${prefix}${from}`,
+    { redirect: { to: prefix && to.startsWith('/#') ? `${prefix}${to.slice(1)}` : `${prefix}${to}`, statusCode: 301 } },
+  ])))
+}
+
 const siteUrl = process.env.NUXT_SITE_URL || 'https://www.danylomorhun.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -59,6 +74,7 @@ export default defineNuxtConfig({
       },
     },
     '/resume.pdf': { redirect: { to: '/Danylo_Morhun_Fullstack_Engineer_Resume.pdf', statusCode: 301 } },
+    ...movedProjectRedirects(),
   },
   sourcemap: { client: true, server: false },
   features: { inlineStyles: true },
@@ -86,6 +102,14 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  hooks: {
+    // The only lazy chunk prefetched on load is three.js (~530 KB) for the hero beams,
+    // which start after the page is idle anyway; fetching it early competes with LCP.
+    'build:manifest': (manifest) => {
+      for (const chunk of Object.values(manifest)) chunk.prefetch = false
+    },
   },
 
   eslint: {

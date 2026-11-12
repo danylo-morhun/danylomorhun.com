@@ -13,7 +13,7 @@ if (!post) {
 
 const { data: html } = await useAsyncData(`blog-${slug}`, () => loadPostHtml(slug))
 const siteConfig = useSiteConfig()
-const title = `${post.title} — Danylo Morhun`
+const title = `${post.title} · Danylo Morhun`
 const article = ref<HTMLElement | null>(null)
 
 useBlogSeo({

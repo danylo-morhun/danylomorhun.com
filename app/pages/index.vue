@@ -4,7 +4,7 @@ import { useSite } from '~/composables/useSite'
 const { t } = useI18n()
 const site = useSite()
 
-const title = computed(() => `${site.value.name} — ${site.value.title}`)
+const title = computed(() => `${site.value.name} · ${site.value.title}`)
 
 useSeoMeta({
   title,
@@ -34,7 +34,6 @@ defineOgImage('Beams', {
 
 <template>
   <div>
-    <AppLoader />
     <HeroSection />
     <WorkSection />
     <PersonalProjectsSection />
