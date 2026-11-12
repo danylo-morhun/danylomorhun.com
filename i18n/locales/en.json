@@ -52,7 +52,8 @@
   },
   "work": {
     "heading": "Selected work",
-    "subheading": "Production builds for fintech and B2B SaaS: payments, analytics, auctions, lab software and the design systems behind them."
+    "subheading": "Production builds for fintech and B2B SaaS: payments, analytics, auctions, lab software and the design systems behind them.",
+    "moreHeading": "More work"
   },
   "lab": {
     "heading": "Personal projects",

@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useCaseStudies } from '~/composables/useCaseStudies'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 const projects = useCaseStudies()
+// A recruiter skims: the strongest four get the full row, the rest a one-line index.
+const FEATURED_COUNT = 4
+const featured = computed(() => projects.value.slice(0, FEATURED_COUNT))
+const more = computed(() => projects.value.slice(FEATURED_COUNT))
 const list = ref<HTMLElement | null>(null)
 
 useReveal(list)
@@ -28,7 +32,7 @@ useReveal(list)
         class="mt-16 divide-y divide-line"
       >
         <NuxtLink
-          v-for="project in projects"
+          v-for="project in featured"
           :key="project.slug"
           :to="localePath(`/work/${project.slug}`)"
           class="reveal-item group grid gap-6 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
