@@ -285,3 +285,32 @@ test('the blog has an RSS feed and its posts are in the sitemap', async ({ page,
   const sitemap = await (await request.get('/__sitemap__/en-US.xml')).text()
   expect(sitemap).toContain('/blog/webgl-context-lost-for-good</loc>')
 })
+
+test('page changes jump to the top, back restores the spot, a language switch keeps it', async ({ page }) => {
+  await gotoHydrated(page, '/')
+  const link = page.locator('a[href^="/work/"]').first()
+  // Instant: `scrollIntoViewIfNeeded` would smooth-scroll (CSS), and reading mid-scroll is flaky.
+  await link.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  const home = await page.evaluate(() => Math.round(scrollY))
+  expect(home).toBeGreaterThan(300)
+
+  // A DOM click: Playwright's own click scrolls the link again first, moving the spot.
+  await link.evaluate(element => (element as HTMLElement).click())
+  await page.waitForURL(/\/work\//)
+  // Instant, not a smooth scroll up: within a frame or two the page is at the top.
+  await page.waitForTimeout(100)
+  expect(await page.evaluate(() => scrollY)).toBe(0)
+
+  await page.mouse.wheel(0, 900)
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(300)
+  const before = await page.evaluate(() => scrollY)
+  await page.getByRole('button', { name: 'Language' }).click()
+  await page.getByRole('link', { name: 'Polski' }).click()
+  await page.waitForURL(/\/pl\/work\//)
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(before - 200)
+
+  await page.goBack()
+  await page.goBack()
+  await page.waitForURL(/\/$/)
+  await expect.poll(() => page.evaluate(() => Math.round(scrollY))).toBe(home)
+})
