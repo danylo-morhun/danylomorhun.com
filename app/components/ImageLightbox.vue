@@ -90,7 +90,7 @@ defineExpose({ open })
         />
       </button>
 
-      <figure class="flex max-h-full min-h-0 max-w-5xl flex-col items-center">
+      <figure class="lightbox-figure flex max-h-full min-h-0 max-w-5xl flex-col items-center">
         <img
           :src="current.src"
           :alt="current.alt"
@@ -139,7 +139,20 @@ defineExpose({ open })
 <style scoped>
 .lightbox[open] {
   display: block;
-  animation: lightbox-in 200ms ease-out;
+  animation: lightbox-in 200ms var(--ease-out-strong);
+}
+
+/* Centered modal, so it grows from the center rather than from the thumbnail. */
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] .lightbox-figure {
+    animation: lightbox-figure-in var(--duration-spring-snappy) var(--ease-spring-snappy);
+  }
+}
+
+@keyframes lightbox-figure-in {
+  from {
+    scale: 0.96;
+  }
 }
 
 .lightbox::backdrop {

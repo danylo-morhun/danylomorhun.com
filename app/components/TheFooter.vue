@@ -58,7 +58,7 @@ const { copied, copyEmail } = useCopyEmail()
         /></a>
         <a
           :href="`mailto:${site.email}`"
-          class="relative rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform duration-200 after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+          class="relative rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform spring-press after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('footer.contact') }}</a>
       </div>
     </div>

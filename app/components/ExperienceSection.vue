@@ -6,7 +6,7 @@ const { t } = useI18n()
 const experience = useExperience()
 const list = ref<HTMLElement | null>(null)
 
-useReveal(list, { y: 20, duration: 0.6, start: 'top 88%' })
+useReveal(list, { y: 20, start: 'top 88%' })
 </script>
 
 <template>

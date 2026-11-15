@@ -107,23 +107,21 @@ onUnmounted(() => {
       <AppIcon
         name="arrow-down-s-line"
         :size="14"
-        class="transition-transform duration-200"
+        class="transition-transform spring-snappy"
         :class="open && 'motion-safe:rotate-180'"
       />
     </button>
 
     <Transition
-      enter-active-class="transition duration-150 ease-out"
-      enter-from-class="opacity-0 motion-safe:-translate-y-1"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="transition duration-100 ease-out"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 motion-safe:-translate-y-1"
+      enter-active-class="transition-[opacity,translate,scale] spring-snappy"
+      enter-from-class="opacity-0 motion-safe:-translate-y-1 motion-safe:scale-[0.97]"
+      leave-active-class="transition-[opacity,translate,scale] duration-150 ease-out-strong"
+      leave-to-class="opacity-0 motion-safe:-translate-y-1 motion-safe:scale-[0.97]"
     >
       <ul
         v-if="open"
         ref="list"
-        class="absolute right-0 top-full mt-2 w-40 overflow-hidden rounded-xl border border-line bg-surface py-1 shadow-lg"
+        class="absolute right-0 top-full mt-2 w-40 origin-top-right overflow-hidden rounded-xl border border-line bg-surface py-1 shadow-lg"
         @keydown="onListKeydown"
       >
         <li
