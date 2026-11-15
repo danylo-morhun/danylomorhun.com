@@ -93,7 +93,7 @@ onUnmounted(() => {
 
         <a
           :href="anchorHref('#contact')"
-          class="relative hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform duration-200 after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] sm:block"
+          class="relative hidden whitespace-nowrap rounded-lg bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-transform spring-press after:absolute after:inset-x-0 after:-inset-y-1.5 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] sm:block"
           @click="onAnchorClick($event, '#contact')"
         >{{ t('nav.contact') }}</a>
 
@@ -121,17 +121,15 @@ onUnmounted(() => {
     </nav>
 
     <Transition
-      enter-active-class="transition duration-150 ease-out"
-      enter-from-class="opacity-0 motion-safe:-translate-y-1"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="transition duration-100 ease-out"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 motion-safe:-translate-y-1"
+      enter-active-class="transition-[opacity,translate,scale] spring-snappy"
+      enter-from-class="opacity-0 motion-safe:-translate-y-1 motion-safe:scale-[0.97]"
+      leave-active-class="transition-[opacity,translate,scale] duration-150 ease-out-strong"
+      leave-to-class="opacity-0 motion-safe:-translate-y-1 motion-safe:scale-[0.97]"
     >
       <div
         v-if="menuOpen"
         id="mobile-menu"
-        class="mx-auto mt-2 max-w-3xl rounded-xl border border-line bg-surface p-2 shadow-lg lg:hidden"
+        class="mx-auto mt-2 max-w-3xl origin-top rounded-xl border border-line bg-surface p-2 shadow-lg lg:hidden"
       >
         <a
           v-for="link in links"

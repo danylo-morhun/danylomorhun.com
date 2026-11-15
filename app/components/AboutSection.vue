@@ -6,7 +6,7 @@ const { t } = useI18n()
 const site = useSite()
 const section = ref<HTMLElement | null>(null)
 
-useReveal(section, { y: 20, duration: 0.6, start: 'top 80%', stagger: 0.1 })
+useReveal(section, { y: 20, start: 'top 80%', stagger: 0.06 })
 </script>
 
 <template>

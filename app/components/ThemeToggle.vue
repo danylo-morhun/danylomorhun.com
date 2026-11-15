@@ -12,7 +12,7 @@ function toggle() {
 <template>
   <button
     type="button"
-    class="relative flex size-11 shrink-0 items-center justify-center rounded-lg text-muted transition-colors duration-200 hover:text-ink motion-safe:active:scale-90 pointer-fine:size-8"
+    class="relative flex size-11 shrink-0 items-center justify-center rounded-lg theme-toggle text-muted hover:text-ink motion-safe:active:scale-[0.94] pointer-fine:size-8"
     :aria-label="t('themeToggle.label')"
     @click="toggle"
   >
@@ -30,8 +30,17 @@ function toggle() {
 </template>
 
 <style>
+.theme-toggle {
+  transition:
+    color 200ms ease,
+    scale var(--duration-spring-press) var(--ease-spring-press);
+}
+
+/* Rare and playful, so the incoming icon gets a little overshoot. */
 .theme-icon {
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  transition:
+    opacity 200ms ease,
+    transform var(--duration-spring-bouncy) var(--ease-spring-bouncy);
 }
 
 .dark .theme-icon-moon,

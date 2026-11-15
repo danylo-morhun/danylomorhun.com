@@ -44,7 +44,7 @@ useReveal(list)
               <AppIcon
                 name="arrow-right-up-line"
                 :size="18"
-                class="mt-1 text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
+                class="mt-1 text-muted transition-transform spring-bouncy motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
               />
             </h3>
             <p
@@ -92,7 +92,7 @@ useReveal(list)
                 <AppIcon
                   name="arrow-right-up-line"
                   :size="16"
-                  class="text-muted transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
+                  class="text-muted transition-transform spring-bouncy motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-accent"
                 />
               </span>
               <span class="font-mono text-xs text-muted sm:col-span-4">{{ project.tag }}</span>

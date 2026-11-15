@@ -111,11 +111,11 @@ onMounted(() => {
       >
         <a
           href="#contact"
-          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+          class="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-transform spring-press motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('hero.contact') }}</a>
         <a
           href="#work"
-          class="rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform duration-200 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+          class="rounded-xl border border-line-strong px-6 py-3 text-sm text-ink transition-transform spring-press motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
         >{{ t('hero.viewWork') }}</a>
       </div>
       <span id="hero-end" />
@@ -163,11 +163,11 @@ html.light .hero-poster {
 /* The entrance is pure CSS, so it starts with the first paint instead of waiting for
    hydration. The subtitle stays still: it is the largest text, so it sets LCP. */
 .word-reveal {
-  animation: word-rise 850ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 45ms) both;
+  animation: word-rise var(--duration-spring-smooth) var(--ease-spring-smooth) calc(var(--i) * 45ms) both;
 }
 
 .hero-ctas {
-  animation: fade-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) 350ms both;
+  animation: fade-rise var(--duration-spring-smooth) var(--ease-spring-smooth) 350ms both;
 }
 
 @keyframes word-rise {
