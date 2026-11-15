@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "images": "node scripts/generate-image-variants.mjs",
+    "springs": "node scripts/generate-springs.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
