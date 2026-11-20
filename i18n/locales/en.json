@@ -410,24 +410,27 @@
         "stock sync from the shop's ERP, through a Windows service in C#"
       ],
       "outcomeValues": [
-        "1,300+",
+        "1,400+",
         "3 min"
       ],
       "gallery": [
         {
-          "caption": "Homepage: seasonal offers in the hero slider"
+          "caption": "Homepage: the season's campaign and the main sections"
         },
         {
-          "caption": "Hero slider: each slide links to its own category"
+          "caption": "Promo slider: every struck price shows the lowest price of the last 30 days"
         },
         {
-          "caption": "Product page: variants, unit price and delivery options"
+          "caption": "Product page: claims, unit price, stock and delivery time"
         },
         {
-          "caption": "Category with filters, unit prices and stock"
+          "caption": "Catalog with filters, unit prices and product counts"
         },
         {
-          "caption": "Gift set builder: pick 3 to 8 products, the price updates as you go"
+          "caption": "Gift sets: ready-made sets, or build your own"
+        },
+        {
+          "caption": "Gift set builder: pick 3 to 8 products, the total updates as you go"
         },
         {
           "caption": "Checkout: pickup points and couriers with live prices"
@@ -505,32 +508,39 @@
       ],
       "metaDescription": "unitbot: a Claude Code agent that writes unit tests for every pull request, checks them with mutation testing and opens them as a separate PR."
     },
-    "aerolit": {
-      "name": "aerolit",
-      "tag": "IoT dashboard · Vue",
-      "description": "An operator dashboard for 240 air-quality sensors in Berlin, with key decisions written up as ADRs.",
+    "phloem": {
+      "name": "phloem",
+      "tag": "Video studio · In progress",
+      "description": "A local studio that makes Well Botany's short vertical videos cut on the beat: HTML templates, beat detection, brand checks and Claude Code in the loop.",
       "approach": [
-        "The domain layer (AQI, trends, KPIs) is pure functions with no dependencies, enforced by ESLint and checked against figures computed separately in Python.",
-        "Cursor pagination in both directions. Search switches the table to a mode that covers the whole network and says so.",
-        "Light and dark themes from one token set, including map tiles and charts. Works from 2560px down to a phone, with nothing hover-only.",
-        "End-to-end tests at three widths, with axe checks in both themes."
+        "Each video style is a template: a small JS module that draws a 1080×1920 frame for any moment in time. The same code runs in the preview and in the renderer.",
+        "Imported tracks get their tempo, beats, bars and drops. Scene cuts sit on beats, and dragging the edge of a scene changes it by whole beats.",
+        "Headless Chromium draws every frame and ffmpeg encodes it, so the file matches the preview frame for frame. The upload is silent: the sound is added in the TikTok or Instagram app, so it stays licensed.",
+        "Brand checks update as you type: safe zone, text length, banned words, number of brands, photo reuse and length.",
+        "The Claude tab runs the local Claude Code with a phloem CLI. It edits videos and templates, looks at frames it renders itself and answers comments pinned to a time in the video."
       ],
       "outcome": [
-        "sensors on a live map",
-        "test layers, from unit tests to pixel baselines"
+        "brand checks that update as you type",
+        "preview to file, frame for frame"
       ],
       "gallery": [
         {
-          "caption": "Dashboard: KPIs, sensor map and tracked districts"
+          "caption": "Videos by status, from draft to published"
         },
         {
-          "caption": "Dark theme from the same tokens, map included"
+          "caption": "Editor: slots, live 9:16 preview, beat timeline and brand checks"
         },
         {
-          "caption": "Sensor list with sorting and cursor pagination"
+          "caption": "Claude Code fixes a note and reports what the checks found"
+        },
+        {
+          "caption": "Track: beats, bars and the drop, with tools to fix the grid"
+        },
+        {
+          "caption": "Asset library: product photos with the background removed"
         }
       ],
-      "metaDescription": "aerolit: an operator dashboard for 240 air-quality sensors in Berlin, built in Vue with key decisions written up as ADRs."
+      "metaDescription": "phloem: a local studio for an online shop's short vertical videos cut on the beat, with HTML templates, frame-exact renders, brand checks and Claude Code."
     },
     "hisashi": {
       "name": "hisashi",

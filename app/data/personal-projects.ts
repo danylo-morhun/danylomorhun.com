@@ -8,12 +8,13 @@ export const personalProjects: CaseStudy[] = [
   {
     slug: 'wellbotany',
     stack: 'Next.js 16, React 19, Prisma, Neon Postgres, Auth.js, Tailwind 4, Sentry, Vercel, C# (.NET 8)',
-    outcome: ['1,300+', '30-day'],
+    outcome: ['1,400+', '3 min'],
     gallery: images([
       'wellbotany-home',
-      'wellbotany-hero',
+      'wellbotany-promo',
       'wellbotany-product',
       'wellbotany-catalog',
+      'wellbotany-gift-sets',
       'wellbotany-gift-builder',
       'wellbotany-checkout',
       'wellbotany-admin-missing-data',
@@ -35,11 +36,11 @@ export const personalProjects: CaseStudy[] = [
     liveUrl: `${GITHUB}/unitbot`,
   },
   {
-    slug: 'aerolit',
-    stack: 'Vue 3, TypeScript, PrimeVue, TanStack Query, Pinia, Leaflet, ECharts',
-    outcome: ['240', '5'],
-    gallery: images(['aerolit-dashboard-light', 'aerolit-dashboard-dark', 'aerolit-sensors']),
-    liveUrl: `${GITHUB}/aerolit`,
+    slug: 'phloem',
+    stack: 'Node.js 24, TypeScript, Hono, React 19, Vite, Playwright, ffmpeg, Claude Code',
+    outcome: ['6', '1:1'],
+    gallery: images(['phloem-gallery', 'phloem-editor', 'phloem-editor-claude', 'phloem-tracks', 'phloem-assets']),
+    liveUrl: `${GITHUB}/phloem`,
   },
   {
     slug: 'hisashi',

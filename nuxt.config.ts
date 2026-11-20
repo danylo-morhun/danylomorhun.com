@@ -9,7 +9,8 @@ import { loadPosts } from './modules/blog/source'
 // Projects that moved or were retired keep their old URLs working, in every locale.
 const MOVED_PROJECTS: Record<string, string> = {
   '/lab/twoje-zdrowie': '/lab/wellbotany',
-  '/work/air-quality-monitoring-dashboard': '/lab/aerolit',
+  '/work/air-quality-monitoring-dashboard': '/#lab',
+  '/lab/aerolit': '/#lab',
   '/work/marketplace-investment-platform': '/#work',
   '/work/donation-fundraising-platform': '/#work',
 }
