@@ -1,4 +1,7 @@
+import { writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
+import { redirectsFile } from './shared/utils/redirectsFile'
 import { caseStudies } from './app/data/case-studies'
 import { personalProjects } from './app/data/personal-projects'
 import { loadPosts } from './modules/blog/source'
@@ -84,19 +87,19 @@ export default defineNuxtConfig({
 
   // Every page is static content: prerender it so HTML is served from the CDN
   // and nuxt-og-image (zeroRuntime) renders a share image for each one.
+  // Deployed as a Cloudflare Worker with static assets (wrangler.jsonc): files in .output/public
+  // are served before the worker runs, so it only handles 404s and canonical redirects.
   nitro: {
+    preset: 'cloudflare_module',
+    cloudflare: { deployConfig: true, nodeCompat: true },
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/uk', '/pl'],
+      // The per-locale sitemaps aren't discovered on the Cloudflare preset; list them.
+      routes: ['/', '/uk', '/pl', '/__sitemap__/en-US.xml', '/__sitemap__/uk-UA.xml', '/__sitemap__/pl-PL.xml'],
       failOnError: true,
-    },
-    // Vercel serves prerendered files before the canonical-url middleware runs,
-    // so the trailing-slash redirect has to happen at the edge, ahead of the filesystem.
-    vercel: {
-      config: {
-        // @ts-expect-error nitropack types route headers as cache-control only; Vercel accepts any header.
-        routes: [{ src: '^/(.+)/$', status: 308, headers: { Location: '/$1' } }],
-      },
+      // Assets serve `work/x.html` at /work/x and redirect /work/x/ to it. With `work/x/index.html`
+      // they would do the opposite and make the trailing-slash URL canonical.
+      autoSubfolderIndex: false,
     },
   },
 
@@ -105,6 +108,12 @@ export default defineNuxtConfig({
   },
 
   hooks: {
+    // Redirects must win over prerendered files, which Cloudflare serves before the worker.
+    'nitro:init': (nitro) => {
+      nitro.hooks.hook('compiled', async () => {
+        await writeFile(join(nitro.options.output.publicDir, '_redirects'), redirectsFile(nitro.options.routeRules))
+      })
+    },
     // The only lazy chunk prefetched on load is three.js (~530 KB) for the hero beams,
     // which start after the page is idle anyway; fetching it early competes with LCP.
     'build:manifest': (manifest) => {
