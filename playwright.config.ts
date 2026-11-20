@@ -6,7 +6,8 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   webServer: {
-    command: 'npm run build && node .output/server/index.mjs',
+    // Same runtime as production: the Cloudflare Worker with its static assets, via workerd.
+    command: 'npm run build && npx wrangler dev --port 3000',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,

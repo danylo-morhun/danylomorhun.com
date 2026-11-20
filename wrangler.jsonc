@@ -1,0 +1,20 @@
+// Cloudflare Worker with static assets. Nitro (preset cloudflare_module) merges this into
+// .output/server/wrangler.json, which `wrangler deploy` and `wrangler dev` use.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "danylomorhun",
+  "main": "./.output/server/index.mjs",
+  "compatibility_date": "2026-11-18",
+  // Served only on www.danylomorhun.com and danylomorhun.com (custom domains), no *.workers.dev URL
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": true },
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./.output/public/",
+    // /work/x serves work/x.html, /work/x/ redirects to /work/x
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths go to the worker, which renders the localized 404
+    "not_found_handling": "none"
+  }
+}

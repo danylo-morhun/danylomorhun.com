@@ -37,7 +37,7 @@ has its own share image per locale, rendered with Satori.
 
 ## stack
 
-Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 4, GSAP, Three.js, Shiki, Vercel.
+Nuxt 4, Vue 3.5, TypeScript, Tailwind CSS 4, GSAP, Three.js, Shiki, Cloudflare Workers.
 
 ## run locally
 
