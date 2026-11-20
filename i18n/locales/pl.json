@@ -410,24 +410,27 @@
         "synchronizacji stanów z ERP sklepu przez usługę Windows w C#"
       ],
       "outcomeValues": [
-        "1300+",
+        "1400+",
         "3 min"
       ],
       "gallery": [
         {
-          "caption": "Strona główna: sezonowe oferty w sliderze"
+          "caption": "Strona główna: kampania sezonowa i główne działy"
         },
         {
-          "caption": "Slider: każdy slajd prowadzi do swojej kategorii"
+          "caption": "Slider promocji: przy każdej przekreślonej cenie najniższa cena z 30 dni"
         },
         {
-          "caption": "Strona produktu: warianty, cena jednostkowa i opcje dostawy"
+          "caption": "Strona produktu: właściwości, cena jednostkowa, dostępność i czas wysyłki"
         },
         {
-          "caption": "Kategoria z filtrami, cenami jednostkowymi i stanami"
+          "caption": "Katalog z filtrami, cenami jednostkowymi i liczbą produktów"
         },
         {
-          "caption": "Kreator zestawu prezentowego: od 3 do 8 produktów, cena aktualizuje się na bieżąco"
+          "caption": "Zestawy prezentowe: gotowe albo własny"
+        },
+        {
+          "caption": "Kreator zestawu prezentowego: od 3 do 8 produktów, suma aktualizuje się na bieżąco"
         },
         {
           "caption": "Zamówienie: punkty odbioru i kurierzy z aktualnymi cenami"
@@ -505,32 +508,39 @@
       ],
       "metaDescription": "unitbot: agent Claude Code, który pisze testy jednostkowe do każdego pull requesta, sprawdza je testowaniem mutacyjnym i otwiera jako osobny PR."
     },
-    "aerolit": {
-      "name": "aerolit",
-      "tag": "Dashboard IoT · Vue",
-      "description": "Dashboard operatorski dla 240 czujników jakości powietrza w Berlinie, z kluczowymi decyzjami opisanymi w ADR.",
+    "phloem": {
+      "name": "phloem",
+      "tag": "Studio wideo · W toku",
+      "description": "Lokalne studio do krótkich pionowych filmów Well Botany ciętych w rytm: szablony HTML, wykrywanie bitów, kontrola marki i Claude Code w pętli.",
       "approach": [
-        "Warstwa domenowa (AQI, trendy, KPI) to czyste funkcje bez zależności, pilnowane przez ESLint i sprawdzone z wynikami policzonymi osobno w Pythonie.",
-        "Paginacja kursorowa w obie strony. Wyszukiwanie przełącza tabelę w tryb obejmujący całą sieć i wyraźnie o tym informuje.",
-        "Jasny i ciemny motyw z jednego zestawu tokenów, łącznie z kafelkami mapy i wykresami. Działa od 2560px do telefonu, bez niczego dostępnego tylko po najechaniu.",
-        "Testy end-to-end na trzech szerokościach ze sprawdzeniami axe w obu motywach."
+        "Każdy styl filmu to szablon: mały moduł JS, który rysuje klatkę 1080×1920 dla dowolnej chwili. Ten sam kod działa w podglądzie i w renderze.",
+        "Dla zaimportowanego utworu wykrywane są tempo, bity, takty i dropy. Cięcia scen wypadają na bitach, a przeciągnięcie krawędzi sceny zmienia ją o całe bity.",
+        "Headless Chromium rysuje każdą klatkę, a ffmpeg ją koduje, więc plik zgadza się z podglądem klatka w klatkę. Plik do wrzucenia jest bez dźwięku: dźwięk dodaje się w TikToku lub Instagramie, więc licencja zostaje zachowana.",
+        "Kontrola marki aktualizuje się w trakcie pisania: bezpieczna strefa, długość tekstu, zakazane słowa, liczba marek, powtórzone zdjęcia i długość.",
+        "Zakładka Claude uruchamia lokalny Claude Code z CLI phloem. Zmienia filmy i szablony, ogląda klatki, które sam renderuje, i odpowiada na komentarze przypięte do chwili w filmie."
       ],
       "outcome": [
-        "czujników na mapie na żywo",
-        "warstw testów, od jednostkowych po wzorce pikselowe"
+        "reguł marki sprawdzanych w trakcie pisania",
+        "podgląd i plik zgodne klatka w klatkę"
       ],
       "gallery": [
         {
-          "caption": "Dashboard: KPI, mapa czujników i obserwowane dzielnice"
+          "caption": "Filmy według statusu, od szkicu do publikacji"
         },
         {
-          "caption": "Ciemny motyw z tych samych tokenów, razem z mapą"
+          "caption": "Edytor: sloty, podgląd 9:16 na żywo, oś bitów i kontrola marki"
         },
         {
-          "caption": "Lista czujników z sortowaniem i paginacją kursorową"
+          "caption": "Claude Code poprawia komentarz i opisuje wyniki kontroli"
+        },
+        {
+          "caption": "Utwór: bity, takty i drop, z narzędziami do poprawy siatki"
+        },
+        {
+          "caption": "Biblioteka: zdjęcia produktów z usuniętym tłem"
         }
       ],
-      "metaDescription": "aerolit: dashboard operatorski dla 240 czujników jakości powietrza w Berlinie, zbudowany w Vue, z kluczowymi decyzjami opisanymi w ADR."
+      "metaDescription": "phloem: lokalne studio do krótkich pionowych filmów sklepu internetowego ciętych w rytm, z szablonami HTML, dokładnym renderem, kontrolą marki i Claude Code."
     },
     "hisashi": {
       "name": "hisashi",

@@ -346,30 +346,6 @@
       1440
     ]
   },
-  "/personal-projects/aerolit-dashboard-dark.webp": {
-    "width": 2880,
-    "variants": [
-      480,
-      960,
-      1440
-    ]
-  },
-  "/personal-projects/aerolit-dashboard-light.webp": {
-    "width": 2880,
-    "variants": [
-      480,
-      960,
-      1440
-    ]
-  },
-  "/personal-projects/aerolit-sensors.webp": {
-    "width": 2880,
-    "variants": [
-      480,
-      960,
-      1440
-    ]
-  },
   "/personal-projects/danylomorhun-blog.webp": {
     "width": 2880,
     "variants": [
@@ -451,6 +427,46 @@
     ]
   },
   "/personal-projects/hisashi-today.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/phloem-assets.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/phloem-editor-claude.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/phloem-editor.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/phloem-gallery.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/phloem-tracks.webp": {
     "width": 2880,
     "variants": [
       480,
@@ -570,7 +586,7 @@
       1440
     ]
   },
-  "/personal-projects/wellbotany-hero.webp": {
+  "/personal-projects/wellbotany-gift-sets.webp": {
     "width": 2880,
     "variants": [
       480,
@@ -587,6 +603,14 @@
     ]
   },
   "/personal-projects/wellbotany-product.webp": {
+    "width": 2880,
+    "variants": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "/personal-projects/wellbotany-promo.webp": {
     "width": 2880,
     "variants": [
       480,
