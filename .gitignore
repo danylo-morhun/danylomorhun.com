@@ -40,3 +40,7 @@ coverage
 .vercel
 .env*
 !.env.example
+.wrangler
+
+.dev.vars*
+!.dev.vars.example
