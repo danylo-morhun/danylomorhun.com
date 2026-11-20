@@ -191,7 +191,8 @@ test('the old resume url redirects permanently', async ({ request }) => {
 test('moved and retired project urls redirect permanently', async ({ request }) => {
   for (const [from, to] of [
     ['/lab/twoje-zdrowie', '/lab/wellbotany'],
-    ['/uk/work/air-quality-monitoring-dashboard', '/uk/lab/aerolit'],
+    ['/uk/work/air-quality-monitoring-dashboard', '/uk#lab'],
+    ['/lab/aerolit', '/#lab'],
     ['/pl/work/donation-fundraising-platform', '/pl#work'],
   ]) {
     const response = await request.get(from!, { maxRedirects: 0 })
