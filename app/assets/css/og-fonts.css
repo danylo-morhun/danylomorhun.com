@@ -9,6 +9,7 @@
   src: url('/fonts/og/Geist-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -16,6 +17,7 @@
   src: url('/fonts/og/Geist-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -23,4 +25,5 @@
   src: url('/fonts/og/GeistMono-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }

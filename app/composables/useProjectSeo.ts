@@ -6,7 +6,8 @@ export function useProjectSeo(project: ComputedRef<LocalizedCaseStudy>) {
   const localePath = useLocalePath()
   const siteConfig = useSiteConfig()
 
-  const title = computed(() => `${project.value.name} · Danylo Morhun`)
+  // "Sourcely — Wholesale sourcing · Danylo Morhun": the subject keeps the title past ~30 characters.
+  const title = computed(() => `${project.value.name} — ${project.value.tag.split(' · ').at(-1)} · Danylo Morhun`)
 
   useSeoMeta({
     title,

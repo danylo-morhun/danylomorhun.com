@@ -146,7 +146,8 @@ export function blogPostingGraph(site: SiteIdentity, page: PageInfo, post: PostI
       'datePublished': post.date,
       'dateModified': post.updated ?? post.date,
       'keywords': post.tags,
-      'author': { '@id': personId(site) },
+      // Name inline too: some validators do not follow the @id to the Person node.
+      'author': { '@id': personId(site), 'name': site.name, 'url': site.url },
       'publisher': { '@id': personId(site) },
       'isPartOf': { '@type': 'Blog', '@id': `${post.blog.url}#blog`, 'name': post.blog.name, 'url': post.blog.url },
     },
